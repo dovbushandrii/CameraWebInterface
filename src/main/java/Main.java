@@ -1,5 +1,5 @@
 import camera_api.*;
-import camera_api.canon.*;
+import camera_api.canon.CanonSDK;
 
 import java.util.concurrent.TimeUnit;
 
@@ -9,22 +9,17 @@ public class Main {
         System.loadLibrary("CameraForJava");
     }
     public static void main(String[] args){
-        try {
-            ErrorCode code = CanonSDK.initializeSDK();
-
-            Camera cam = CanonSDK.getCamera(0);
-            //TimeUnit.SECONDS.sleep(2);
-
-            if(cam != null) {
-                cam.openSession();
-                //TimeUnit.SECONDS.sleep(0);
-
+        //TimeUnit.SECONDS.sleep(0);
+        CameraFactory fac = new CameraFactory(new CanonSDK());
+        System.out.println(fac.initializeAll());
+        if(fac.getDeviceCount() > 0){
+            Camera cam = fac.getCamera(0);
+            if(cam != null){
+                System.out.println(cam.openSession());
+                System.out.println(cam.autoFocus());
+                System.out.println(cam.takePicture(1));
             }
-            CanonSDK.terminateSDK();
         }
-        catch (Throwable t){
-            System.out.println(t.getMessage());
-            CanonSDK.terminateSDK();
-        }
+        System.out.println(fac.terminateAll());
     }
 }

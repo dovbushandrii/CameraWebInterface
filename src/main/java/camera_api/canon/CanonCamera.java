@@ -20,7 +20,6 @@ package camera_api.canon;/*
 
 import camera_api.Camera;
 import camera_api.CameraProp;
-import camera_api.ErrorCode;
 import camera_api.canon.encodings.cameraprops.*;
 import camera_api.canon.encodings.sdk.*;
 
@@ -75,11 +74,8 @@ public class CanonCamera implements Camera {
      * DOES NOT OPEN THE CAMERA SESSION
      * @throws Throwable if error occurs, throws Throwable with error message.
      */
-    private CanonCamera(int index) throws Throwable{
+    private CanonCamera(int index){
         EdsError err = setCamRefFromList(index);
-        if(!err.equals(EdsError.EDS_ERR_OK)){
-            throw new Throwable("Camera reference get fail: " + err.toString());
-        }
     }
 
     /**
@@ -90,7 +86,7 @@ public class CanonCamera implements Camera {
      * @return Constructed Camera class object
      * @throws Throwable if Camera is unavailable to get from index @index, throws exception.
      */
-    public static CanonCamera createCamera(CanonSDK.EDSDKPermit permission, int index) throws Throwable{
+    public static CanonCamera createCamera(CanonSDK.EDSDKPermit permission, int index){
         if(permission != null){
             CanonCamera cam = new CanonCamera(index);
             return cam;
@@ -104,7 +100,7 @@ public class CanonCamera implements Camera {
      * ONLY by camera_api.canon.CanonSDK static methods.
      * @throws Throwable if error occurs, throws Throwable with error message.
      */
-    protected void finalize(CanonSDK.EDSDKPermit permission){
+    protected void release(CanonSDK.EDSDKPermit permission){
         if(permission != null) {
             this.releaseCamRef();
             this.setCamRef(0);

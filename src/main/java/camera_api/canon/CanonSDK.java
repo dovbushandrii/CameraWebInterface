@@ -1,12 +1,13 @@
 package camera_api.canon;
 
+import camera_api.CameraSDK;
 import camera_api.canon.encodings.sdk.*;
 
 
 /*
  *   TODO: Commenting
  */
-public class CanonSDK {
+public class CanonSDK extends CameraSDK {
 
     /**
      *
@@ -35,24 +36,39 @@ public class CanonSDK {
      *
      * @throws Throwable
      */
-    private static void setCameraList() throws Throwable{
+    private static EdsError setCameraList(){
         int size = getCameraListSize();
         deviceList = new CanonCamera[size];
         for(int i = 0; i < size; i++) {
-            deviceList[i] = CanonCamera.createCamera(permission, i);
+            CanonCamera cam = CanonCamera.createCamera(permission, i);
+            if(cam == null) {
+                return EdsError.EDS_ERR_DEVICE_NOT_FOUND;
+            }
+            else{
+                deviceList[i] = cam;
+
+            }
         }
+        return EdsError.EDS_ERR_OK;
     }
 
     /**
      *
      * @throws Throwable
      */
-    private static void releaseCameraList(){
+    private static EdsError releaseCameraList(){
+        EdsError err = EdsError.EDS_ERR_OK;
         for(int i = 0; i < deviceList.length; i++){
-            deviceList[i].closeSession();
-            deviceList[i].finalize(permission);
+            err = deviceList[i].closeSession();
+            if(err == EdsError.EDS_ERR_OK) {
+                deviceList[i].release(permission);
+            }
+            else{
+                return err;
+            }
         }
         deviceList = null;
+        return err;
     }
 /*----------------------------------------------------------------------------*/
     /**
@@ -64,22 +80,24 @@ public class CanonSDK {
      * Initializes Canon EOS SDK.
      * @return Error Code, if ok - returns EDS_ERR_OK
      */
-    private static native EdsError initializeNativeSDK();
+    private native EdsError initializeNativeSDK();
 
     /**
      * Terminates Canon EOS SDK.
      * MUST BE called at the end.
      * @return Error Code, if ok - returns EDS_ERR_OK
      */
-    private static native EdsError terminateNativeSDK();
+    private native EdsError terminateNativeSDK();
 
     /**
      *
      * @throws Throwable
      */
-    public static EdsError initializeSDK() throws Throwable{
-        EdsError err = CanonSDK.initializeNativeSDK();
-        setCameraList();
+    public EdsError initializeSDK(){
+        EdsError err = initializeNativeSDK();
+        if(err == EdsError.EDS_ERR_OK) {
+            err = setCameraList();
+        }
         return err;
     }
 
@@ -87,19 +105,25 @@ public class CanonSDK {
      *
      * @throws Throwable
      */
-    public static EdsError terminateSDK(){
-        EdsError err = terminateNativeSDK();
-        releaseCameraList();
+    public EdsError terminateSDK(){
+        EdsError err = releaseCameraList();
+        if(err == EdsError.EDS_ERR_OK) {
+            err = terminateNativeSDK();
+        }
         return err;
     }
 /*----------------------------------------------------------------------------*/
+
+    public int getDeviceCount(){
+        return deviceList.length;
+    }
 
     /**
      *
      * @param index
      * @return
      */
-    public static CanonCamera getCamera(int index){
+    public CanonCamera getCamera(int index){
         if(deviceList.length > index && index >= 0){
             return deviceList[index];
         }
@@ -111,14 +135,18 @@ public class CanonSDK {
      * @param index
      * @return
      */
-    public static String getDeviceName(int index){
+    public String getCameraName(int index){
         return deviceList[index].productName();
     }
 
-    public static String[] getDeviceNameList(){
+    /**
+     *
+     * @return
+     */
+    public String[] getCameraNameList(){
         String dnl[] = new String[deviceList.length];
         for(int i = 0 ; i < dnl.length; i++){
-            dnl[i] = getDeviceName(i);
+            dnl[i] = getCameraName(i);
         }
         return dnl;
     }
@@ -128,5 +156,5 @@ public class CanonSDK {
      * @param index
      * @return
      */
-    public static native String getDevicePortInfo(int index);
+    public native String getCameraPortInfo(int index);
 }
