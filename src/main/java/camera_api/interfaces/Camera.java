@@ -1,10 +1,6 @@
-package camera_api;
+package camera_api.interfaces;
 
 // TODO: 8/5/2021 COMMENTING
-
-import camera_api.canon.encodings.cameraprops.EdsAperture;
-import camera_api.canon.encodings.cameraprops.EdsExposure;
-import camera_api.canon.encodings.sdk.EdsError;
 
 public interface Camera {
     /**

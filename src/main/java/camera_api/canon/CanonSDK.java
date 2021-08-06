@@ -1,14 +1,12 @@
 package camera_api.canon;
 
-import camera_api.CameraSDK;
+import camera_api.interfaces.CameraSDK;
 import camera_api.canon.encodings.sdk.*;
-import org.springframework.stereotype.Component;
 
 
 /*
  *   TODO: Commenting
  */
-@Component
 public class CanonSDK implements CameraSDK {
 
     /**

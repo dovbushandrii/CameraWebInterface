@@ -1,4 +1,4 @@
-package camera_api;
+package camera_api.interfaces;
 
 public interface CameraProp {
     String toString();
