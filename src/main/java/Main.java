@@ -1,5 +1,6 @@
 import camera_api.*;
 import camera_api.canon.CanonSDK;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.concurrent.TimeUnit;
 
@@ -9,17 +10,17 @@ public class Main {
         System.loadLibrary("CameraForJava");
     }
     public static void main(String[] args){
-        //TimeUnit.SECONDS.sleep(0);
-        CameraFactory fac = new CameraFactory(new CanonSDK());
-        System.out.println(fac.initializeAll());
-        if(fac.getDeviceCount() > 0){
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+                "cameraFactory.xml"
+        );
+
+        CameraFactory fac = context.getBean("cameraFactory", CameraFactory.class);
+        fac.initializeAll();
+        if(fac.getDeviceCount() > 0) {
             Camera cam = fac.getCamera(0);
-            if(cam != null){
-                System.out.println(cam.openSession());
-                System.out.println(cam.autoFocus());
-                System.out.println(cam.takePicture(1));
-            }
+            cam.openSession();
+            System.out.println(cam.takePicture(1));
         }
-        System.out.println(fac.terminateAll());
+        fac.terminateAll();
     }
 }

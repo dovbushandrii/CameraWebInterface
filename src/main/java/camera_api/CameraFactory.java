@@ -1,9 +1,14 @@
 package camera_api;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component ("cameraFactory")
 public class CameraFactory {
     private CameraSDK sdk;
     private boolean isInit = false;
 
+    @Autowired
     public CameraFactory(CameraSDK sdk){
         this.sdk = sdk;
     }
