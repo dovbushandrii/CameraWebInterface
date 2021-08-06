@@ -79,7 +79,7 @@ public enum EdsExposure implements CameraProp {
     SEC_1_8000		(0xA0),
     NOT_VALID		(-1);
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

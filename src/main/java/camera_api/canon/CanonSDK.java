@@ -17,7 +17,7 @@ public class CanonSDK implements CameraSDK {
     /**
      *
      */
-    private static EDSDKPermit permission = new EDSDKPermit();
+    private static final EDSDKPermit permission = new EDSDKPermit();
 
     /**
      *
@@ -34,7 +34,6 @@ public class CanonSDK implements CameraSDK {
 
     /**
      *
-     * @throws Throwable
      */
     private static EdsError setCameraList(){
         int size = getCameraListSize();
@@ -54,16 +53,14 @@ public class CanonSDK implements CameraSDK {
 
     /**
      *
-     * @throws Throwable
      */
     private static EdsError releaseCameraList(){
         EdsError err = EdsError.EDS_ERR_OK;
-        for(int i = 0; i < deviceList.length; i++){
-            err = deviceList[i].closeSession();
-            if(err == EdsError.EDS_ERR_OK) {
-                deviceList[i].release(permission);
-            }
-            else{
+        for (CanonCamera canonCamera : deviceList) {
+            err = canonCamera.closeSession();
+            if (err == EdsError.EDS_ERR_OK) {
+                canonCamera.release(permission);
+            } else {
                 return err;
             }
         }
@@ -74,7 +71,7 @@ public class CanonSDK implements CameraSDK {
     /**
      *
      */
-    private static boolean isInitialized = false;
+    private static final boolean isInitialized = false;
 
     /**
      * Initializes Canon EOS SDK.
@@ -91,7 +88,6 @@ public class CanonSDK implements CameraSDK {
 
     /**
      *
-     * @throws Throwable
      */
     public EdsError initializeSDK(){
         EdsError err = initializeNativeSDK();
@@ -103,7 +99,6 @@ public class CanonSDK implements CameraSDK {
 
     /**
      *
-     * @throws Throwable
      */
     public EdsError terminateSDK(){
         EdsError err = releaseCameraList();

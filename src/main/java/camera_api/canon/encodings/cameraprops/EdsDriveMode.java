@@ -20,7 +20,7 @@ public enum EdsDriveMode implements CameraProp {
     SILENT_LS_CONTIN        (0x00000016);
 
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

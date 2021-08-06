@@ -8,7 +8,7 @@ public enum EdsFocusSettings implements CameraProp {
     AI_FOCUS(2),
     MANUAL(3),
     NOT_VALID (-1);
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

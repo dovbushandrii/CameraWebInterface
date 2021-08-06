@@ -8,7 +8,7 @@ public enum EdsSaveTo implements CameraProp {
     HOST_COMPUTER   (2),
     BOTH            (3);
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

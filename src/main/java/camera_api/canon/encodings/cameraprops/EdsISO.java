@@ -44,7 +44,7 @@ public enum EdsISO implements CameraProp {
     ISO_819200	(0x000000b0),
     NOT_VALID	(-1);
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

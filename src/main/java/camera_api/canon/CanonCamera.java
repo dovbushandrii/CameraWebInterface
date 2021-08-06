@@ -39,7 +39,7 @@ public class CanonCamera implements Camera {
     /**
      * Indicates if the Camera session is open.
      */
-    private boolean isSessionOpen = false;
+    private final boolean isSessionOpen = false;
 
     /**
      * Opens camera session
@@ -57,7 +57,7 @@ public class CanonCamera implements Camera {
     /**
      * Gets camera reference at index @index
      * from device list, and sets and calls
-     * @setCamRef method to save it.
+     * setCamRef() method to save it.
      * @param index Device list index
      * @return Error Code, if ok - returns EDS_ERR_OK
      */
@@ -70,12 +70,11 @@ public class CanonCamera implements Camera {
 
     /**
      * Constructor to get specific camera from device list.
-     * Gets camera at @index position in defice list
+     * Gets camera at @index position in device list
      * DOES NOT OPEN THE CAMERA SESSION
-     * @throws Throwable if error occurs, throws Throwable with error message.
      */
     private CanonCamera(int index){
-        EdsError err = setCamRefFromList(index);
+        setCamRefFromList(index);
     }
 
     /**
@@ -84,12 +83,10 @@ public class CanonCamera implements Camera {
      * @param permission Key that camera_api.canon.CanonSDK use to construct Camera class objects
      * @param index Index of Camera in Device List
      * @return Constructed Camera class object
-     * @throws Throwable if Camera is unavailable to get from index @index, throws exception.
      */
     public static CanonCamera createCamera(CanonSDK.EDSDKPermit permission, int index){
         if(permission != null){
-            CanonCamera cam = new CanonCamera(index);
-            return cam;
+            return new CanonCamera(index);
         }
         return null;
     }
@@ -98,7 +95,6 @@ public class CanonCamera implements Camera {
      * Default finalizer.
      * Must be called at the end of the program and called
      * ONLY by camera_api.canon.CanonSDK static methods.
-     * @throws Throwable if error occurs, throws Throwable with error message.
      */
     protected void release(CanonSDK.EDSDKPermit permission){
         if(permission != null) {
@@ -509,7 +505,7 @@ public class CanonCamera implements Camera {
     /* AE MODE */
     /**
      * Gets settings values of the camera in shooting mode.
-     * When the AE Mode Dial is set to camera user settings, you will get the AE mode wich is been registered to the
+     * When the AE Mode Dial is set to camera user settings, you will get the AE mode which is been registered to the
      * selected camera user setting.
      * @return Exposure compensation.
      */

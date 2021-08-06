@@ -23,7 +23,7 @@ public enum EdsPictureStyle implements CameraProp {
     USER_3          (0x0023);
 
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

@@ -21,7 +21,7 @@ public enum EdsBracket implements CameraProp {
     AE_ISO_WB_FE    (0x0F);
 
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

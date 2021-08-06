@@ -10,7 +10,7 @@ public enum EdsBatteryQuality implements CameraProp {
     LOW         (0);
 
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

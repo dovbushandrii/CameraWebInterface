@@ -7,7 +7,7 @@ public enum EdsLensStatus implements CameraProp {
     NOT_ATTACHED    (0),
     ATTACHED        (1);
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

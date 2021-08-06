@@ -49,7 +49,7 @@ public enum EdsExposureComp implements CameraProp {
 
 
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

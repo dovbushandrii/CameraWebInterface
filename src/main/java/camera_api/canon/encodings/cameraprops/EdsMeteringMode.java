@@ -10,7 +10,7 @@ public enum EdsMeteringMode implements CameraProp {
     CW_AVERAGING    (5),
     NOT_VALID       (-1);
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

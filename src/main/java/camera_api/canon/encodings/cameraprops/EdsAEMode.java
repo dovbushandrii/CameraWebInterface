@@ -35,7 +35,7 @@ public enum EdsAEMode implements CameraProp {
     WATER_PAINING           (34),
     MINIATURE               (35);
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

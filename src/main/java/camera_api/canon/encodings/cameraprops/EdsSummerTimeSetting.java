@@ -7,7 +7,7 @@ public enum EdsSummerTimeSetting implements CameraProp {
     OFF         (0),
     ON          (1);
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

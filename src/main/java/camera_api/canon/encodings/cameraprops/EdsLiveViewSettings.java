@@ -7,7 +7,7 @@ public enum EdsLiveViewSettings implements CameraProp {
     DISABLE         (0),
     ENABLE          (1);
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

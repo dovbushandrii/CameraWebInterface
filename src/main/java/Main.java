@@ -18,10 +18,11 @@ public class Main {
         if(fac.getDeviceCount() > 0) {
             Camera cam = fac.getCamera(0);
             cam.openSession();
-            cam.autoFocus();
-            cam.takePicture(1);
+            System.out.println(cam.getExposure());
+            System.out.println(cam.getISO());
+            System.out.println(cam.getAperture());
         }
-
         context.close();
+
     }
 }

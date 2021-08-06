@@ -60,7 +60,7 @@ public enum EdsAperture implements CameraProp {
     F_91		(0x70),
     NOT_VALID	(-1);
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable
