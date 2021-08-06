@@ -15,12 +15,13 @@ public class Main {
         );
 
         CameraFactory fac = context.getBean("cameraFactory", CameraFactory.class);
-        fac.initializeAll();
+
         if(fac.getDeviceCount() > 0) {
             Camera cam = fac.getCamera(0);
             cam.openSession();
-            System.out.println(cam.takePicture(1));
+            cam.takePicture(1);
         }
-        fac.terminateAll();
+
+        context.close();
     }
 }

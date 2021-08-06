@@ -3,22 +3,29 @@ package camera_api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component ("cameraFactory")
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+@Component
 public class CameraFactory {
+
     private CameraSDK sdk;
-    private boolean isInit = false;
+
+    private static boolean isInit = false;
 
     @Autowired
     public CameraFactory(CameraSDK sdk){
         this.sdk = sdk;
     }
 
-    public ErrorCode initializeAll(){
+    @PostConstruct
+    public ErrorCode initialize(){
         this.isInit = true;
         return this.sdk.initializeSDK();
     }
 
-    public ErrorCode terminateAll(){
+    @PreDestroy
+    public ErrorCode terminate(){
         this.isInit = false;
         return this.sdk.terminateSDK();
     }

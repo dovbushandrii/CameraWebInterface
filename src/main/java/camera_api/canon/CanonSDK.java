@@ -24,7 +24,7 @@ public class CanonSDK implements CameraSDK {
     /**
      *
      */
-    private static CanonCamera[] deviceList = null;
+    private static CanonCamera[] deviceList = new CanonCamera[0];
 
 /*----------------------------------------------------------------------------*/
 
