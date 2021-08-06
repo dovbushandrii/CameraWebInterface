@@ -1,6 +1,6 @@
 package camera_api.canon.encodings.cameraprops;
 
-import camera_api.CameraProp;
+import camera_api.interfaces.CameraProp;
 
 public enum EdsColorSpace implements CameraProp {
 
@@ -8,7 +8,7 @@ public enum EdsColorSpace implements CameraProp {
     ADOBE_RGB       (2),
     UNKNOWN         (-1);
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

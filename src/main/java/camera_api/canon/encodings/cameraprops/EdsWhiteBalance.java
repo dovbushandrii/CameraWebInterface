@@ -1,6 +1,6 @@
 package camera_api.canon.encodings.cameraprops;
 
-import camera_api.CameraProp;
+import camera_api.interfaces.CameraProp;
 
 public enum EdsWhiteBalance implements CameraProp {
 
@@ -24,7 +24,7 @@ public enum EdsWhiteBalance implements CameraProp {
     PC_5                (21),
     AUTO_WHITE          (23);
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

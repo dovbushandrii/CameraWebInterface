@@ -1,6 +1,6 @@
 package camera_api.canon.encodings.cameraprops;
 
-import camera_api.CameraProp;
+import camera_api.interfaces.CameraProp;
 
 public enum EdsExposureComp implements CameraProp {
 
@@ -49,7 +49,7 @@ public enum EdsExposureComp implements CameraProp {
 
 
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

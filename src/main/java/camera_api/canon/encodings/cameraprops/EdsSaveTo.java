@@ -1,6 +1,6 @@
 package camera_api.canon.encodings.cameraprops;
 
-import camera_api.CameraProp;
+import camera_api.interfaces.CameraProp;
 
 public enum EdsSaveTo implements CameraProp {
 
@@ -8,7 +8,7 @@ public enum EdsSaveTo implements CameraProp {
     HOST_COMPUTER   (2),
     BOTH            (3);
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

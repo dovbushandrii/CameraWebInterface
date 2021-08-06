@@ -1,6 +1,6 @@
 package camera_api.canon.encodings.cameraprops;
 
-import camera_api.CameraProp;
+import camera_api.interfaces.CameraProp;
 
 public enum EdsAEModeSelect implements CameraProp {
 
@@ -9,7 +9,7 @@ public enum EdsAEModeSelect implements CameraProp {
     CUSTOM_3        (17),
     SCN_SPECIAL     (25);
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

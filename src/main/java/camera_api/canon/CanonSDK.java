@@ -1,13 +1,13 @@
 package camera_api.canon;
 
-import camera_api.CameraSDK;
+import camera_api.interfaces.CameraSDK;
 import camera_api.canon.encodings.sdk.*;
 
 
 /*
  *   TODO: Commenting
  */
-public class CanonSDK extends CameraSDK {
+public class CanonSDK implements CameraSDK {
 
     /**
      *
@@ -17,12 +17,12 @@ public class CanonSDK extends CameraSDK {
     /**
      *
      */
-    private static EDSDKPermit permission = new EDSDKPermit();
+    private static final EDSDKPermit permission = new EDSDKPermit();
 
     /**
      *
      */
-    private static CanonCamera[] deviceList = null;
+    private static CanonCamera[] deviceList = new CanonCamera[0];
 
 /*----------------------------------------------------------------------------*/
 
@@ -34,7 +34,6 @@ public class CanonSDK extends CameraSDK {
 
     /**
      *
-     * @throws Throwable
      */
     private static EdsError setCameraList(){
         int size = getCameraListSize();
@@ -54,16 +53,14 @@ public class CanonSDK extends CameraSDK {
 
     /**
      *
-     * @throws Throwable
      */
     private static EdsError releaseCameraList(){
         EdsError err = EdsError.EDS_ERR_OK;
-        for(int i = 0; i < deviceList.length; i++){
-            err = deviceList[i].closeSession();
-            if(err == EdsError.EDS_ERR_OK) {
-                deviceList[i].release(permission);
-            }
-            else{
+        for (CanonCamera canonCamera : deviceList) {
+            err = canonCamera.closeSession();
+            if (err == EdsError.EDS_ERR_OK) {
+                canonCamera.release(permission);
+            } else {
                 return err;
             }
         }
@@ -74,7 +71,7 @@ public class CanonSDK extends CameraSDK {
     /**
      *
      */
-    private static boolean isInitialized = false;
+    private static final boolean isInitialized = false;
 
     /**
      * Initializes Canon EOS SDK.
@@ -91,7 +88,6 @@ public class CanonSDK extends CameraSDK {
 
     /**
      *
-     * @throws Throwable
      */
     public EdsError initializeSDK(){
         EdsError err = initializeNativeSDK();
@@ -103,7 +99,6 @@ public class CanonSDK extends CameraSDK {
 
     /**
      *
-     * @throws Throwable
      */
     public EdsError terminateSDK(){
         EdsError err = releaseCameraList();

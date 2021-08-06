@@ -1,6 +1,6 @@
 package camera_api.canon.encodings.cameraprops;
 
-import camera_api.CameraProp;
+import camera_api.interfaces.CameraProp;
 
 public enum EdsAEMode implements CameraProp {
 
@@ -35,7 +35,7 @@ public enum EdsAEMode implements CameraProp {
     WATER_PAINING           (34),
     MINIATURE               (35);
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

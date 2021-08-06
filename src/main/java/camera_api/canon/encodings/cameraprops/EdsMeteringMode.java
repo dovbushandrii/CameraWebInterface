@@ -1,6 +1,6 @@
 package camera_api.canon.encodings.cameraprops;
 
-import camera_api.CameraProp;
+import camera_api.interfaces.CameraProp;
 
 public enum EdsMeteringMode implements CameraProp {
 
@@ -10,7 +10,7 @@ public enum EdsMeteringMode implements CameraProp {
     CW_AVERAGING    (5),
     NOT_VALID       (-1);
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

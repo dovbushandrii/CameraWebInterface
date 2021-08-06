@@ -3,7 +3,7 @@ package camera_api.canon.encodings.cameraprops;
  * This property is valid only for models supporting picture styles.
  */
 
-import camera_api.CameraProp;
+import camera_api.interfaces.CameraProp;
 
 public enum EdsPictureStyle implements CameraProp {
 
@@ -23,7 +23,7 @@ public enum EdsPictureStyle implements CameraProp {
     USER_3          (0x0023);
 
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable

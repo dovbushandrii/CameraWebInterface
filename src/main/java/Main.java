@@ -1,7 +1,6 @@
 import camera_api.*;
-import camera_api.canon.CanonSDK;
-
-import java.util.concurrent.TimeUnit;
+import camera_api.interfaces.Camera;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {
     static{
@@ -9,17 +8,21 @@ public class Main {
         System.loadLibrary("CameraForJava");
     }
     public static void main(String[] args){
-        //TimeUnit.SECONDS.sleep(0);
-        CameraFactory fac = new CameraFactory(new CanonSDK());
-        System.out.println(fac.initializeAll());
-        if(fac.getDeviceCount() > 0){
+
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+                CamFacConfig.class
+        );
+
+        CameraFactory fac = context.getBean("cameraFactory", CameraFactory.class);
+
+        if(fac.getDeviceCount() > 0) {
             Camera cam = fac.getCamera(0);
-            if(cam != null){
-                System.out.println(cam.openSession());
-                System.out.println(cam.autoFocus());
-                System.out.println(cam.takePicture(1));
-            }
+            cam.openSession();
+            System.out.println(cam.getExposure());
+            System.out.println(cam.getISO());
+            System.out.println(cam.getAperture());
         }
-        System.out.println(fac.terminateAll());
+        context.close();
+
     }
 }

@@ -1,13 +1,13 @@
 package camera_api.canon.encodings.cameraprops;
 
-import camera_api.CameraProp;
+import camera_api.interfaces.CameraProp;
 
 public enum EdsLiveViewSettings implements CameraProp {
 
     DISABLE         (0),
     ENABLE          (1);
 
-    private int code;
+    private final int code;
 
     /**
      * Constructor to initialize the instance variable
