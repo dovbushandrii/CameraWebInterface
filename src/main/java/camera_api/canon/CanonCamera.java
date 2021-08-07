@@ -505,9 +505,7 @@ public class CanonCamera implements Camera {
     /* AE MODE */
     /**
      * Gets settings values of the camera in shooting mode.
-     * When the AE Mode Dial is set to camera user settings, you will get the AE mode which is been registered to the
-     * selected camera user setting.
-     * @return Exposure compensation.
+     * @return AE mode code
      */
     public native EdsAEMode getAEMode();
 
