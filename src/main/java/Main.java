@@ -15,12 +15,11 @@ public class Main {
 
         CameraFactory fac = context.getBean("cameraFactory", CameraFactory.class);
 
+
         if(fac.getDeviceCount() > 0) {
             Camera cam = fac.getCamera(0);
-            cam.openSession();
-            System.out.println(cam.getExposure());
-            System.out.println(cam.getISO());
-            System.out.println(cam.getAperture());
+            /* YOUR CODE STARTS HERE*/
+            /* YOUR CODE ENDS HERE */
         }
         context.close();
 

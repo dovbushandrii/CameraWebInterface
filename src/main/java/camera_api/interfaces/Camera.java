@@ -2,6 +2,8 @@ package camera_api.interfaces;
 
 // TODO: 8/5/2021 COMMENTING
 
+import camera_api.canon.encodings.cameraprops.EdsAEMode;
+
 public interface Camera {
     /**
      * Opens camera session
@@ -128,6 +130,13 @@ public interface Camera {
     ErrorCode cameraUILock(boolean lock);
 
     /* SETTINGS CONTROL COMMANDS */
+
+    /* AE MODE */
+    /**
+     * Gets settings values of the camera in shooting mode.
+     * @return AE mode code
+     */
+    CameraProp getAEMode();
 
     /* EXPOSURE */
     /**

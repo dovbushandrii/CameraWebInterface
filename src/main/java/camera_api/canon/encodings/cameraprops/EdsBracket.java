@@ -4,31 +4,34 @@ import camera_api.interfaces.CameraProp;
 
 public enum EdsBracket implements CameraProp {
 
-    AE              (0x01),
-    ISO             (0x02),
-    WB              (0x04),
-    FE              (0x08),
-    AE_ISO          (0x03),
-    AE_WB           (0x05),
-    AE_FE           (0x09),
-    ISO_WB          (0x06),
-    ISO_FE          (0x0A),
-    WB_FE           (0x0C),
-    AE_ISO_WB       (0x07),
-    AE_ISO_FE       (0x0B),
-    AE_WB_FE        (0x0D),
-    ISO_WB_FE       (0x0E),
-    AE_ISO_WB_FE    (0x0F);
+    AE              (0x01,"AE bracket"),
+    ISO             (0x02,"ISO bracket"),
+    WB              (0x04,"WB bracket"),
+    FE              (0x08,"FE bracket"),
+    AE_ISO          (0x03,"AE+ISO brackets"),
+    AE_WB           (0x05,"AE+WB brackets"),
+    AE_FE           (0x09,"AE+FE brackets"),
+    ISO_WB          (0x06,"ISO+WB brackets"),
+    ISO_FE          (0x0A,"ISO+FE brackets"),
+    WB_FE           (0x0C,"WB+FE brackets"),
+    AE_ISO_WB       (0x07,"AE+ISO+WB brackets"),
+    AE_ISO_FE       (0x0B,"AE+ISO+FE brackets"),
+    AE_WB_FE        (0x0D,"AE+WB+FE brackets"),
+    ISO_WB_FE       (0x0E,"ISO+WB+FE brackets"),
+    AE_ISO_WB_FE    (0x0,"AE+ISO+WB+FE brackets"),
+    BRACKET_OFF     (-1,"Bracket off");
 
 
     private final int code;
+    private final String line;
 
     /**
      * Constructor to initialize the instance variable
      * @param code Code of aperture setting
      */
-    EdsBracket(int code) {
+    EdsBracket(int code, String line) {
         this.code = code;
+        this.line = line;
     }
     public int getCode() {
         return this.code;
@@ -41,5 +44,10 @@ public enum EdsBracket implements CameraProp {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString(){
+        return this.line;
     }
 }
