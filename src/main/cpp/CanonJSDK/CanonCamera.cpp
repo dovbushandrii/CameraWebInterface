@@ -1112,7 +1112,7 @@ JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonCamera_getISO
  * Method:    getPossibleISO
  * Signature: ()[Lencodings/cameraprops/EdsISO;
  */
-JNIEXPORT jobjectArray JNICALL Java_camera_1api_canon_CanonvCamera_getPossibleISO
+JNIEXPORT jobjectArray JNICALL Java_camera_1api_canon_CanonCamera_getPossibleISO
 (JNIEnv* env, jobject thiz) {
     return getCamUInt32PossiblePropVals(env, thiz, CAM_PROP_ENUM_PATH EDS_ISO_ENUM_NAME, kEdsPropID_ISOSpeed);
 }
@@ -1439,7 +1439,7 @@ JNIEXPORT jobjectArray JNICALL Java_camera_1api_canon_CanonCamera_getPossibleAEM
  * Method:    setExposureComp
  * Signature: (Lencodings/cameraprops/EdsExposureComp;)Lencodings/sdk/EdsError;
  */
-JNIEXPORT jobject JNICALL Java_CanonCamera_setExposureComp
+JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonCamera_setExposureComp
 (JNIEnv* env, jobject thiz, jobject expComp) {
     return setCamUInt32PropEnum(env, thiz, expComp, kEdsPropID_ExposureCompensation);
 }
@@ -1449,7 +1449,7 @@ JNIEXPORT jobject JNICALL Java_CanonCamera_setExposureComp
  * Method:    getExposureComp
  * Signature: ()Lencodings/cameraprops/EdsExposureComp;
  */
-JNIEXPORT jobject JNICALL Java_CanonCamera_getExposureComp
+JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonCamera_getExposureComp
 (JNIEnv* env, jobject thiz) {
     return getCamUInt32PropEnum(env, thiz, CAM_PROP_ENUM_PATH EDS_EXPOSURE_COMP_ENUM_NAME, kEdsPropID_ExposureCompensation);
 }
@@ -1459,7 +1459,7 @@ JNIEXPORT jobject JNICALL Java_CanonCamera_getExposureComp
  * Method:    getPossibleExposureComp
  * Signature: ()[Lencodings/cameraprops/EdsExposureComp;
  */
-JNIEXPORT jobjectArray JNICALL Java_CanonCamera_getPossibleExposureComp
+JNIEXPORT jobjectArray JNICALL Java_camera_1api_canon_CanonCamera_getPossibleExposureComp
 (JNIEnv* env, jobject thiz) {
     return getCamUInt32PossiblePropVals(env, thiz, CAM_PROP_ENUM_PATH EDS_EXPOSURE_COMP_ENUM_NAME, kEdsPropID_ExposureCompensation);
 }
@@ -1472,7 +1472,7 @@ JNIEXPORT jobjectArray JNICALL Java_CanonCamera_getPossibleExposureComp
  * Method:    getAEMode
  * Signature: ()Lencodings/cameraprops/EdsAEMode;
  */
-JNIEXPORT jobject JNICALL Java_CanonCamera_getAEMode
+JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonCamera_getAEMode
 (JNIEnv* env, jobject thiz) {
     return getCamUInt32PropEnum(env, thiz, CAM_PROP_ENUM_PATH EDS_AE_MODE_ENUM_NAME, kEdsPropID_AEMode);
 }
@@ -1485,7 +1485,7 @@ JNIEXPORT jobject JNICALL Java_CanonCamera_getAEMode
  * Method:    setSummerTimeSetting
  * Signature: (Lencodings/cameraprops/EdsSummerTimeSetting;)Lencodings/sdk/EdsError;
  */
-JNIEXPORT jobject JNICALL Java_CanonCamera_setSummerTimeSetting
+JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonCamera_setSummerTimeSetting
 (JNIEnv* env, jobject thiz, jobject sumTime) {
     return setCamUInt32PropEnum(env, thiz, sumTime, kEdsPropID_SummerTimeSetting);
 }
@@ -1496,7 +1496,7 @@ JNIEXPORT jobject JNICALL Java_CanonCamera_setSummerTimeSetting
  * Method:    getSummerTimeSetting
  * Signature: ()Lencodings/cameraprops/EdsSummerTimeSetting;
  */
-JNIEXPORT jobject JNICALL Java_CanonCamera_getSummerTimeSetting
+JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonCamera_getSummerTimeSetting
 (JNIEnv* env, jobject thiz) {
     return getCamUInt32PropEnum(env, thiz, CAM_PROP_ENUM_PATH EDS_SUMMER_TIME_ENUM_NAME, kEdsPropID_SummerTimeSetting);
 }
