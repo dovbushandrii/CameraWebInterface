@@ -1,5 +1,6 @@
 package camera_api.canon.encodings.cameraprops;
 
+import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.CameraProp;
 
 public enum EdsColorSpace implements CameraProp {
@@ -24,13 +25,13 @@ public enum EdsColorSpace implements CameraProp {
         return this.code;
     }
 
-    public static EdsColorSpace fromCode(int code) {
+    public static EdsColorSpace fromCode(int code) throws NoSuchPropertyValueException{
         for (EdsColorSpace type : values()) {
             if (type.getCode() == code) {
                 return type;
             }
         }
-        return null;
+        throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
     @Override

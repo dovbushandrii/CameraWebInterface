@@ -2,7 +2,8 @@ package camera_api.interfaces;
 
 // TODO: 8/5/2021 COMMENTING
 
-import camera_api.canon.encodings.cameraprops.EdsAEMode;
+import camera_api.exceptions.NoSuchPropertyValueException;
+
 
 public interface Camera {
     /**
@@ -136,7 +137,7 @@ public interface Camera {
      * Gets settings values of the camera in shooting mode.
      * @return AE mode code
      */
-    CameraProp getAEMode();
+    CameraProp getAEMode() throws NoSuchPropertyValueException;
 
     /* EXPOSURE */
     /**
@@ -150,13 +151,13 @@ public interface Camera {
      * Gets exposure settings
      * @return Exposure settings code
      */
-    CameraProp getExposure();
+    CameraProp getExposure() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible exposure settings
      * @return A list of possible exposure settings
      */
-    CameraProp[] getPossibleExposure();
+    CameraProp[] getPossibleExposure() throws NoSuchPropertyValueException;
 
     /* ISO */
     /**
@@ -170,13 +171,13 @@ public interface Camera {
      * Gets ISO settings
      * @return ISO settings code
      */
-    CameraProp getISO();
+    CameraProp getISO() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible ISO settings
      * @return A list of possible ISO settings
      */
-    CameraProp[] getPossibleISO();
+    CameraProp[] getPossibleISO() throws NoSuchPropertyValueException;
 
     /* FOCUS SETTINGS */
     /**
@@ -190,13 +191,13 @@ public interface Camera {
      * Gets AF settings
      * @return AF settings code
      */
-    CameraProp getFocusSettings();
+    CameraProp getFocusSettings() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible AF settings
      * @return A list of possible AF settings
      */
-    CameraProp[] getPossibleFocusSettings();
+    CameraProp[] getPossibleFocusSettings() throws NoSuchPropertyValueException;
 
     /* APERTURE */
     /**
@@ -210,13 +211,13 @@ public interface Camera {
      * Gets aperture settings
      * @return Aperture settings code
      */
-    CameraProp getAperture();
+    CameraProp getAperture() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible aperture settings
      * @return A list of possible aperture settings
      */
-    CameraProp[] getPossibleAperture();
+    CameraProp[] getPossibleAperture() throws NoSuchPropertyValueException;
 
     /* DRIVE MODE */
     /**
@@ -230,13 +231,13 @@ public interface Camera {
      * Gets drive mode settings
      * @return Drive mode settings code
      */
-    CameraProp getDriveMode();
+    CameraProp getDriveMode() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible drive mode settings
      * @return A list of possible drive mode settings
      */
-    CameraProp[] getPossibleDriveMode();
+    CameraProp[] getPossibleDriveMode() throws NoSuchPropertyValueException;
 
     /* WHITE BALANCE */
     /**
@@ -250,13 +251,13 @@ public interface Camera {
      * Gets white balance settings
      * @return White balance settings code
      */
-    CameraProp getWhiteBalance();
+    CameraProp getWhiteBalance() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible white balance settings
      * @return A list of possible white balance settings
      */
-    CameraProp[] getPossibleWhiteBalance();
+    CameraProp[] getPossibleWhiteBalance() throws NoSuchPropertyValueException;
 
     /* COLOR SPACE */
     /**
@@ -270,20 +271,20 @@ public interface Camera {
      * Gets color space settings
      * @return Color space settings code
      */
-    CameraProp getColorSpace();
+    CameraProp getColorSpace() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible color space settings
      * @return A list of possible color space settings
      */
-    CameraProp[] getPossibleColorSpace();
+    CameraProp[] getPossibleColorSpace() throws NoSuchPropertyValueException;
 
     /* LENS STATUS */
     /**
      * Gets lens status (attached or not).
      * @return Lens status code
      */
-    CameraProp getLensStatus();
+    CameraProp getLensStatus() throws NoSuchPropertyValueException;
 
     /* EXPOSURE COMPENSATION */
     /**
@@ -297,12 +298,12 @@ public interface Camera {
      * Gets the exposure compensation.
      * @return Exposure compensation.
      */
-    CameraProp getExposureComp();
+    CameraProp getExposureComp() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible exposure compensation.
      * @return A list of possible exposure compensation.
      */
-    CameraProp[] getPossibleExposureComp();
+    CameraProp[] getPossibleExposureComp() throws NoSuchPropertyValueException;
     /*----------------------------------------------------------------------------*/
 }

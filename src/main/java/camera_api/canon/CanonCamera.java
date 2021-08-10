@@ -18,10 +18,12 @@ package camera_api.canon;/*
 * */
 
 
+import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.Camera;
 import camera_api.interfaces.CameraProp;
 import camera_api.canon.encodings.cameraprops.*;
 import camera_api.canon.encodings.sdk.*;
+
 
 public class CanonCamera implements Camera {
 
@@ -190,7 +192,7 @@ public class CanonCamera implements Camera {
      * returns null
      * @return Battery quality code
      */
-    public native EdsBatteryQuality batteryQuality();
+    public native EdsBatteryQuality batteryQuality() throws NoSuchPropertyValueException;
 
     /**
      * Returns the number of shots available on a camera.
@@ -246,7 +248,7 @@ public class CanonCamera implements Camera {
      * Gets live view settings status.
      * @return Live view status code
      */
-    public native EdsLiveViewSettings getLVSettingsStatus();
+    public native EdsLiveViewSettings getLVSettingsStatus() throws NoSuchPropertyValueException;
 
     /* SETTINGS CONTROL COMMANDS */
 
@@ -262,13 +264,13 @@ public class CanonCamera implements Camera {
      * Gets exposure settings
      * @return Exposure settings code
      */
-    public native EdsExposure getExposure();
+    public native EdsExposure getExposure() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible exposure settings
      * @return A list of possible exposure settings
      */
-    public native EdsExposure[] getPossibleExposure();
+    public native EdsExposure[] getPossibleExposure() throws NoSuchPropertyValueException;
 
     /* ISO */
     /**
@@ -282,13 +284,13 @@ public class CanonCamera implements Camera {
      * Gets ISO settings
      * @return ISO settings code
      */
-    public native EdsISO getISO();
+    public native EdsISO getISO() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible ISO settings
      * @return A list of possible ISO settings
      */
-    public native EdsISO[] getPossibleISO();
+    public native EdsISO[] getPossibleISO() throws NoSuchPropertyValueException;
 
     /* FOCUS SETTINGS */
     /**
@@ -302,13 +304,13 @@ public class CanonCamera implements Camera {
      * Gets AF settings
      * @return AF settings code
      */
-    public native EdsFocusSettings getFocusSettings();
+    public native EdsFocusSettings getFocusSettings() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible AF settings
      * @return A list of possible AF settings
      */
-    public native EdsFocusSettings[] getPossibleFocusSettings();
+    public native EdsFocusSettings[] getPossibleFocusSettings() throws NoSuchPropertyValueException;
 
     /* APERTURE */
     /**
@@ -322,13 +324,13 @@ public class CanonCamera implements Camera {
      * Gets aperture settings
      * @return Aperture settings code
      */
-    public native EdsAperture getAperture();
+    public native EdsAperture getAperture() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible aperture settings
      * @return A list of possible aperture settings
      */
-    public native EdsAperture[] getPossibleAperture();
+    public native EdsAperture[] getPossibleAperture() throws NoSuchPropertyValueException;
 
     /*  DESTINATION OF IMAGES AFTER SHOOTING */
     /**
@@ -342,7 +344,7 @@ public class CanonCamera implements Camera {
      * Gets the destination of images after shooting
      * @return The destination code of images after shooting
      */
-    public native EdsSaveTo getSaveTo();
+    public native EdsSaveTo getSaveTo() throws NoSuchPropertyValueException;
 
     /* DRIVE MODE */
     /**
@@ -356,13 +358,13 @@ public class CanonCamera implements Camera {
      * Gets drive mode settings
      * @return Drive mode settings code
      */
-    public native EdsDriveMode getDriveMode();
+    public native EdsDriveMode getDriveMode() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible drive mode settings
      * @return A list of possible drive mode settings
      */
-    public native EdsDriveMode[] getPossibleDriveMode();
+    public native EdsDriveMode[] getPossibleDriveMode() throws NoSuchPropertyValueException;
 
     /* METERING MODE */
     /**
@@ -376,20 +378,20 @@ public class CanonCamera implements Camera {
      * Gets metering mode settings
      * @return Metering mode settings code
      */
-    public native EdsMeteringMode getMeteringMode();
+    public native EdsMeteringMode getMeteringMode() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible metering mode settings
      * @return A list of possible metering mode settings
      */
-    public native EdsMeteringMode[] getPossibleMeteringMode();
+    public native EdsMeteringMode[] getPossibleMeteringMode() throws NoSuchPropertyValueException;
 
     /* BRACKET TYPE */
     /**
      * Gets the current bracket type
      * @return Current bracket type code
      */
-    public native EdsBracket getBracketType();
+    public native EdsBracket getBracketType() throws NoSuchPropertyValueException;
 
     /* WHITE BALANCE */
     /**
@@ -403,13 +405,13 @@ public class CanonCamera implements Camera {
      * Gets white balance settings
      * @return White balance settings code
      */
-    public native EdsWhiteBalance getWhiteBalance();
+    public native EdsWhiteBalance getWhiteBalance() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible white balance settings
      * @return A list of possible white balance settings
      */
-    public native EdsWhiteBalance[] getPossibleWhiteBalance();
+    public native EdsWhiteBalance[] getPossibleWhiteBalance() throws NoSuchPropertyValueException;
 
     /* COLOR SPACE */
     /**
@@ -423,13 +425,13 @@ public class CanonCamera implements Camera {
      * Gets color space settings
      * @return Color space settings code
      */
-    public native EdsColorSpace getColorSpace();
+    public native EdsColorSpace getColorSpace() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible color space settings
      * @return A list of possible color space settings
      */
-    public native EdsColorSpace[] getPossibleColorSpace();
+    public native EdsColorSpace[] getPossibleColorSpace() throws NoSuchPropertyValueException;
 
     /* PICTURE STYLE */
     /**
@@ -445,21 +447,21 @@ public class CanonCamera implements Camera {
      * This property is valid only for models supporting picture styles.
      * @return Picture style settings code
      */
-    public native EdsPictureStyle getPictureStyle();
+    public native EdsPictureStyle getPictureStyle() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible picture style settings.
      * This property is valid only for models supporting picture styles.
      * @return A list of possible picture style settings
      */
-    public native EdsPictureStyle[] getPossiblePictureStyle();
+    public native EdsPictureStyle[] getPossiblePictureStyle() throws NoSuchPropertyValueException;
 
     /* LENS STATUS */
     /**
      * Gets lens status (attached or not).
      * @return Lens status code
      */
-    public native EdsLensStatus getLensStatus();
+    public native EdsLensStatus getLensStatus() throws NoSuchPropertyValueException;
 
     /* AE MODE SELECT */
     /**
@@ -474,13 +476,13 @@ public class CanonCamera implements Camera {
      * Gets settings values of the camera in shooting mode.
      * @return Settings values of the camera in shooting mode.
      */
-    public native EdsAEModeSelect getAEModeSelect();
+    public native EdsAEModeSelect getAEModeSelect() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible settings values of the camera in shooting mode.
      * @return A list of possible settings values of the camera in shooting mode.
      */
-    public native EdsAEModeSelect[] getPossibleAEModeSelect();
+    public native EdsAEModeSelect[] getPossibleAEModeSelect() throws NoSuchPropertyValueException;
 
     /* EXPOSURE COMPENSATION */
     /**
@@ -494,20 +496,20 @@ public class CanonCamera implements Camera {
      * Gets the exposure compensation.
      * @return Exposure compensation.
      */
-    public native EdsExposureComp getExposureComp();
+    public native EdsExposureComp getExposureComp() throws NoSuchPropertyValueException;
 
     /**
      * Gets a list of possible exposure compensation.
      * @return A list of possible exposure compensation.
      */
-    public native EdsExposureComp[] getPossibleExposureComp();
+    public native EdsExposureComp[] getPossibleExposureComp() throws NoSuchPropertyValueException;
 
     /* AE MODE */
     /**
      * Gets settings values of the camera in shooting mode.
      * @return AE mode code
      */
-    public native EdsAEMode getAEMode();
+    public native EdsAEMode getAEMode() throws NoSuchPropertyValueException;
 
     /* SUMMER TIME  */
     /**
@@ -525,7 +527,7 @@ public class CanonCamera implements Camera {
      * [ Date / Time / Zone ]
      * @return Summer time setting.
      */
-    public native EdsSummerTimeSetting getSummerTimeSetting();
+    public native EdsSummerTimeSetting getSummerTimeSetting() throws NoSuchPropertyValueException;
 
 
 /*----------------------------------------------------------------------------*/

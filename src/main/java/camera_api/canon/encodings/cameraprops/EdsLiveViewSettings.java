@@ -1,5 +1,6 @@
 package camera_api.canon.encodings.cameraprops;
 
+import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.CameraProp;
 
 //kEdsPropID_Evf_Mode
@@ -24,13 +25,13 @@ public enum EdsLiveViewSettings implements CameraProp {
         return this.code;
     }
 
-    public static EdsLiveViewSettings fromCode(int code) {
+    public static EdsLiveViewSettings fromCode(int code) throws NoSuchPropertyValueException{
         for (EdsLiveViewSettings type : values()) {
             if (type.getCode() == code) {
                 return type;
             }
         }
-        return null;
+        throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
     @Override

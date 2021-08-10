@@ -1,5 +1,6 @@
 package camera_api.canon.encodings.cameraprops;
 
+import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.CameraProp;
 
 public enum EdsISO implements CameraProp {
@@ -59,13 +60,13 @@ public enum EdsISO implements CameraProp {
         return this.code;
     }
 
-    public static EdsISO fromCode(int code) {
+    public static EdsISO fromCode(int code) throws NoSuchPropertyValueException{
         for (EdsISO type : values()) {
             if (type.getCode() == code) {
                 return type;
             }
         }
-        return null;
+        throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
     @Override

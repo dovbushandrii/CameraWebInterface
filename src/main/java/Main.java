@@ -18,6 +18,7 @@ public class Main {
 
         if(fac.getDeviceCount() > 0) {
             Camera cam = fac.getCamera(0);
+            cam.openSession();
             /* YOUR CODE STARTS HERE*/
             /* YOUR CODE ENDS HERE */
         }

@@ -1,5 +1,6 @@
 package camera_api.canon.encodings.cameraprops;
 
+import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.CameraProp;
 
 public enum EdsBracket implements CameraProp {
@@ -37,13 +38,13 @@ public enum EdsBracket implements CameraProp {
         return this.code;
     }
 
-    public static EdsBracket fromCode(int code) {
+    public static EdsBracket fromCode(int code) throws NoSuchPropertyValueException {
         for (EdsBracket type : values()) {
             if (type.getCode() == code) {
                 return type;
             }
         }
-        return null;
+        throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
     @Override
