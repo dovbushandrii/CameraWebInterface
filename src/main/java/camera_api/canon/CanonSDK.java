@@ -2,6 +2,7 @@ package camera_api.canon;
 
 import camera_api.interfaces.CameraSDK;
 import camera_api.canon.encodings.sdk.*;
+import camera_api.interfaces.ErrorCode;
 
 
 /*
@@ -35,30 +36,40 @@ public class CanonSDK implements CameraSDK {
     /**
      *
      */
-    private static EdsError setCameraList(){
+    private static void setCameraList(){
         int size = getCameraListSize();
         deviceList = new CanonCamera[size];
         for(int i = 0; i < size; i++) {
             deviceList[i] = CanonCamera.createCamera(permission, i);
         }
-        return EdsError.EDS_ERR_OK;
+    }
+
+    private static EdsError closeAllSessions(){
+        EdsError err = EdsError.EDS_ERR_OK;
+        for (CanonCamera canonCamera : deviceList) {
+            err = canonCamera.closeSession();
+            if (err != EdsError.EDS_ERR_OK){
+                break;
+            }
+        }
+        return err;
     }
 
     /**
      *
      */
-    private static EdsError releaseCameraList(){
-        EdsError err = EdsError.EDS_ERR_OK;
+    private static void releaseCameraList(){
         for (CanonCamera canonCamera : deviceList) {
-            err = canonCamera.closeSession();
-            if (err == EdsError.EDS_ERR_OK) {
-                canonCamera.release(permission);
-            } else {
-                return err;
-            }
+            canonCamera.release(permission);
         }
         deviceList = new CanonCamera[0];
-        return err;
+    }
+
+    private static CanonCamera findInDeviceList(CanonCamera cam){
+        for(CanonCamera dev: deviceList){
+            if(dev.equals(cam)) return dev;
+        }
+        return null;
     }
 
     /**
@@ -92,7 +103,7 @@ public class CanonSDK implements CameraSDK {
     public EdsError initializeSDK(){
         EdsError err = initializeNativeSDK();
         if(err == EdsError.EDS_ERR_OK) {
-            err = setCameraList();
+            setCameraList();
         }
         return err;
     }
@@ -101,13 +112,19 @@ public class CanonSDK implements CameraSDK {
      *
      */
     public EdsError terminateSDK(){
-        EdsError err = releaseCameraList();
+        EdsError err = closeAllSessions();
         if(err == EdsError.EDS_ERR_OK) {
+            releaseCameraList();
             err = terminateNativeSDK();
         }
         return err;
     }
 /*----------------------------------------------------------------------------*/
+
+    public void updateCameraList(){
+        releaseCameraList();
+        setCameraList();
+    }
 
     public int getDeviceCount(){
         return deviceList.length;

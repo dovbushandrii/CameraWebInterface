@@ -2,6 +2,8 @@ import camera_api.*;
 import camera_api.interfaces.Camera;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.concurrent.TimeUnit;
+
 public class Main {
     static{
         System.loadLibrary("EDSDK");
@@ -17,13 +19,13 @@ public class Main {
 
 
             if (fac.getDeviceCount() > 0) {
-
+                Camera cam = fac.getCamera(0);
+                cam.openSession();
+                /* YOUR CODE STARTS HERE*/
+                //System.out.println(cam.getExposure());
+                /* YOUR CODE ENDS HERE */
             }
-            Camera cam = fac.getCamera(0);
-            cam.openSession();
-            /* YOUR CODE STARTS HERE*/
-            System.out.println(cam.getExposure());
-            /* YOUR CODE ENDS HERE */
+
         }
         catch (Exception e){
             System.out.println(e.getMessage());

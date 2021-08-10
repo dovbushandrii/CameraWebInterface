@@ -25,35 +25,44 @@ public class CameraFactory {
         return this.sdk.terminateSDK();
     }
 
-    public int getDeviceCount() throws SDKIsNotInitializedException{
+    public void updateCameraList(){
+        if(isInit){
+            this.sdk.updateCameraList();
+        }
+        else{
+            throw new SDKIsNotInitializedException("Camera SDK is not initialized");
+        }
+    }
+
+    public int getDeviceCount(){
         if(isInit){
             return this.sdk.getDeviceCount();
         }
         throw new SDKIsNotInitializedException("Camera SDK is not initialized");
     }
 
-    public Camera getCamera(int index) throws IndexOutOfBoundsException, SDKIsNotInitializedException {
+    public Camera getCamera(int index) {
         if(isInit){
             return this.sdk.getCamera(index);
         }
         throw new SDKIsNotInitializedException("Camera SDK is not initialized");
     }
 
-    public String getCameraName(int index) throws IndexOutOfBoundsException, SDKIsNotInitializedException{
+    public String getCameraName(int index){
         if(isInit){
             return this.sdk.getCameraName(index);
         }
         throw new SDKIsNotInitializedException("Camera SDK is not initialized");
     }
 
-    public String[] getCameraNameList() throws SDKIsNotInitializedException{
+    public String[] getCameraNameList(){
         if(isInit){
             return this.sdk.getCameraNameList();
         }
         throw new SDKIsNotInitializedException("Camera SDK is not initialized");
     }
 
-    public String getCameraPort(int index) throws SDKIsNotInitializedException{
+    public String getCameraPort(int index) {
         if(isInit){
             return this.sdk.getCameraPort(index);
         }

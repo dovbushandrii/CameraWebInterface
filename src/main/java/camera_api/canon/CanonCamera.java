@@ -18,7 +18,6 @@ package camera_api.canon;/*
 * */
 
 
-import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.Camera;
 import camera_api.interfaces.CameraProp;
 import camera_api.canon.encodings.cameraprops.*;
@@ -35,6 +34,10 @@ public class CanonCamera implements Camera {
     }
     private long getCamRef(){
         return this.CamRef;
+    }
+
+    public boolean equals(CanonCamera camera){
+        return camera.CamRef == this.CamRef;
     }
 /*----------------------------------------------------------------------------*/
 /*-----------------------CONSTRUCTORS AND FINALIZERS--------------------------*/
