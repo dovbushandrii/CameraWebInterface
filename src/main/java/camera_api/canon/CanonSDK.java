@@ -39,14 +39,7 @@ public class CanonSDK implements CameraSDK {
         int size = getCameraListSize();
         deviceList = new CanonCamera[size];
         for(int i = 0; i < size; i++) {
-            CanonCamera cam = CanonCamera.createCamera(permission, i);
-            if(cam == null) {
-                return EdsError.EDS_ERR_DEVICE_NOT_FOUND;
-            }
-            else{
-                deviceList[i] = cam;
-
-            }
+            deviceList[i] = CanonCamera.createCamera(permission, i);
         }
         return EdsError.EDS_ERR_OK;
     }
@@ -64,9 +57,16 @@ public class CanonSDK implements CameraSDK {
                 return err;
             }
         }
-        deviceList = null;
+        deviceList = new CanonCamera[0];
         return err;
     }
+
+    /**
+     *
+     * @param index
+     * @return
+     */
+    private native String getCameraPortInfo(int index) throws IndexOutOfBoundsException;
 /*----------------------------------------------------------------------------*/
     /**
      *
@@ -118,11 +118,11 @@ public class CanonSDK implements CameraSDK {
      * @param index
      * @return
      */
-    public CanonCamera getCamera(int index){
+    public CanonCamera getCamera(int index) throws IndexOutOfBoundsException{
         if(deviceList.length > index && index >= 0){
             return deviceList[index];
         }
-        return null;
+        throw new IndexOutOfBoundsException("Invalid device index");
     }
 
     /**
@@ -130,8 +130,11 @@ public class CanonSDK implements CameraSDK {
      * @param index
      * @return
      */
-    public String getCameraName(int index){
-        return deviceList[index].productName();
+    public String getCameraName(int index) throws IndexOutOfBoundsException{
+        if(deviceList.length > index && index >= 0){
+            return deviceList[index].productName();
+        }
+        throw new IndexOutOfBoundsException("Invalid device index");
     }
 
     /**
@@ -151,5 +154,11 @@ public class CanonSDK implements CameraSDK {
      * @param index
      * @return
      */
-    public native String getCameraPortInfo(int index);
+    public String getCameraPort(int index) throws IndexOutOfBoundsException{
+        if(deviceList.length > index && index >= 0){
+            return getCameraPortInfo(index);
+        }
+        throw new IndexOutOfBoundsException("Invalid device index");
+    }
+
 }

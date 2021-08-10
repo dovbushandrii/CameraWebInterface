@@ -1,5 +1,6 @@
 package camera_api;
 
+import camera_api.exceptions.SDKIsNotInitializedException;
 import camera_api.interfaces.Camera;
 import camera_api.interfaces.CameraSDK;
 import camera_api.interfaces.ErrorCode;
@@ -24,38 +25,38 @@ public class CameraFactory {
         return this.sdk.terminateSDK();
     }
 
-    public int getDeviceCount(){
+    public int getDeviceCount() throws SDKIsNotInitializedException{
         if(isInit){
             return this.sdk.getDeviceCount();
         }
-        return 0;
+        throw new SDKIsNotInitializedException("Camera SDK is not initialized");
     }
 
-    public Camera getCamera(int index){
+    public Camera getCamera(int index) throws IndexOutOfBoundsException, SDKIsNotInitializedException {
         if(isInit){
             return this.sdk.getCamera(index);
         }
-        return null;
+        throw new SDKIsNotInitializedException("Camera SDK is not initialized");
     }
 
-    public String getCameraName(int index){
+    public String getCameraName(int index) throws IndexOutOfBoundsException, SDKIsNotInitializedException{
         if(isInit){
             return this.sdk.getCameraName(index);
         }
-        return null;
+        throw new SDKIsNotInitializedException("Camera SDK is not initialized");
     }
 
-    public String[] getCameraNameList(){
+    public String[] getCameraNameList() throws SDKIsNotInitializedException{
         if(isInit){
             return this.sdk.getCameraNameList();
         }
-        return null;
+        throw new SDKIsNotInitializedException("Camera SDK is not initialized");
     }
 
-    public String getCameraPortInfo(int index){
+    public String getCameraPort(int index) throws SDKIsNotInitializedException{
         if(isInit){
-            return this.sdk.getCameraPortInfo(index);
+            return this.sdk.getCameraPort(index);
         }
-        return null;
+        throw new SDKIsNotInitializedException("Camera SDK is not initialized");
     }
 }

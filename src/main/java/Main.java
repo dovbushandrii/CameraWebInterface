@@ -16,12 +16,13 @@ public class Main {
         CameraFactory fac = context.getBean("cameraFactory", CameraFactory.class);
 
 
-        if(fac.getDeviceCount() > 0) {
+        if (fac.getDeviceCount() > 0) {
             Camera cam = fac.getCamera(0);
             cam.openSession();
             /* YOUR CODE STARTS HERE*/
             /* YOUR CODE ENDS HERE */
         }
+
         context.close();
 
     }
