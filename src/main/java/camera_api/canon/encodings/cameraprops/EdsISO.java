@@ -42,8 +42,8 @@ public enum EdsISO implements CameraProp {
     ISO_102400	(0x00000098,"ISO 102400"),
     ISO_204800	(0x000000a0,"ISO 204800"),
     ISO_409600	(0x000000a8,"ISO 409600"),
-    ISO_819200	(0x000000b0,"ISO 819200"),
-    NOT_VALID	(-1,"Not valid/no settings changes");
+    ISO_819200	(0x000000b0,"ISO 819200");
+    //NOT_VALID	(-1,"Not valid/no settings changes");
 
     private final int code;
     private final String line;

@@ -25,7 +25,7 @@ public enum EdsWhiteBalance implements CameraProp {
     MANUAL_5            (19,"Manual 5"),
     PC_4                (20,"Custom: PC-4"),
     PC_5                (21,"Custom: PC-5"),
-    AUTO_WHITE_Prior    (23,"Auto: White priority");
+    AUTO_WHITE_PRIOR    (23,"Auto: White priority");
 
     private final int code;
     private final String line;

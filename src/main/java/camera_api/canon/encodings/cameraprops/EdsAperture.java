@@ -62,8 +62,8 @@ public enum EdsAperture implements CameraProp {
     F_72		(0x6B,"F72"),
     F_76		(0x6C,"F76"),
     F_80		(0x6D,"F80"),
-    F_91		(0x70,"F91"),
-    NOT_VALID	(-1,"Not valid/no settings changes");
+    F_91		(0x70,"F91");
+    //NOT_VALID	(-1,"Not valid/no settings changes");
 
     private final int code;
     private final String line;

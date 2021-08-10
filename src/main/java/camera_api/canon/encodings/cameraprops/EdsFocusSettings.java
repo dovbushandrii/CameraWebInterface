@@ -7,8 +7,8 @@ public enum EdsFocusSettings implements CameraProp {
     ONE_SHOT        (0, "One-Shot AF"),
     AI_SERVO        (1, "AI Servo AF"),
     AI_FOCUS        (2, "AI Focus AF"),
-    MANUAL          (3, "Manual Focus"),
-    NOT_VALID       (-1,"Not valid/no settings changes");
+    MANUAL          (3, "Manual Focus");
+    //NOT_VALID       (-1,"Not valid/no settings changes");
 
     private final int code;
     private final String line;

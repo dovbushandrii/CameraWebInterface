@@ -8,8 +8,8 @@ public enum EdsMeteringMode implements CameraProp {
     SPOT            (1,"Spot metering"),
     EVALUATIVE      (3,"Evaluative metering"),
     PARTIAL         (4,"Partial metering"),
-    CW_AVERAGING    (5,"Center-weighted averaging metering"),
-    NOT_VALID       (-1,"Not valid/no settings changes");
+    CW_AVERAGING    (5,"Center-weighted averaging metering");
+    //NOT_VALID       (-1,"Not valid/no settings changes");
 
     private final int code;
     private final String line;

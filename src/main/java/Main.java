@@ -17,12 +17,13 @@ public class Main {
 
 
             if (fac.getDeviceCount() > 0) {
-                Camera cam = fac.getCamera(0);
-                cam.openSession();
-                /* YOUR CODE STARTS HERE*/
-                cam.getExposure();
-                /* YOUR CODE ENDS HERE */
+
             }
+            Camera cam = fac.getCamera(0);
+            cam.openSession();
+            /* YOUR CODE STARTS HERE*/
+            System.out.println(cam.getExposure());
+            /* YOUR CODE ENDS HERE */
         }
         catch (Exception e){
             System.out.println(e.getMessage());

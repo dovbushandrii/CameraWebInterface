@@ -82,8 +82,8 @@ public enum EdsExposure implements CameraProp {
     SEC_1_5000		(0x9B,"1/5000"),
     SEC_1_6000		(0x9C,"1/6000"),
     SEC_1_6400		(0x9D,"1/6400"),
-    SEC_1_8000		(0xA0,"1/8000"),
-    NOT_VALID		(-1,"Not valid/no settings changes");
+    SEC_1_8000		(0xA0,"1/8000");
+    //NOT_VALID		(-1,"Not valid/no settings changes");
 
     private final int code;
     private final String line;

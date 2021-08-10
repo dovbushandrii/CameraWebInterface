@@ -45,8 +45,8 @@ public enum EdsExposureComp implements CameraProp {
     MINUS_4_1d3     (0xDD,"-4 1/3"),
     MINUS_4_1d2     (0xDC,"-4 1/2"),
     MINUS_4_2d3     (0xDB,"-4 2/3"),
-    MINUS_5         (0xD8,"-5"),
-    NOT_VALID       (-1,"Not valid/no settings changes");
+    MINUS_5         (0xD8,"-5");
+    //NOT_VALID       (-1,"Not valid/no settings changes");
 
 
 
