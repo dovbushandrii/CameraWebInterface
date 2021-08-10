@@ -27,7 +27,7 @@ public enum EdsMeteringMode implements CameraProp {
         return this.code;
     }
 
-    public static EdsMeteringMode fromCode(int code) throws NoSuchPropertyValueException{
+    public static EdsMeteringMode fromCode(int code){
         for (EdsMeteringMode type : values()) {
             if (type.getCode() == code) {
                 return type;

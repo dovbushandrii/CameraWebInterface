@@ -25,7 +25,7 @@ public enum EdsColorSpace implements CameraProp {
         return this.code;
     }
 
-    public static EdsColorSpace fromCode(int code) throws NoSuchPropertyValueException{
+    public static EdsColorSpace fromCode(int code){
         for (EdsColorSpace type : values()) {
             if (type.getCode() == code) {
                 return type;

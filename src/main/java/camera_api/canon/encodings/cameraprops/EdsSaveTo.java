@@ -26,7 +26,7 @@ public enum EdsSaveTo implements CameraProp {
         return this.code;
     }
 
-    public static EdsSaveTo fromCode(int code) throws NoSuchPropertyValueException{
+    public static EdsSaveTo fromCode(int code){
         for (EdsSaveTo type : values()) {
             if (type.getCode() == code) {
                 return type;

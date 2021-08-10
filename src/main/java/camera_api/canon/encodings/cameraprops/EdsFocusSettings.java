@@ -25,7 +25,7 @@ public enum EdsFocusSettings implements CameraProp {
         return this.code;
     }
 
-    public static EdsFocusSettings fromCode(int code) throws NoSuchPropertyValueException{
+    public static EdsFocusSettings fromCode(int code){
         for (EdsFocusSettings type : values()) {
             if (type.getCode() == code) {
                 return type;

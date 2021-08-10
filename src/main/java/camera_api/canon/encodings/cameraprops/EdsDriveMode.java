@@ -36,7 +36,7 @@ public enum EdsDriveMode implements CameraProp {
         return this.code;
     }
 
-    public static EdsDriveMode fromCode(int code) throws NoSuchPropertyValueException{
+    public static EdsDriveMode fromCode(int code){
         for (EdsDriveMode type : values()) {
             if (type.getCode() == code) {
                 return type;

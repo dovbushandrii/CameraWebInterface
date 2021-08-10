@@ -23,7 +23,7 @@ public enum EdsSummerTimeSetting implements CameraProp {
         return this.code;
     }
 
-    public static EdsSummerTimeSetting fromCode(int code) throws NoSuchPropertyValueException{
+    public static EdsSummerTimeSetting fromCode(int code){
         for (EdsSummerTimeSetting type : values()) {
             if (type.getCode() == code) {
                 return type;

@@ -24,7 +24,7 @@ public enum EdsLensStatus implements CameraProp {
         return this.code;
     }
 
-    public static EdsLensStatus fromCode(int code) throws NoSuchPropertyValueException{
+    public static EdsLensStatus fromCode(int code){
         for (EdsLensStatus type : values()) {
             if (type.getCode() == code) {
                 return type;

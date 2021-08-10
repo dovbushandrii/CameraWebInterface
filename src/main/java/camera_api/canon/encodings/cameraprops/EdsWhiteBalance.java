@@ -42,7 +42,7 @@ public enum EdsWhiteBalance implements CameraProp {
         return this.code;
     }
 
-    public static EdsWhiteBalance fromCode(int code) throws NoSuchPropertyValueException{
+    public static EdsWhiteBalance fromCode(int code){
         for (EdsWhiteBalance type : values()) {
             if (type.getCode() == code) {
                 return type;

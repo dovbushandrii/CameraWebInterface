@@ -26,7 +26,7 @@ public enum EdsBatteryQuality implements CameraProp {
         return this.code;
     }
 
-    public static EdsBatteryQuality fromCode(int code) throws NoSuchPropertyValueException {
+    public static EdsBatteryQuality fromCode(int code){
         for (EdsBatteryQuality type : values()) {
             if (type.getCode() == code) {
                 return type;

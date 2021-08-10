@@ -1,5 +1,6 @@
 package camera_api.canon.encodings.sdk;
 
+import camera_api.exceptions.NoSuchErrorCodeException;
 import camera_api.interfaces.ErrorCode;
 
 public enum EdsError implements ErrorCode {
@@ -182,8 +183,7 @@ public enum EdsError implements ErrorCode {
     EDS_ERR_TAKE_PICTURE_SPECIAL_MOVIE_MODE_NG          (0x00008D0C),
     EDS_ERR_TAKE_PICTURE_LV_REL_PROHIBIT_MODE_NG        (0x00008D0D),
 
-    EDS_ERR_LAST_GENERIC_ERROR_PLUS_ONE                 (0x000000F5),
-    INVALID_ERR_CODE                                    (0xFFFFFFFF);
+    EDS_ERR_LAST_GENERIC_ERROR_PLUS_ONE                 (0x000000F5);
 
     private final int code;
 
@@ -205,6 +205,6 @@ public enum EdsError implements ErrorCode {
                 return type;
             }
         }
-        return INVALID_ERR_CODE;
+        throw new NoSuchErrorCodeException("Invalid code/sdk is not initialized");
     }
 }

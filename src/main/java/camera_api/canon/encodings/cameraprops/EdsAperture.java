@@ -80,7 +80,7 @@ public enum EdsAperture implements CameraProp {
         return this.code;
     }
 
-    public static EdsAperture fromCode(int code) throws NoSuchPropertyValueException{
+    public static EdsAperture fromCode(int code){
         for (EdsAperture type : values()) {
             if (type.getCode() == code) {
                 return type;

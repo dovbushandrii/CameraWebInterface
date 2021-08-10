@@ -53,7 +53,7 @@ public enum EdsAEMode implements CameraProp {
         return this.code;
     }
 
-    public static EdsAEMode fromCode(int code) throws NoSuchPropertyValueException{
+    public static EdsAEMode fromCode(int code){
         for (EdsAEMode type : values()) {
             if (type.getCode() == code) {
                 return type;

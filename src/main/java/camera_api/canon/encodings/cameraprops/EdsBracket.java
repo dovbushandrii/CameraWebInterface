@@ -38,7 +38,7 @@ public enum EdsBracket implements CameraProp {
         return this.code;
     }
 
-    public static EdsBracket fromCode(int code) throws NoSuchPropertyValueException {
+    public static EdsBracket fromCode(int code){
         for (EdsBracket type : values()) {
             if (type.getCode() == code) {
                 return type;

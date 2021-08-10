@@ -66,7 +66,7 @@ public class CanonSDK implements CameraSDK {
      * @param index
      * @return
      */
-    private native String getCameraPortInfo(int index) throws IndexOutOfBoundsException;
+    private native String getCameraPortInfo(int index);
 /*----------------------------------------------------------------------------*/
     /**
      *
@@ -118,7 +118,7 @@ public class CanonSDK implements CameraSDK {
      * @param index
      * @return
      */
-    public CanonCamera getCamera(int index) throws IndexOutOfBoundsException{
+    public CanonCamera getCamera(int index){
         if(deviceList.length > index && index >= 0){
             return deviceList[index];
         }
@@ -130,7 +130,7 @@ public class CanonSDK implements CameraSDK {
      * @param index
      * @return
      */
-    public String getCameraName(int index) throws IndexOutOfBoundsException{
+    public String getCameraName(int index){
         if(deviceList.length > index && index >= 0){
             return deviceList[index].productName();
         }
@@ -154,7 +154,7 @@ public class CanonSDK implements CameraSDK {
      * @param index
      * @return
      */
-    public String getCameraPort(int index) throws IndexOutOfBoundsException{
+    public String getCameraPort(int index){
         if(deviceList.length > index && index >= 0){
             return getCameraPortInfo(index);
         }

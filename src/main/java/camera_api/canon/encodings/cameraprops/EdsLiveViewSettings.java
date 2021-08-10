@@ -25,7 +25,7 @@ public enum EdsLiveViewSettings implements CameraProp {
         return this.code;
     }
 
-    public static EdsLiveViewSettings fromCode(int code) throws NoSuchPropertyValueException{
+    public static EdsLiveViewSettings fromCode(int code){
         for (EdsLiveViewSettings type : values()) {
             if (type.getCode() == code) {
                 return type;

@@ -57,7 +57,7 @@ public enum EdsPictureStyle implements CameraProp {
         return this.code;
     }
 
-    public static EdsPictureStyle fromCode(int code) throws NoSuchPropertyValueException{
+    public static EdsPictureStyle fromCode(int code){
         for (EdsPictureStyle type : values()) {
             if (type.getCode() == code) {
                 return type;

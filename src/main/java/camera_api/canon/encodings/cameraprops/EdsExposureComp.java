@@ -65,7 +65,7 @@ public enum EdsExposureComp implements CameraProp {
         return this.code;
     }
 
-    public static EdsExposureComp fromCode(int code) throws NoSuchPropertyValueException{
+    public static EdsExposureComp fromCode(int code){
         for (EdsExposureComp type : values()) {
             if (type.getCode() == code) {
                 return type;

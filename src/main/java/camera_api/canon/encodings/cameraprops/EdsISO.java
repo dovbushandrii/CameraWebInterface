@@ -60,7 +60,7 @@ public enum EdsISO implements CameraProp {
         return this.code;
     }
 
-    public static EdsISO fromCode(int code) throws NoSuchPropertyValueException{
+    public static EdsISO fromCode(int code){
         for (EdsISO type : values()) {
             if (type.getCode() == code) {
                 return type;
