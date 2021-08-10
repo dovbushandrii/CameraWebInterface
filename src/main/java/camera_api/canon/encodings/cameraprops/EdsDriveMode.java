@@ -1,5 +1,6 @@
 package camera_api.canon.encodings.cameraprops;
 
+import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.CameraProp;
 
 public enum EdsDriveMode implements CameraProp {
@@ -35,13 +36,13 @@ public enum EdsDriveMode implements CameraProp {
         return this.code;
     }
 
-    public static EdsDriveMode fromCode(int code) {
+    public static EdsDriveMode fromCode(int code){
         for (EdsDriveMode type : values()) {
             if (type.getCode() == code) {
                 return type;
             }
         }
-        return null;
+        throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
     @Override

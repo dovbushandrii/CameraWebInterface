@@ -4,8 +4,8 @@ public interface CameraSDK {
     ErrorCode initializeSDK();
     ErrorCode terminateSDK();
     int getDeviceCount();
-    Camera getCamera(int index);
-    String getCameraName(int index);
+    Camera getCamera(int index) throws IndexOutOfBoundsException;
+    String getCameraName(int index) throws IndexOutOfBoundsException;
     String[] getCameraNameList();
-    String getCameraPortInfo(int index);
+    String getCameraPort(int index) throws IndexOutOfBoundsException;
 }

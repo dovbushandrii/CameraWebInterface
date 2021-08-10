@@ -1,30 +1,31 @@
 package camera_api.canon.encodings.cameraprops;
 
+import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.CameraProp;
 
 public enum EdsAperture implements CameraProp {
 
-    /* Note: Values labeled "(1/3)" represent
+    /* Note: Values labeled "STEP" represent
      * property values when the step set
      * in the Custom Function is 1/3.
      */
     F_1			(0x08,"F1"),
     F_1p1		(0x0B,"F1.1"),
     F_1p2		(0x0C,"F1.2"),
-    F_1p2_1_3	(0x0D,"F1.2 (1/3)"),
+    F_1p2_STEP	(0x0D,"F1.2"),
     F_1p4		(0x10,"F1.4"),
     F_1p6		(0x13,"F1.6"),
     F_1p8		(0x14,"F1.8"),
-    F_1p8_1_3	(0x15,"F1.8 (1/3)"),
+    F_1p8_STEP	(0x15,"F1.8"),
     F_2			(0x18,"F2"),
     F_2p2		(0x1B,"F2.2"),
     F_2p5		(0x1C,"F2.5"),
-    F_2p5_1_3	(0x1D,"F2.5 (1/3)"),
+    F_2p5_STEP	(0x1D,"F2.5"),
     F_2p8		(0x20,"F2.8"),
     F_3p2		(0x23,"F3.2"),
     F_3p4		(0x85,"F3.4"),
     F_3p5		(0x24,"F3.5"),
-    F_3p5_1_3	(0x25,"F3.5 (1/3)"),
+    F_3p5_STEP	(0x25,"F3.5"),
     F_4			(0x28,"F4"),
     F_4p5		(0x2B,"F4.5"),
     F_4p5_v2    (0x2C,"F4.5"),
@@ -38,7 +39,7 @@ public enum EdsAperture implements CameraProp {
     F_9p5		(0x3C,"F9.5"),
     F_10		(0x3D,"F10"),
     F_11		(0x40,"F11"),
-    F_13_1_3	(0x43,"F13 (1/3)"),
+    F_13_STEP	(0x43,"F13"),
     F_13		(0x44,"F13"),
     F_14		(0x45,"F14"),
     F_16		(0x48,"F16"),
@@ -61,8 +62,8 @@ public enum EdsAperture implements CameraProp {
     F_72		(0x6B,"F72"),
     F_76		(0x6C,"F76"),
     F_80		(0x6D,"F80"),
-    F_91		(0x70,"F91"),
-    NOT_VALID	(-1,"Not valid/no settings changes");
+    F_91		(0x70,"F91");
+    //NOT_VALID	(-1,"Not valid/no settings changes");
 
     private final int code;
     private final String line;
@@ -79,13 +80,13 @@ public enum EdsAperture implements CameraProp {
         return this.code;
     }
 
-    public static EdsAperture fromCode(int code) {
+    public static EdsAperture fromCode(int code){
         for (EdsAperture type : values()) {
             if (type.getCode() == code) {
                 return type;
             }
         }
-        return null;
+        throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
     @Override

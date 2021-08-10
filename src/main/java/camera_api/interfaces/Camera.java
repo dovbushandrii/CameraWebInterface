@@ -2,7 +2,8 @@ package camera_api.interfaces;
 
 // TODO: 8/5/2021 COMMENTING
 
-import camera_api.canon.encodings.cameraprops.EdsAEMode;
+import camera_api.exceptions.NoSuchPropertyValueException;
+
 
 public interface Camera {
     /**
