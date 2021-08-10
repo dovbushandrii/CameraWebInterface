@@ -1,5 +1,6 @@
 package camera_api.canon.encodings.cameraprops;
 
+import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.CameraProp;
 
 public enum EdsISO implements CameraProp {
@@ -41,8 +42,8 @@ public enum EdsISO implements CameraProp {
     ISO_102400	(0x00000098,"ISO 102400"),
     ISO_204800	(0x000000a0,"ISO 204800"),
     ISO_409600	(0x000000a8,"ISO 409600"),
-    ISO_819200	(0x000000b0,"ISO 819200"),
-    NOT_VALID	(-1,"Not valid/no settings changes");
+    ISO_819200	(0x000000b0,"ISO 819200");
+    //NOT_VALID	(-1,"Not valid/no settings changes");
 
     private final int code;
     private final String line;
@@ -59,13 +60,13 @@ public enum EdsISO implements CameraProp {
         return this.code;
     }
 
-    public static EdsISO fromCode(int code) {
+    public static EdsISO fromCode(int code){
         for (EdsISO type : values()) {
             if (type.getCode() == code) {
                 return type;
             }
         }
-        return null;
+        throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
     @Override

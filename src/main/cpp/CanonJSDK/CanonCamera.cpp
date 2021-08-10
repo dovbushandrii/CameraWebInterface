@@ -139,6 +139,7 @@ EdsCameraRef* getCameraRef(JNIEnv* env, jobject cameraClass) {
 
 
 /*----------------------------------------------------------------------------------------------*/
+
 /**
 * Constructs Java EdsError enum variable
 * from error code
@@ -219,13 +220,14 @@ jobjectArray enumListFromCodeList(JNIEnv* env, std::string name, EdsPropertyDesc
     //with name @name
     jclass enumClass = env->FindClass(name.c_str());
 
-    //Gets public static enum method to construct
-    //enum object using code of error
-    jmethodID enumConstruct = env->GetStaticMethodID(enumClass, "fromCode", signature.c_str());
 
     //Java Object Array of enums objects 
     //with name @name initialization
     jobjectArray posEnums = env->NewObjectArray(list.numElements, enumClass, NULL);
+
+    //Gets public static enum method to construct
+    //enum object using code of error
+    jmethodID enumConstruct = env->GetStaticMethodID(enumClass, "fromCode", signature.c_str());
 
     for (int i = 0; i < list.numElements; i++) {
         //Creating enum object from code @list.propDesc[i]
@@ -273,12 +275,12 @@ jobject getCamUInt32PropEnum(JNIEnv* env, jobject camObj, std::string enumName, 
 
 
     /*-------MAIN CODE OF FUNCTION-------*/
+    EdsUInt32 prop;
     if (camera && isCameraSessionOpen(env, camObj)) {
         //Waiting for camera access
         waitTillNotBusy(camera);
 
         //Standart camera property getting procedure
-        EdsUInt32 prop;
         err = EdsGetPropertyData(*camera, propID, 0, sizeof(EdsUInt32), &prop);
 
         //If property was received and contained in @prop - 
@@ -290,8 +292,9 @@ jobject getCamUInt32PropEnum(JNIEnv* env, jobject camObj, std::string enumName, 
     /*-----------------------------------*/
 
      /*---------ERROR CODE RETURN---------*/
-    //If something went wrong - returns NULL
-    return nullptr;
+    //If something went wrong - returns enum from code -1
+    prop = 0xffffffff;
+    return enumFromCode(env, enumName, (jint)prop);
     /*-----------------------------------*/
 }
 
@@ -335,7 +338,7 @@ jstring getCamStringProp(JNIEnv* env, jobject camObj, EdsPropertyID propID) {
     /*-----------------------------------*/
 
      /*---------ERROR CODE RETURN---------*/
-    return nullptr;
+    return env->NewStringUTF("");
     /*-----------------------------------*/
 }
 
@@ -429,8 +432,14 @@ jobjectArray getCamUInt32PossiblePropVals(JNIEnv* env, jobject camObj, std::stri
 
 
     /*---------ERROR CODE RETURN---------*/
-    //If something went wrong - returns NULL
-    return nullptr;
+
+    //Finds class pointer on class
+    jclass enumClass = env->FindClass(enumName.c_str());
+    //Java Object Array of enums objects 
+    jobjectArray posEnums = env->NewObjectArray(0, enumClass, NULL);
+    env->DeleteLocalRef(enumClass);
+    //If something went wrong - returns empty Array
+    return posEnums;
     /*-----------------------------------*/
 }
 /*----------------------------------------------------------------------------------------------*/
@@ -690,7 +699,7 @@ JNIEXPORT jstring JNICALL Java_camera_1api_canon_CanonCamera_productName
                 return deviceName;
             }
         }
-        return nullptr;
+        return env->NewStringUTF("");
     }
 }
 
@@ -1112,7 +1121,7 @@ JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonCamera_getISO
  * Method:    getPossibleISO
  * Signature: ()[Lencodings/cameraprops/EdsISO;
  */
-JNIEXPORT jobjectArray JNICALL Java_camera_1api_canon_CanonCamera_getPossibleISO
+JNIEXPORT jobjectArray JNICALL Java_camera_1api_canon_CanonnuCamera_getPossibleISO
 (JNIEnv* env, jobject thiz) {
     return getCamUInt32PossiblePropVals(env, thiz, CAM_PROP_ENUM_PATH EDS_ISO_ENUM_NAME, kEdsPropID_ISOSpeed);
 }

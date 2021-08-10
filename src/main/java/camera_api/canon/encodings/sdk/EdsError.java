@@ -1,6 +1,6 @@
 package camera_api.canon.encodings.sdk;
 
-
+import camera_api.exceptions.NoSuchErrorCodeException;
 import camera_api.interfaces.ErrorCode;
 
 public enum EdsError implements ErrorCode {
@@ -199,12 +199,12 @@ public enum EdsError implements ErrorCode {
         return this.code;
     }
 
-    public static EdsError fromCode(int code) {
+    public static EdsError fromCode(int code){
         for (EdsError type : values()) {
             if (type.getCode() == code) {
                 return type;
             }
         }
-        return null;
+        throw new NoSuchErrorCodeException("Invalid code/sdk is not initialized");
     }
 }

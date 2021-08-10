@@ -18,10 +18,12 @@ package camera_api.canon;/*
 * */
 
 
+import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.Camera;
 import camera_api.interfaces.CameraProp;
 import camera_api.canon.encodings.cameraprops.*;
 import camera_api.canon.encodings.sdk.*;
+
 
 public class CanonCamera implements Camera {
 

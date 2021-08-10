@@ -1,5 +1,6 @@
 package camera_api.canon.encodings.cameraprops;
 
+import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.CameraProp;
 
 public enum EdsMeteringMode implements CameraProp {
@@ -7,8 +8,8 @@ public enum EdsMeteringMode implements CameraProp {
     SPOT            (1,"Spot metering"),
     EVALUATIVE      (3,"Evaluative metering"),
     PARTIAL         (4,"Partial metering"),
-    CW_AVERAGING    (5,"Center-weighted averaging metering"),
-    NOT_VALID       (-1,"Not valid/no settings changes");
+    CW_AVERAGING    (5,"Center-weighted averaging metering");
+    //NOT_VALID       (-1,"Not valid/no settings changes");
 
     private final int code;
     private final String line;
@@ -26,13 +27,13 @@ public enum EdsMeteringMode implements CameraProp {
         return this.code;
     }
 
-    public static EdsMeteringMode fromCode(int code) {
+    public static EdsMeteringMode fromCode(int code){
         for (EdsMeteringMode type : values()) {
             if (type.getCode() == code) {
                 return type;
             }
         }
-        return null;
+        throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
     @Override

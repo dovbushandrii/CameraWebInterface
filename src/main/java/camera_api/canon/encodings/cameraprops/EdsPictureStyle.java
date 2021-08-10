@@ -3,6 +3,7 @@ package camera_api.canon.encodings.cameraprops;
  * This property is valid only for models supporting picture styles.
  */
 
+import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.CameraProp;
 
 public enum EdsPictureStyle implements CameraProp {
@@ -56,13 +57,13 @@ public enum EdsPictureStyle implements CameraProp {
         return this.code;
     }
 
-    public static EdsPictureStyle fromCode(int code) {
+    public static EdsPictureStyle fromCode(int code){
         for (EdsPictureStyle type : values()) {
             if (type.getCode() == code) {
                 return type;
             }
         }
-        return null;
+        throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
     @Override

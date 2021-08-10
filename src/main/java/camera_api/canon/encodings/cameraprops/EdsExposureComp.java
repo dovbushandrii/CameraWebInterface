@@ -1,5 +1,6 @@
 package camera_api.canon.encodings.cameraprops;
 
+import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.CameraProp;
 
 public enum EdsExposureComp implements CameraProp {
@@ -44,8 +45,8 @@ public enum EdsExposureComp implements CameraProp {
     MINUS_4_1d3     (0xDD,"-4 1/3"),
     MINUS_4_1d2     (0xDC,"-4 1/2"),
     MINUS_4_2d3     (0xDB,"-4 2/3"),
-    MINUS_5         (0xD8,"-5"),
-    NOT_VALID       (-1,"Not valid/no settings changes");
+    MINUS_5         (0xD8,"-5");
+    //NOT_VALID       (-1,"Not valid/no settings changes");
 
 
 
@@ -64,13 +65,13 @@ public enum EdsExposureComp implements CameraProp {
         return this.code;
     }
 
-    public static EdsExposureComp fromCode(int code) {
+    public static EdsExposureComp fromCode(int code){
         for (EdsExposureComp type : values()) {
             if (type.getCode() == code) {
                 return type;
             }
         }
-        return null;
+        throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
     @Override
