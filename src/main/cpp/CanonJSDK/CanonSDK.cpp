@@ -101,31 +101,6 @@ JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonSDK_terminateNativeSDK
     return EdsERROR;
 }
 
-/*
- * Class:     camera_api/canon/CanonSDK
- * Method:    getDeviceName
- * Signature: (I)Ljava/lang/String;
- */
-JNIEXPORT jstring JNICALL Java_camera_1api_canon_CanonSDK_getDeviceName
-(JNIEnv* env, jclass thiz, jint index){
-    EdsError err = EDS_ERR_OK;
-
-    EdsCameraRef* camera = new EdsCameraRef();
-    err = getCameraRefFromList(camera, index);
-
-    if (err == EDS_ERR_OK) {
-        EdsDeviceInfo info;
-        err = EdsGetDeviceInfo(*camera, &info);
-        if (err == EDS_ERR_OK) {
-
-            jstring deviceName = env->NewStringUTF(info.szDeviceDescription);
-
-            return deviceName;
-        }
-    }
-    return nullptr;
-}
-
 
 /*
  * Class:     camera_api/canon/CanonSDK
@@ -149,5 +124,5 @@ JNIEXPORT jstring JNICALL Java_camera_1api_canon_CanonSDK_getDevicePortInfo
             return portInfo;
         }
     }
-    return nullptr;
+    return env->NewStringUTF("");
 }
