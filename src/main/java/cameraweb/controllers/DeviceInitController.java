@@ -24,6 +24,7 @@ public class DeviceInitController {
 
     @GetMapping("/session")
     public String sessionPage(){
+        System.out.println("There");
         return "session";
     }
 
@@ -37,6 +38,7 @@ public class DeviceInitController {
 
     @GetMapping()
     public String startPage(){
+        System.out.println("There");
         return "start";
     }
 }
