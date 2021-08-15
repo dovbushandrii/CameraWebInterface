@@ -3,18 +3,18 @@ package cameraweb.modelDAO;
 import camera_api.CameraFactory;
 import camera_api.interfaces.Camera;
 import cameraweb.exceptions.NoDeviceFoundException;
-import cameraweb.model.CamSettings;
+import cameraweb.model.DeviceInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CamSettingsDAO {
+public class DeviceInfoDAO {
 
     private Camera cam = null;
-    private final CameraFactory camFac;
+    private CameraFactory camFac;
 
     @Autowired
-    public CamSettingsDAO(CameraFactory camFac){
+    public DeviceInfoDAO(CameraFactory camFac){
         this.camFac = camFac;
     }
 
@@ -30,18 +30,7 @@ public class CamSettingsDAO {
         }
     }
 
-    public void update(CamSettings set){
-        this.cam.setExposure(set.getExposure());
-        this.cam.setISO(set.getISO());
-        this.cam.setAperture(set.getAperture());
-        this.cam.setExposureComp(set.getExposureComp());
-        this.cam.setFocusSettings(set.getAFSetting());
-        this.cam.setWhiteBalance(set.getWBSetting());
-        this.cam.setDriveMode(set.getDriveMode());
-        this.cam.setColorSpace(set.getColorSpace());
-    }
-
-    public CamSettings read(){
-        return new CamSettings(cam);
+    public DeviceInfo read(){
+        return new DeviceInfo(this.cam);
     }
 }

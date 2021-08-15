@@ -4,22 +4,31 @@ import camera_api.exceptions.SDKIsNotInitializedException;
 import camera_api.interfaces.Camera;
 import camera_api.interfaces.CameraSDK;
 import camera_api.interfaces.ErrorCode;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+@Component
 public class CameraFactory {
 
     private final CameraSDK sdk;
 
     private static boolean isInit = false;
 
+    @Autowired
     public CameraFactory(CameraSDK sdk){
         this.sdk = sdk;
     }
 
+    @PostConstruct
     public ErrorCode initialize(){
         isInit = true;
         return this.sdk.initializeSDK();
     }
 
+    @PreDestroy
     public ErrorCode terminate(){
         isInit = false;
         return this.sdk.terminateSDK();

@@ -2,12 +2,14 @@ package camera_api.canon;
 
 import camera_api.interfaces.CameraSDK;
 import camera_api.canon.encodings.sdk.*;
-import camera_api.interfaces.ErrorCode;
+import org.springframework.stereotype.Component;
 
 
 /*
  *   TODO: Commenting
  */
+
+@Component
 public class CanonSDK implements CameraSDK {
 
     /**
@@ -101,6 +103,8 @@ public class CanonSDK implements CameraSDK {
      *
      */
     public EdsError initializeSDK(){
+        System.loadLibrary("EDSDK");
+        System.loadLibrary("CameraForJava");
         EdsError err = initializeNativeSDK();
         if(err == EdsError.EDS_ERR_OK) {
             setCameraList();
