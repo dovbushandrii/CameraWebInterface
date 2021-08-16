@@ -14,7 +14,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 
 @Configuration
-@ComponentScan()
+@ComponentScan({"cameraweb","camera_api"})
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 

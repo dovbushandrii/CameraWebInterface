@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.annotation.PostConstruct;
+
 @Controller
 public class DeviceInitController {
     CamSettingsController camSetControl;
@@ -22,9 +24,14 @@ public class DeviceInitController {
         this.picSetControl      = picSetControl;
     }
 
+
+    @GetMapping()
+    public String startPage(){
+        return "start";
+    }
+
     @GetMapping("/session")
     public String sessionPage(){
-        System.out.println("There");
         return "session";
     }
 
@@ -36,9 +43,5 @@ public class DeviceInitController {
         return "redirect:/session";
     }
 
-    @GetMapping()
-    public String startPage(){
-        System.out.println("There");
-        return "start";
-    }
+
 }

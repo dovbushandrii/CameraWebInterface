@@ -103,8 +103,8 @@ public class CanonSDK implements CameraSDK {
      *
      */
     public EdsError initializeSDK(){
-        System.loadLibrary("EDSDK");
-        System.loadLibrary("CameraForJava");
+        System.load("C:/Users/DovbushAndriy/Desktop/demo/AstroSoft/CDLL/EDSDK.dll");
+        System.load("C:/Users/DovbushAndriy/Desktop/demo/AstroSoft/CDLL/CameraForJava.dll");
         EdsError err = initializeNativeSDK();
         if(err == EdsError.EDS_ERR_OK) {
             setCameraList();
