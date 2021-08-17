@@ -47,6 +47,11 @@ public class CanonCamera implements Camera {
     private final boolean isSessionOpen = false;
 
     /**
+     * Indicates if UI is locked
+     */
+    private final boolean isUILocked = false;
+
+    /**
      * Opens camera session
      * @return Error Code, if ok - returns EDS_ERR_OK
      */

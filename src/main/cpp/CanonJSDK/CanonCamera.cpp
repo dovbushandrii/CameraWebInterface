@@ -17,7 +17,7 @@
 #include "EDSDK.h"
 #include "EDSDKErrors.h"
 #include "EDSDKTypes.h"
-#include "delay.h"
+//#include "delay.h"
 #include "Encodings.h"
 
 
@@ -83,7 +83,7 @@ EdsError getCameraRefFromList(EdsCameraRef* camera, int index) {
     if (err == EDS_ERR_OK)
     {
         err = EdsGetChildCount(cameraList, &count);
-        if (index >= count)
+        if (index >= (int)count)
         {
             err = EDS_ERR_DEVICE_NOT_FOUND;
         }
@@ -111,6 +111,34 @@ jboolean isCameraSessionOpen(JNIEnv* env, jobject camObj) {
     jboolean isOpen = env->GetBooleanField(camObj, field);
     env->DeleteLocalRef(thizClass);
     return isOpen;
+}
+
+jboolean isUILocked(JNIEnv* env, jobject camObj) {
+    jclass thizClass = env->GetObjectClass(camObj);
+    jfieldID field = env->GetFieldID(thizClass, "isUILocked", "Z");
+    jboolean isLocked = env->GetBooleanField(camObj, field);
+    env->DeleteLocalRef(thizClass);
+    return isLocked;
+}
+
+EdsError lockUI(EdsCameraRef* camera, jboolean lockStatus) {
+    EdsError err = EDS_ERR_OK;
+
+    //Waiting for camera access
+    waitTillNotBusy(camera);
+
+    if (lockStatus) {
+        //UI Lock
+        err = EdsSendStatusCommand(*camera, kEdsCameraStatusCommand_UILock, 0);
+    }
+    else {
+        //UI Unlock
+        err = EdsSendStatusCommand(*camera, kEdsCameraStatusCommand_UIUnLock, 0);
+    }
+
+    //Waiting for camera access
+    waitTillNotBusy(camera);
+    return err;
 }
 
 /**
@@ -855,7 +883,7 @@ JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonCamera_autoFocus__
             //AutoFocus
             err = EdsSendCommand(*camera, kEdsCameraCommand_PressShutterButton, kEdsCameraCommand_ShutterButton_Halfway);
             if (err == EDS_ERR_OK) {
-                delay(AF_SECONDS);
+                Sleep(AF_SECONDS * 1000);
                 //Shutter Button Release
                 err = EdsSendCommand(*camera, kEdsCameraCommand_PressShutterButton, kEdsCameraCommand_ShutterButton_OFF);
             }
@@ -896,6 +924,9 @@ JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonCamera_takePicture__
     /*-------MAIN CODE OF FUNCTION-------*/
     if (camera) {
         if (isCameraSessionOpen(env, thiz)) {
+            jboolean prevUIState = isUILocked(env, thiz);
+            lockUI(camera, false);
+
             //Waiting for camera access
             waitTillNotBusy(camera);
 
@@ -906,6 +937,7 @@ JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonCamera_takePicture__
 
             //Waiting for camera access
             waitTillNotBusy(camera);
+            lockUI(camera, prevUIState);
         }
         else {
             err = EDS_ERR_SESSION_NOT_OPEN;
@@ -952,6 +984,8 @@ JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonCamera_takePicture__D
                     err = EdsSetPropertyData(*camera, kEdsPropID_Tv, 0, sizeof(EdsInt32), &bulb);
                 }
                 if (err == EDS_ERR_OK) {
+                    jboolean prevUIState = isUILocked(env, thiz);
+                    lockUI(camera, false);
                     //Waiting for camera access
                     waitTillNotBusy(camera);
 
@@ -961,12 +995,9 @@ JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonCamera_takePicture__D
                     //Taking picture
                     if (err == EDS_ERR_OK) err = EdsSendCommand(*camera, kEdsCameraCommand_PressShutterButton, kEdsCameraCommand_ShutterButton_Completely);
                     //Exposure
-                    if (err == EDS_ERR_OK) delay(seconds);
+                    if (err == EDS_ERR_OK)  Sleep(seconds * 1000);
                     //Shutter Button Release
                     if (err == EDS_ERR_OK) err = EdsSendCommand(*camera, kEdsCameraCommand_PressShutterButton, kEdsCameraCommand_ShutterButton_OFF);
-
-                    //Waiting for camera access
-                    waitTillNotBusy(camera);
 
                     //UI Unlock
                     err = EdsSendStatusCommand(*camera, kEdsCameraStatusCommand_UIUnLock, 0);
@@ -975,7 +1006,10 @@ JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonCamera_takePicture__D
                     waitTillNotBusy(camera);
 
                     //Returning old exposure settings
+
                     err = EdsSetPropertyData(*camera, kEdsPropID_Tv, 0, sizeof(EdsInt32), &exp);
+
+                    lockUI(camera, prevUIState);
                 }
             }
         }
@@ -1013,21 +1047,13 @@ JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonCamera_cameraUILock
 
     /*-------MAIN CODE OF FUNCTION-------*/
     if (err == EDS_ERR_OK) {
-
-        //Waiting for camera access
-        waitTillNotBusy(camera);
-
-        if (lockStatus) {
-            //UI Lock
-            err = EdsSendStatusCommand(*camera, kEdsCameraStatusCommand_UILock, 0);
+        err = lockUI(camera, lockStatus);
+        if (err == EDS_ERR_OK) {
+            jclass thizClass = env->GetObjectClass(thiz);
+            jfieldID field = env->GetFieldID(thizClass, "isUILocked", "Z");
+            env->SetBooleanField(thiz, field, lockStatus);
+            env->DeleteLocalRef(thizClass);
         }
-        else {
-            //UI Unlock
-            err = EdsSendStatusCommand(*camera, kEdsCameraStatusCommand_UIUnLock, 0);
-        }
-
-        //Waiting for camera access
-        waitTillNotBusy(camera);
     }
     /*-----------------------------------*/
 
