@@ -18,7 +18,7 @@ public class CanonPictureSet implements PictureSet {
 
     @Override
     public int getCount() {
-        return 0;
+        return this.count;
     }
 
     @Override
@@ -32,8 +32,8 @@ public class CanonPictureSet implements PictureSet {
     }
 
     @Override
-    public void setExposure(CameraProp exposureCode) {
-        this.exposure = EdsExposure.fromCode(exposureCode.getCode());
+    public void setExposure(int exposureCode) {
+        this.exposure = EdsExposure.fromCode(exposureCode);
     }
 
     @Override
@@ -52,8 +52,8 @@ public class CanonPictureSet implements PictureSet {
     }
 
     @Override
-    public void setIso(CameraProp isoCode) {
-        this.iso = EdsISO.fromCode(isoCode.getCode());
+    public void setIso(int isoCode) {
+        this.iso = EdsISO.fromCode(isoCode);
     }
 
     @Override
@@ -62,8 +62,8 @@ public class CanonPictureSet implements PictureSet {
     }
 
     @Override
-    public void setAperture(CameraProp apertureCode) {
-        this.aperture = EdsAperture.fromCode(apertureCode.getCode());
+    public void setAperture(int apertureCode) {
+        this.aperture = EdsAperture.fromCode(apertureCode);
     }
 
     @Override

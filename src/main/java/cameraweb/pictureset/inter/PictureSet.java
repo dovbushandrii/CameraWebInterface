@@ -7,16 +7,16 @@ public interface PictureSet {
     void setCount(int count);
 
     CameraProp getExposure();
-    void setExposure(CameraProp exposureCode);
+    void setExposure(int exposureCode);
 
     double getExposureTime();
     void setExposureTime(double exposureTime);
 
     CameraProp getIso();
-    void setIso(CameraProp isoCode);
+    void setIso(int isoCode);
 
     CameraProp getAperture();
-    void setAperture(CameraProp apertureCode);
+    void setAperture(int apertureCode);
 
     String getPictureName();
     void setPictureName(String pictureName);

@@ -1,4 +1,4 @@
-package cameraweb.pictureset;
+package cameraweb.pictureset.dbobjects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
