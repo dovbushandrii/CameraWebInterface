@@ -1,10 +1,15 @@
 package cameraweb.modelDAO;
 
+import camera_api.canon.encodings.cameraprops.EdsAperture;
+import camera_api.canon.encodings.cameraprops.EdsExposure;
+import camera_api.canon.encodings.cameraprops.EdsISO;
+import cameraweb.pictureset.canonEncodings.CanonPictureSet;
 import cameraweb.pictureset.dbobjects.PictureSetForDB;
 import cameraweb.pictureset.inter.PictureSet;
 import cameraweb.pictureset.inter.PictureSetTransformer;
 import cameraweb.repos.PictureSetRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

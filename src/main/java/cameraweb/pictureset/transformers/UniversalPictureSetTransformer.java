@@ -1,23 +1,17 @@
-package cameraweb.pictureset.canonEncodings;
+package cameraweb.pictureset.transformers;
 
 import cameraweb.pictureset.dbobjects.PictureSetForDB;
 import cameraweb.pictureset.inter.PictureSet;
 import cameraweb.pictureset.inter.PictureSetTransformer;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-@PropertySource("classpath:transformer.properties")
-public class CanonPictureSetTransformer implements PictureSetTransformer {
-
-    @Value("${canon.encodingName}")
-    private String canonEncoding;
+public class UniversalPictureSetTransformer implements PictureSetTransformer {
 
     @Override
     public PictureSetForDB transformToDBO(PictureSet set) {
         PictureSetForDB dbo = new PictureSetForDB();
-        dbo.setEncodingsType(this.canonEncoding);
+        dbo.setEncodingsType(set.getClass().getName());
         dbo.setCount(set.getCount());
         dbo.setExposureCode(set.getExposure().getCode());
         dbo.setExposureTime(set.getExposureTime());
@@ -30,8 +24,10 @@ public class CanonPictureSetTransformer implements PictureSetTransformer {
 
     @Override
     public PictureSet transformFromDBO(PictureSetForDB dbo) {
-        if(dbo.getEncodingsType().equals(this.canonEncoding)) {
-            PictureSet set = new CanonPictureSet();
+        try {
+            Class picSetClass = Class.forName(dbo.getEncodingsType());
+            PictureSet set = (PictureSet) picSetClass.newInstance();
+            set.setId(dbo.getId());
             set.setCount(dbo.getCount());
             set.setExposure(dbo.getExposureCode());
             set.setExposureTime(dbo.getExposureTime());
@@ -40,8 +36,8 @@ public class CanonPictureSetTransformer implements PictureSetTransformer {
             set.setPictureName(dbo.getPictureName());
             set.setPause(dbo.getPause());
             return set;
+        }catch (Exception e){
+            throw new IllegalArgumentException("Picture set class is not existing");
         }
-        throw new IllegalArgumentException("Picture set is not for Canon camera's");
     }
 }
-

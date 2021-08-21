@@ -3,6 +3,10 @@ package cameraweb.pictureset.inter;
 import camera_api.interfaces.CameraProp;
 
 public interface PictureSet {
+
+    long getId();
+    void setId(long id);
+
     int getCount();
     void setCount(int count);
 

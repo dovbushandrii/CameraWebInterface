@@ -8,6 +8,8 @@ import cameraweb.pictureset.inter.PictureSet;
 
 public class CanonPictureSet implements PictureSet {
 
+    private long id;
+
     private int count;
     private EdsExposure exposure;
     private double exposureTime;
@@ -15,6 +17,16 @@ public class CanonPictureSet implements PictureSet {
     private EdsAperture aperture;
     private String pictureName;
     private double pause;
+
+    @Override
+    public long getId() {
+        return this.id;
+    }
+
+    @Override
+    public void setId(long id) {
+        this.id = id;
+    }
 
     @Override
     public int getCount() {

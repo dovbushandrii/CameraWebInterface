@@ -10,7 +10,7 @@ public class PictureSetForDB {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     //Canon or Nikon or Sony
     private String encodingsType;
@@ -22,6 +22,10 @@ public class PictureSetForDB {
     private int apertureCode;
     private String pictureName;
     private double pause;
+
+    public long getId(){
+        return this.id;
+    }
 
     public String getEncodingsType() {
         return encodingsType;

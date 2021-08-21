@@ -41,10 +41,10 @@ public class DeviceInitController {
     @GetMapping("/load/{id}")
     public String loadData(@PathVariable("id") int id, Model model){
         try {
-            //this.camSetControl.load(model, id);
-            //this.devInfoControl.load(model, id);
+            this.camSetControl.load(model, id);
+            this.devInfoControl.load(model, id);
             this.photoSesControl.load(id);
-            //this.picSetControl.load(model);
+            this.picSetControl.load(model);
         }
         catch (Exception e){
             System.out.println(e.getMessage());
