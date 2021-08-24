@@ -1,9 +1,8 @@
 package cameraweb.controllers;
 
 import cameraweb.modelDAO.PictureSetDAO;
-import cameraweb.pictureset.inter.PictureSet;
+import cameraweb.model.pictureset.inter.PictureSet;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 

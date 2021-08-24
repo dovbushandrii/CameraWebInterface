@@ -1,8 +1,8 @@
-package cameraweb.pictureset.transformers;
+package cameraweb.model.pictureset.transformers;
 
-import cameraweb.pictureset.dbobjects.PictureSetForDB;
-import cameraweb.pictureset.inter.PictureSet;
-import cameraweb.pictureset.inter.PictureSetTransformer;
+import cameraweb.model.pictureset.dbobjects.PictureSetForDB;
+import cameraweb.model.pictureset.inter.PictureSet;
+import cameraweb.model.pictureset.inter.PictureSetTransformer;
 import org.springframework.stereotype.Component;
 
 @Component

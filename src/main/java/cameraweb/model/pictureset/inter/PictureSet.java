@@ -1,4 +1,4 @@
-package cameraweb.pictureset.inter;
+package cameraweb.model.pictureset.inter;
 
 import camera_api.interfaces.CameraProp;
 

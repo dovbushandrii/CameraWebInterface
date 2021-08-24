@@ -1,4 +1,4 @@
-package cameraweb.pictureset.dbobjects;
+package cameraweb.model.pictureset.dbobjects;
 
 import lombok.Getter;
 import lombok.Setter;
