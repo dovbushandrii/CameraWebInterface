@@ -35,6 +35,15 @@ public enum EdsColorSpace implements CameraProp {
         throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
+    public static EdsColorSpace fromValue(String value) {
+        for (EdsColorSpace type : values()) {
+            if (type.toString().equals(value)) {
+                return type;
+            }
+        }
+        throw new NoSuchPropertyValueException("Invalid settings value");
+    }
+
     @Override
     public String toString() {
         return this.value;

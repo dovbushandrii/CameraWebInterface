@@ -35,6 +35,15 @@ public enum EdsLiveViewSettings implements CameraProp {
         throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
+    public static EdsLiveViewSettings fromValue(String value) {
+        for (EdsLiveViewSettings type : values()) {
+            if (type.toString().equals(value)) {
+                return type;
+            }
+        }
+        throw new NoSuchPropertyValueException("Invalid settings value");
+    }
+
     @Override
     public String toString() {
         return this.value;

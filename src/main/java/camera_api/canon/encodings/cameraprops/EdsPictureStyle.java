@@ -67,6 +67,15 @@ public enum EdsPictureStyle implements CameraProp {
         throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
+    public static EdsPictureStyle fromValue(String value) {
+        for (EdsPictureStyle type : values()) {
+            if (type.toString().equals(value)) {
+                return type;
+            }
+        }
+        throw new NoSuchPropertyValueException("Invalid settings value");
+    }
+
     @Override
     public String toString() {
         return this.value;

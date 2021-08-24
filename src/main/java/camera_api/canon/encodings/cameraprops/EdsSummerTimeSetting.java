@@ -7,18 +7,20 @@ import java.rmi.NoSuchObjectException;
 
 public enum EdsSummerTimeSetting implements CameraProp {
 
-    OFF(0),
-    ON(1);
+    OFF(0,"Off"),
+    ON(1,"On");
 
     private final int code;
+    private final String value;
 
     /**
      * Constructor to initialize the instance variable
      *
      * @param code Code of aperture setting
      */
-    EdsSummerTimeSetting(int code) {
+    EdsSummerTimeSetting(int code, String value) {
         this.code = code;
+        this.value = value;
     }
 
     public int getCode() {
@@ -32,5 +34,19 @@ public enum EdsSummerTimeSetting implements CameraProp {
             }
         }
         throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
+    }
+
+    public static EdsSummerTimeSetting fromValue(String value) {
+        for (EdsSummerTimeSetting type : values()) {
+            if (type.toString().equals(value)) {
+                return type;
+            }
+        }
+        throw new NoSuchPropertyValueException("Invalid settings value");
+    }
+
+    @Override
+    public String toString() {
+        return this.value;
     }
 }

@@ -37,6 +37,15 @@ public enum EdsSaveTo implements CameraProp {
         throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
+    public static EdsSaveTo fromValue(String value) {
+        for (EdsSaveTo type : values()) {
+            if (type.toString().equals(value)) {
+                return type;
+            }
+        }
+        throw new NoSuchPropertyValueException("Invalid settings value");
+    }
+
     @Override
     public String toString() {
         return this.value;

@@ -64,6 +64,15 @@ public enum EdsAEMode implements CameraProp {
         throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
+    public static EdsAEMode fromValue(String value) {
+        for (EdsAEMode type : values()) {
+            if (type.toString().equals(value)) {
+                return type;
+            }
+        }
+        throw new NoSuchPropertyValueException("Invalid settings value");
+    }
+
     @Override
     public String toString() {
         return this.value;

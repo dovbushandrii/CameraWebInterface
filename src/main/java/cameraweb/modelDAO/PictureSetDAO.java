@@ -1,8 +1,6 @@
 package cameraweb.modelDAO;
 
 import cameraweb.model.pictureset.dbobjects.PictureSetForDB;
-import cameraweb.model.pictureset.inter.PictureSet;
-import cameraweb.model.pictureset.inter.PictureSetTransformer;
 import cameraweb.repos.PictureSetRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,45 +12,44 @@ import java.util.List;
 public class PictureSetDAO {
 
     private final PictureSetRepo repo;
-    private final PictureSetTransformer transformer;
+    //private final PictureSetTransformer transformer;
 
     @Autowired
-    public PictureSetDAO(PictureSetRepo repo,
-                         PictureSetTransformer transformer) {
+    public PictureSetDAO(PictureSetRepo repo) {
         this.repo = repo;
-        this.transformer = transformer;
+        //this.transformer = transformer;
     }
 
-    public List<PictureSet> read() {
-        List<PictureSet> sets = new ArrayList<>();
+    public List<PictureSetForDB> read() {
+        List<PictureSetForDB> sets = new ArrayList<>();
         Iterable<PictureSetForDB> list = repo.findAll();
         for (PictureSetForDB pictureSetForDB : list) {
-            sets.add(transformer.transformFromDBO(pictureSetForDB));
+            sets.add(pictureSetForDB);
         }
         return sets;
     }
 
-    public PictureSet read(int id) {
+    public PictureSetForDB read(int id) {
         PictureSetForDB set = repo.findById((long) id).orElse(null);
         if (set != null) {
-            return transformer.transformFromDBO(set);
+            return set;
         }
         throw new IndexOutOfBoundsException("No such picture set with id: " + id);
     }
 
-    public void update(List<PictureSet> newList) {
+    public void update(List<PictureSetForDB> newList) {
         this.delete();
-        for (PictureSet set : newList) {
+        for (PictureSetForDB set : newList) {
             this.create(set);
         }
     }
 
-    public void update(PictureSet newSet, int id) {
+    public void update(PictureSetForDB newSet, int id) {
         //TODO
     }
 
-    public void create(PictureSet set) {
-        repo.save(transformer.transformToDBO(set));
+    public void create(PictureSetForDB set) {
+        repo.save(set);
     }
 
     public void delete() {

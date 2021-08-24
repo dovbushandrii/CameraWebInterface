@@ -4,7 +4,7 @@ import camera_api.interfaces.Camera;
 import camera_api.interfaces.CameraProp;
 import lombok.Getter;
 
-public class CamSettings {
+public class CameraSettings {
     @Getter
     private CameraProp iso;
     @Getter
@@ -45,7 +45,7 @@ public class CamSettings {
     @Getter
     private CameraProp[] colorSpaces;
 
-    public CamSettings(Camera cam) {
+    public CameraSettings(Camera cam) {
         this.iso = cam.getISO();
         this.exposure = cam.getExposure();
         this.exposureComp = cam.getExposureComp();

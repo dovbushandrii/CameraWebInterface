@@ -1,7 +1,7 @@
 package cameraweb.controllers;
 
+import cameraweb.model.pictureset.dbobjects.PictureSetForDB;
 import cameraweb.modelDAO.PictureSetDAO;
-import cameraweb.model.pictureset.inter.PictureSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/sets")
+@RequestMapping("/session/sets")
 public class PictureSetController {
     private final PictureSetDAO picDAO;
 
@@ -19,12 +19,17 @@ public class PictureSetController {
     }
 
     @GetMapping()
-    public List<PictureSet> index(Model model) {
+    public List<PictureSetForDB> index(Model model) {
         return picDAO.read();
     }
 
-    @PostMapping("/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable int id) {
         this.picDAO.delete(id);
+    }
+
+    @DeleteMapping ()
+    public void delete() {
+        this.picDAO.delete();
     }
 }

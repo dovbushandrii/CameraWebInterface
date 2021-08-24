@@ -26,7 +26,7 @@ public class PictureSetForDB {
 
     @Getter
     @Setter
-    private int exposureCode;
+    private String exposureValue;
 
     @Getter
     @Setter
@@ -34,11 +34,11 @@ public class PictureSetForDB {
 
     @Getter
     @Setter
-    private int isoCode;
+    private String isoValue;
 
     @Getter
     @Setter
-    private int apertureCode;
+    private String apertureValue;
 
     @Getter
     @Setter

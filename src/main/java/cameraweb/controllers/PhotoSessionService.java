@@ -1,5 +1,6 @@
 package cameraweb.controllers;
 
+import cameraweb.model.pictureset.inter.PictureSetTransformer;
 import cameraweb.modelDAO.PhotoSessionCAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,12 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 @RequestMapping("/command")
-public class PhotoSessionController {
+public class PhotoSessionService {
     PhotoSessionCAO cao;
+    PictureSetTransformer transformer;
 
     @Autowired
-    public PhotoSessionController(PhotoSessionCAO cao) {
+    public PhotoSessionService(PhotoSessionCAO cao,
+                               PictureSetTransformer transformer) {
         this.cao = cao;
+        this.transformer = transformer;
     }
 
     public void load(int id) {

@@ -16,6 +16,8 @@ public interface PictureSet {
 
     void setExposure(int exposureCode);
 
+    void setExposure(String exposureValue);
+
     double getExposureTime();
 
     void setExposureTime(double exposureTime);
@@ -24,9 +26,13 @@ public interface PictureSet {
 
     void setIso(int isoCode);
 
+    void setIso(String isoValue);
+
     CameraProp getAperture();
 
     void setAperture(int apertureCode);
+
+    void setAperture(String apertureCode);
 
     String getPictureName();
 
