@@ -14,23 +14,22 @@ public class CamSettingsDAO {
     private final CameraFactory camFac;
 
     @Autowired
-    public CamSettingsDAO(CameraFactory camFac){
+    public CamSettingsDAO(CameraFactory camFac) {
         this.camFac = camFac;
     }
 
-    public void setCamera(int id){
-        if(this.cam != null){
+    public void setCamera(int id) {
+        if (this.cam != null) {
             this.cam.closeSession();
         }
         if (camFac.getDeviceCount() > id) {
             this.cam = camFac.getCamera(id);
-        }
-        else{
+        } else {
             throw new NoDeviceFoundException("Device ID is not valid");
         }
     }
 
-    public void update(CamSettings set){
+    public void update(CamSettings set) {
         this.cam.setExposure(set.getExposure());
         this.cam.setISO(set.getISO());
         this.cam.setAperture(set.getAperture());
@@ -41,7 +40,7 @@ public class CamSettingsDAO {
         this.cam.setColorSpace(set.getColorSpace());
     }
 
-    public CamSettings read(){
+    public CamSettings read() {
         return new CamSettings(cam);
     }
 }

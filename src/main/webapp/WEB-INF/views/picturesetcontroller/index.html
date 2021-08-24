@@ -14,7 +14,7 @@
     <a th:text="${pictureSet.getAperture().toString()} ">count</a>
     <a th:text="${pictureSet.getPictureName()} ">count</a>
     <a th:text="${pictureSet.getPause()} ">count</a>
-    <form th:method="post" th:action="@{/sets/{id}(id=${pictureSet.getId()})}">
+    <form th:method="delete" th:action="@{/sets/{id}(id=${pictureSet.getId()})}">
         <input type="submit" value="Delete">
     </form>
     </br>

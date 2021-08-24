@@ -14,23 +14,22 @@ public class DeviceInfoDAO {
     private CameraFactory camFac;
 
     @Autowired
-    public DeviceInfoDAO(CameraFactory camFac){
+    public DeviceInfoDAO(CameraFactory camFac) {
         this.camFac = camFac;
     }
 
-    public void setCamera(int id){
-        if(this.cam != null){
+    public void setCamera(int id) {
+        if (this.cam != null) {
             this.cam.closeSession();
         }
         if (camFac.getDeviceCount() > id) {
             this.cam = camFac.getCamera(id);
-        }
-        else{
+        } else {
             throw new NoDeviceFoundException("Device ID is not valid");
         }
     }
 
-    public DeviceInfo read(){
+    public DeviceInfo read() {
         return new DeviceInfo(this.cam);
     }
 }

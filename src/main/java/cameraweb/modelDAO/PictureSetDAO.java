@@ -23,12 +23,12 @@ public class PictureSetDAO {
 
     @Autowired
     public PictureSetDAO(PictureSetRepo repo,
-                         PictureSetTransformer transformer){
+                         PictureSetTransformer transformer) {
         this.repo = repo;
         this.transformer = transformer;
     }
 
-    public List<PictureSet> read(){
+    public List<PictureSet> read() {
         List<PictureSet> sets = new ArrayList<>();
         Iterable<PictureSetForDB> list = repo.findAll();
         for (PictureSetForDB pictureSetForDB : list) {
@@ -39,32 +39,32 @@ public class PictureSetDAO {
 
     public PictureSet read(int id) {
         PictureSetForDB set = repo.findById((long) id).orElse(null);
-        if(set != null){
+        if (set != null) {
             return transformer.transformFromDBO(set);
         }
         throw new IndexOutOfBoundsException("No such picture set with id: " + id);
     }
 
-    public void update(List<PictureSet> newList){
+    public void update(List<PictureSet> newList) {
         this.delete();
-        for(PictureSet set: newList){
+        for (PictureSet set : newList) {
             this.create(set);
         }
     }
 
-    public void update(PictureSet newSet, int id){
+    public void update(PictureSet newSet, int id) {
         //TODO
     }
 
-    public void create(PictureSet set){
+    public void create(PictureSet set) {
         repo.save(transformer.transformToDBO(set));
     }
 
-    public void delete(){
+    public void delete() {
         repo.deleteAll();
     }
 
-    public void delete(int id){
+    public void delete(int id) {
         repo.deleteById((long) id);
     }
 }

@@ -5,14 +5,15 @@ import camera_api.interfaces.CameraProp;
 
 public enum EdsLensStatus implements CameraProp {
 
-    NOT_ATTACHED    (0,"The lens is not attached"),
-    ATTACHED        (1,"The lens is attached");
+    NOT_ATTACHED(0, "The lens is not attached"),
+    ATTACHED(1, "The lens is attached");
 
     private final int code;
     private final String line;
 
     /**
      * Constructor to initialize the instance variable
+     *
      * @param code Code of aperture setting
      */
     EdsLensStatus(int code, String line) {
@@ -24,7 +25,7 @@ public enum EdsLensStatus implements CameraProp {
         return this.code;
     }
 
-    public static EdsLensStatus fromCode(int code){
+    public static EdsLensStatus fromCode(int code) {
         for (EdsLensStatus type : values()) {
             if (type.getCode() == code) {
                 return type;
@@ -34,7 +35,7 @@ public enum EdsLensStatus implements CameraProp {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.line;
     }
 }

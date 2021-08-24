@@ -18,61 +18,60 @@ public class CameraFactory {
     private static boolean isInit = false;
 
     @Autowired
-    public CameraFactory(CameraSDK sdk){
+    public CameraFactory(CameraSDK sdk) {
         this.sdk = sdk;
     }
 
     @PostConstruct
-    public ErrorCode initialize(){
+    public void initialize() {
         isInit = true;
-        return this.sdk.initializeSDK();
+        this.sdk.initializeSDK();
     }
 
     @PreDestroy
-    public ErrorCode terminate(){
+    public void terminate() {
         isInit = false;
-        return this.sdk.terminateSDK();
+        this.sdk.terminateSDK();
     }
 
-    public void updateCameraList(){
-        if(isInit){
+    public void updateCameraList() {
+        if (isInit) {
             this.sdk.updateCameraList();
-        }
-        else{
+        } else {
             throw new SDKIsNotInitializedException("Camera SDK is not initialized");
         }
     }
 
-    public int getDeviceCount(){
-        if(isInit){
+    public int getDeviceCount() {
+        if (isInit) {
             return this.sdk.getDeviceCount();
         }
         throw new SDKIsNotInitializedException("Camera SDK is not initialized");
     }
 
     public Camera getCamera(int index) {
-        if(isInit){
+        if (isInit) {
             return this.sdk.getCamera(index);
         }
         throw new SDKIsNotInitializedException("Camera SDK is not initialized");
     }
 
-    public String getCameraName(int index){
-        if(isInit){
+    public String getCameraName(int index) {
+        if (isInit) {
             return this.sdk.getCameraName(index);
         }
         throw new SDKIsNotInitializedException("Camera SDK is not initialized");
     }
 
-    public String[] getCameraNameList(){
-        if(isInit){
+    public String[] getCameraNameList() {
+        if (isInit) {
             return this.sdk.getCameraNameList();
         }
         throw new SDKIsNotInitializedException("Camera SDK is not initialized");
     }
 
     public String getCameraPort(int index) {
-        if(isInit){
+        if (isInit) {
             return this.sdk.getCameraPort(index);
         }
         throw new SDKIsNotInitializedException("Camera SDK is not initialized");

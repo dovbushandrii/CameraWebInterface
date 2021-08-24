@@ -23,7 +23,7 @@ public class PictureSetForDB {
     private String pictureName;
     private double pause;
 
-    public long getId(){
+    public long getId() {
         return this.id;
     }
 

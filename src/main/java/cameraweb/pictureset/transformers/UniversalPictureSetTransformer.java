@@ -36,7 +36,7 @@ public class UniversalPictureSetTransformer implements PictureSetTransformer {
             set.setPictureName(dbo.getPictureName());
             set.setPause(dbo.getPause());
             return set;
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new IllegalArgumentException("Picture set class is not existing");
         }
     }
