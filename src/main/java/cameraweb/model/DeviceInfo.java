@@ -1,11 +1,19 @@
 package cameraweb.model;
 
 import camera_api.interfaces.Camera;
+import lombok.Getter;
 
 public class DeviceInfo {
+    @Getter
     private String deviceName;
+
+    @Getter
     private String ownersName;
+
+    @Getter
     private String firmwareVersion;
+
+    @Getter
     private String lensName;
 
     public DeviceInfo(Camera cam) {
@@ -13,21 +21,5 @@ public class DeviceInfo {
         this.ownersName = cam.getOwnerName();
         this.firmwareVersion = cam.firmwareVersion();
         this.lensName = cam.lensName();
-    }
-
-    public String getDeviceName() {
-        return this.deviceName;
-    }
-
-    public String getOwnersName() {
-        return this.ownersName;
-    }
-
-    public String getFirmwareVersion() {
-        return this.firmwareVersion;
-    }
-
-    public String getLensName() {
-        return this.lensName;
     }
 }

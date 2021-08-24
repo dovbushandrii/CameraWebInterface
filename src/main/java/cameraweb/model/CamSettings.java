@@ -2,30 +2,47 @@ package cameraweb.model;
 
 import camera_api.interfaces.Camera;
 import camera_api.interfaces.CameraProp;
+import lombok.Getter;
 
 public class CamSettings {
+    @Getter
     private CameraProp iso;
+    @Getter
     private CameraProp[] isos;
 
+    @Getter
     private CameraProp exposure;
+    @Getter
     private CameraProp[] exposures;
 
+    @Getter
     private CameraProp exposureComp;
+    @Getter
     private CameraProp[] exposureComps;
 
+    @Getter
     private CameraProp aperture;
+    @Getter
     private CameraProp[] apertures;
 
+    @Getter
     private CameraProp afSetting;
+    @Getter
     private CameraProp[] afSettings;
 
+    @Getter
     private CameraProp wbSetting;
+    @Getter
     private CameraProp[] wbSettings;
 
+    @Getter
     private CameraProp driveMode;
+    @Getter
     private CameraProp[] driveModes;
 
+    @Getter
     private CameraProp colorSpace;
+    @Getter
     private CameraProp[] colorSpaces;
 
     public CamSettings(Camera cam) {
@@ -46,37 +63,5 @@ public class CamSettings {
         this.wbSettings = cam.getPossibleWhiteBalance();
         this.driveModes = cam.getPossibleDriveMode();
         this.colorSpaces = cam.getPossibleColorSpace();
-    }
-
-    public CameraProp getISO() {
-        return this.iso;
-    }
-
-    public CameraProp getExposure() {
-        return this.exposure;
-    }
-
-    public CameraProp getExposureComp() {
-        return this.exposureComp;
-    }
-
-    public CameraProp getAperture() {
-        return this.aperture;
-    }
-
-    public CameraProp getAFSetting() {
-        return this.afSetting;
-    }
-
-    public CameraProp getWBSetting() {
-        return this.wbSetting;
-    }
-
-    public CameraProp getDriveMode() {
-        return this.driveMode;
-    }
-
-    public CameraProp getColorSpace() {
-        return this.colorSpace;
     }
 }
