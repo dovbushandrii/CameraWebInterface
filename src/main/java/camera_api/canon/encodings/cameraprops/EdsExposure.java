@@ -86,16 +86,16 @@ public enum EdsExposure implements CameraProp {
     //NOT_VALID		(-1,"Not valid/no settings changes");
 
     private final int code;
-    private final String line;
+    private final String value;
 
     /**
      * Constructor to initialize the instance variable
      *
      * @param code Code of exposure setting
      */
-    EdsExposure(int code, String line) {
+    EdsExposure(int code, String value) {
         this.code = code;
-        this.line = line;
+        this.value = value;
     }
 
     public int getCode() {
@@ -113,6 +113,6 @@ public enum EdsExposure implements CameraProp {
 
     @Override
     public String toString() {
-        return this.line;
+        return this.value;
     }
 }

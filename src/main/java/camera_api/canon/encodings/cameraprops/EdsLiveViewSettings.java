@@ -10,16 +10,16 @@ public enum EdsLiveViewSettings implements CameraProp {
     ENABLE(1, "Enable");
 
     private final int code;
-    private final String line;
+    private final String value;
 
     /**
      * Constructor to initialize the instance variable
      *
      * @param code Code of aperture setting
      */
-    EdsLiveViewSettings(int code, String line) {
+    EdsLiveViewSettings(int code, String value) {
         this.code = code;
-        this.line = line;
+        this.value = value;
     }
 
     public int getCode() {
@@ -37,6 +37,6 @@ public enum EdsLiveViewSettings implements CameraProp {
 
     @Override
     public String toString() {
-        return this.line;
+        return this.value;
     }
 }

@@ -39,16 +39,16 @@ public enum EdsAEMode implements CameraProp {
     MINIATURE(35, "Miniature effect");
 
     private final int code;
-    private final String line;
+    private final String value;
 
     /**
      * Constructor to initialize the instance variable
      *
      * @param code Code of aperture setting
      */
-    EdsAEMode(int code, String line) {
+    EdsAEMode(int code, String value) {
         this.code = code;
-        this.line = line;
+        this.value = value;
     }
 
     public int getCode() {
@@ -66,6 +66,6 @@ public enum EdsAEMode implements CameraProp {
 
     @Override
     public String toString() {
-        return this.line;
+        return this.value;
     }
 }

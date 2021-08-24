@@ -12,16 +12,16 @@ public enum EdsSaveTo implements CameraProp {
     BOTH(3, "Save both way");
 
     private final int code;
-    private final String line;
+    private final String value;
 
     /**
      * Constructor to initialize the instance variable
      *
      * @param code Code of aperture setting
      */
-    EdsSaveTo(int code, String line) {
+    EdsSaveTo(int code, String value) {
         this.code = code;
-        this.line = line;
+        this.value = value;
     }
 
     public int getCode() {
@@ -39,6 +39,6 @@ public enum EdsSaveTo implements CameraProp {
 
     @Override
     public String toString() {
-        return this.line;
+        return this.value;
     }
 }

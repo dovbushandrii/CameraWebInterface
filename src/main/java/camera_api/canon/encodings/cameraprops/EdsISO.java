@@ -46,16 +46,16 @@ public enum EdsISO implements CameraProp {
     //NOT_VALID	(-1,"Not valid/no settings changes");
 
     private final int code;
-    private final String line;
+    private final String value;
 
     /**
      * Constructor to initialize the instance variable
      *
      * @param code Code of ISO setting
      */
-    EdsISO(int code, String line) {
+    EdsISO(int code, String value) {
         this.code = code;
-        this.line = line;
+        this.value = value;
     }
 
     public int getCode() {
@@ -73,6 +73,6 @@ public enum EdsISO implements CameraProp {
 
     @Override
     public String toString() {
-        return this.line;
+        return this.value;
     }
 }

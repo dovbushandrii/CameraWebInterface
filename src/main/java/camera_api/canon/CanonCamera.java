@@ -1,21 +1,4 @@
-package camera_api.canon;/*
- * TODO:
- *  Exposure Compensation (set, getPoss)
- *  EdsTime
- *  EdsFocusInfo
- *  ImageQuality
- *  ColorTemperature
- *  kEdsPropID_DC_Zoom
- *  WB bracketing
- *  WhiteBalanceShift
- *  PictureStyleDesc
- *  EdsChar[] setters.
- *  Test on Battery Quality
- *  kEdsPropID_Evf_OutputDevice
- *  Power Zoom functionality
- *  LiveView functionality
- *
- * */
+package camera_api.canon;
 
 
 import camera_api.interfaces.Camera;

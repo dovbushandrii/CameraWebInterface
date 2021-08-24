@@ -12,16 +12,16 @@ public enum EdsAEModeSelect implements CameraProp {
     SCN_SPECIAL(25, "SCN Special scene");
 
     private final int code;
-    private final String line;
+    private final String value;
 
     /**
      * Constructor to initialize the instance variable
      *
      * @param code Code of aperture setting
      */
-    EdsAEModeSelect(int code, String line) {
+    EdsAEModeSelect(int code, String value) {
         this.code = code;
-        this.line = line;
+        this.value = value;
     }
 
     public int getCode() {
@@ -39,6 +39,6 @@ public enum EdsAEModeSelect implements CameraProp {
 
     @Override
     public String toString() {
-        return this.line;
+        return this.value;
     }
 }

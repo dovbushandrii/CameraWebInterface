@@ -42,16 +42,16 @@ public enum EdsPictureStyle implements CameraProp {
 
 
     private final int code;
-    private final String line;
+    private final String value;
 
     /**
      * Constructor to initialize the instance variable
      *
      * @param code Code of aperture setting
      */
-    EdsPictureStyle(int code, String line) {
+    EdsPictureStyle(int code, String value) {
         this.code = code;
-        this.line = line;
+        this.value = value;
     }
 
     public int getCode() {
@@ -69,6 +69,6 @@ public enum EdsPictureStyle implements CameraProp {
 
     @Override
     public String toString() {
-        return this.line;
+        return this.value;
     }
 }
