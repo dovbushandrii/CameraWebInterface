@@ -23,6 +23,8 @@ public class PictureSetController {
         return picDAO.read();
     }
 
+    //TODO: create PictureSet
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable int id) {
         this.picDAO.delete(id);

@@ -3,8 +3,12 @@ package cameraweb.modelDAO;
 import camera_api.CameraFactory;
 import camera_api.interfaces.Camera;
 import cameraweb.exceptions.NoDeviceFoundException;
+import cameraweb.model.CameraSettings;
+import cameraweb.model.pictureset.inter.PictureSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class PhotoSessionCAO {
@@ -28,15 +32,7 @@ public class PhotoSessionCAO {
         }
     }
 
-    public void takePicture() {
-        if (this.cam != null) {
-            this.cam.takePicture();
-        }
-    }
+    public void startSession(List<PictureSet> sets) {
 
-    public void takePicture(double time) {
-        if (this.cam != null) {
-            this.cam.takePicture(time);
-        }
     }
 }

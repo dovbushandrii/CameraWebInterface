@@ -1,18 +1,18 @@
 package cameraweb.controllers;
 
+import cameraweb.model.pictureset.dbobjects.PictureSetForDB;
+import cameraweb.model.pictureset.inter.PictureSet;
 import cameraweb.model.pictureset.inter.PictureSetTransformer;
 import cameraweb.modelDAO.PhotoSessionCAO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
-@RequestMapping("/command")
 public class PhotoSessionService {
     PhotoSessionCAO cao;
     PictureSetTransformer transformer;
@@ -24,7 +24,12 @@ public class PhotoSessionService {
         this.transformer = transformer;
     }
 
-    public void load(int id) {
-        this.cao.setCamera(id);
+    public void startSession(List<PictureSetForDB> sets) {
+        List<PictureSet> newSets = new ArrayList<>();
+        for (PictureSetForDB set : sets) {
+            newSets.add(transformer.transformFromDBO(set));
+        }
+        cao.startSession(newSets);
     }
+
 }
