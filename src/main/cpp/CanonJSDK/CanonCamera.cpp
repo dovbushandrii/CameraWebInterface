@@ -17,7 +17,6 @@
 #include "EDSDK.h"
 #include "EDSDKErrors.h"
 #include "EDSDKTypes.h"
-//#include "delay.h"
 #include "Encodings.h"
 
 
