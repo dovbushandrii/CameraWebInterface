@@ -5,41 +5,22 @@ import camera_api.canon.encodings.sdk.*;
 import org.springframework.stereotype.Component;
 
 
-/*
- *   TODO: Commenting
- */
-
 @Component
 public class CanonSDK implements CameraSDK {
 
-    /**
-     *
-     */
     public static class EDSDKPermit {
         private EDSDKPermit() {
         }
     }
 
-    /**
-     *
-     */
     private static final EDSDKPermit permission = new EDSDKPermit();
 
-    /**
-     *
-     */
     private static CanonCamera[] deviceList = new CanonCamera[0];
 
     /*----------------------------------------------------------------------------*/
 
-    /**
-     * @return
-     */
     private static native int getCameraListSize();
 
-    /**
-     *
-     */
     private static void setCameraList() {
         int size = getCameraListSize();
         deviceList = new CanonCamera[size];
@@ -59,9 +40,6 @@ public class CanonSDK implements CameraSDK {
         return err;
     }
 
-    /**
-     *
-     */
     private static void releaseCameraList() {
         for (CanonCamera canonCamera : deviceList) {
             canonCamera.release(permission);
@@ -76,35 +54,15 @@ public class CanonSDK implements CameraSDK {
         return null;
     }
 
-    /**
-     * @param index
-     * @return
-     */
     private native String getCameraPortInfo(int index);
+
     /*----------------------------------------------------------------------------*/
-    /**
-     *
-     */
     private static final boolean isInitialized = false;
 
-    /**
-     * Initializes Canon EOS SDK.
-     *
-     * @return Error Code, if ok - returns EDS_ERR_OK
-     */
     private native EdsError initializeNativeSDK();
 
-    /**
-     * Terminates Canon EOS SDK.
-     * MUST BE called at the end.
-     *
-     * @return Error Code, if ok - returns EDS_ERR_OK
-     */
     private native EdsError terminateNativeSDK();
 
-    /**
-     *
-     */
     public EdsError initializeSDK() {
         System.load("C:/Users/DovbushAndriy/Desktop/demo/AstroSoft/CDLL/EDSDK.dll");
         System.load("C:/Users/DovbushAndriy/Desktop/demo/AstroSoft/CDLL/CameraForJava.dll");
@@ -115,9 +73,6 @@ public class CanonSDK implements CameraSDK {
         return err;
     }
 
-    /**
-     *
-     */
     public EdsError terminateSDK() {
         EdsError err = closeAllSessions();
         if (err == EdsError.EDS_ERR_OK) {
@@ -137,10 +92,6 @@ public class CanonSDK implements CameraSDK {
         return deviceList.length;
     }
 
-    /**
-     * @param index
-     * @return
-     */
     public CanonCamera getCamera(int index) {
         if (deviceList.length > index && index >= 0) {
             return deviceList[index];
@@ -148,10 +99,6 @@ public class CanonSDK implements CameraSDK {
         throw new IndexOutOfBoundsException("Invalid device index");
     }
 
-    /**
-     * @param index
-     * @return
-     */
     public String getCameraName(int index) {
         if (deviceList.length > index && index >= 0) {
             return deviceList[index].productName();
@@ -159,9 +106,6 @@ public class CanonSDK implements CameraSDK {
         throw new IndexOutOfBoundsException("Invalid device index");
     }
 
-    /**
-     * @return
-     */
     public String[] getCameraNameList() {
         String dnl[] = new String[deviceList.length];
         for (int i = 0; i < dnl.length; i++) {
@@ -169,11 +113,7 @@ public class CanonSDK implements CameraSDK {
         }
         return dnl;
     }
-
-    /**
-     * @param index
-     * @return
-     */
+    
     public String getCameraPort(int index) {
         if (deviceList.length > index && index >= 0) {
             return getCameraPortInfo(index);

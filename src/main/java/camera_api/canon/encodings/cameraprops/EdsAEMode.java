@@ -52,7 +52,7 @@ public enum EdsAEMode implements CameraProp {
     }
 
     public int getCode() {
-        return this.code;
+       return this.code;
     }
 
     public static EdsAEMode fromCode(int code) {

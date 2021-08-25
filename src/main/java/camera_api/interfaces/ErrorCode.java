@@ -1,5 +1,4 @@
 package camera_api.interfaces;
 
-public interface ErrorCode {
-    int getCode();
+public interface ErrorCode extends EncodedValue{
 }
