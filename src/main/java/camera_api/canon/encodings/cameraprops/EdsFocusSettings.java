@@ -4,28 +4,30 @@ import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.CameraProp;
 
 public enum EdsFocusSettings implements CameraProp {
-    ONE_SHOT        (0, "One-Shot AF"),
-    AI_SERVO        (1, "AI Servo AF"),
-    AI_FOCUS        (2, "AI Focus AF"),
-    MANUAL          (3, "Manual Focus");
+    ONE_SHOT(0, "One-Shot AF"),
+    AI_SERVO(1, "AI Servo AF"),
+    AI_FOCUS(2, "AI Focus AF"),
+    MANUAL(3, "Manual Focus");
     //NOT_VALID       (-1,"Not valid/no settings changes");
 
     private final int code;
-    private final String line;
+    private final String value;
 
     /**
      * Constructor to initialize the instance variable
+     *
      * @param code Code of AF setting
      */
-    EdsFocusSettings(int code, String line) {
+    EdsFocusSettings(int code, String value) {
         this.code = code;
-        this.line = line;
+        this.value = value;
     }
+
     public int getCode() {
         return this.code;
     }
 
-    public static EdsFocusSettings fromCode(int code){
+    public static EdsFocusSettings fromCode(int code) {
         for (EdsFocusSettings type : values()) {
             if (type.getCode() == code) {
                 return type;
@@ -34,8 +36,17 @@ public enum EdsFocusSettings implements CameraProp {
         throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
+    public static EdsFocusSettings fromValue(String value) {
+        for (EdsFocusSettings type : values()) {
+            if (type.toString().equals(value)) {
+                return type;
+            }
+        }
+        throw new NoSuchPropertyValueException("Invalid settings value");
+    }
+
     @Override
-    public String toString(){
-        return this.line;
+    public String toString() {
+        return this.value;
     }
 }

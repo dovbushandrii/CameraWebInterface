@@ -6,26 +6,27 @@ import camera_api.interfaces.CameraProp;
 //kEdsPropID_Evf_Mode
 public enum EdsLiveViewSettings implements CameraProp {
 
-    DISABLE         (0,"Disable"),
-    ENABLE          (1,"Enable");
+    DISABLE(0, "Disable"),
+    ENABLE(1, "Enable");
 
     private final int code;
-    private final String line;
+    private final String value;
 
     /**
      * Constructor to initialize the instance variable
+     *
      * @param code Code of aperture setting
      */
-    EdsLiveViewSettings(int code, String line) {
+    EdsLiveViewSettings(int code, String value) {
         this.code = code;
-        this.line = line;
+        this.value = value;
     }
 
     public int getCode() {
         return this.code;
     }
 
-    public static EdsLiveViewSettings fromCode(int code){
+    public static EdsLiveViewSettings fromCode(int code) {
         for (EdsLiveViewSettings type : values()) {
             if (type.getCode() == code) {
                 return type;
@@ -34,8 +35,17 @@ public enum EdsLiveViewSettings implements CameraProp {
         throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
+    public static EdsLiveViewSettings fromValue(String value) {
+        for (EdsLiveViewSettings type : values()) {
+            if (type.toString().equals(value)) {
+                return type;
+            }
+        }
+        throw new NoSuchPropertyValueException("Invalid settings value");
+    }
+
     @Override
-    public String toString(){
-        return this.line;
+    public String toString() {
+        return this.value;
     }
 }

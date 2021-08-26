@@ -5,29 +5,30 @@ import camera_api.interfaces.CameraProp;
 
 public enum EdsMeteringMode implements CameraProp {
 
-    SPOT            (1,"Spot metering"),
-    EVALUATIVE      (3,"Evaluative metering"),
-    PARTIAL         (4,"Partial metering"),
-    CW_AVERAGING    (5,"Center-weighted averaging metering");
+    SPOT(1, "Spot metering"),
+    EVALUATIVE(3, "Evaluative metering"),
+    PARTIAL(4, "Partial metering"),
+    CW_AVERAGING(5, "Center-weighted averaging metering");
     //NOT_VALID       (-1,"Not valid/no settings changes");
 
     private final int code;
-    private final String line;
+    private final String value;
 
     /**
      * Constructor to initialize the instance variable
+     *
      * @param code Code of aperture setting
      */
-    EdsMeteringMode(int code, String line) {
+    EdsMeteringMode(int code, String value) {
         this.code = code;
-        this.line = line;
+        this.value = value;
     }
 
     public int getCode() {
         return this.code;
     }
 
-    public static EdsMeteringMode fromCode(int code){
+    public static EdsMeteringMode fromCode(int code) {
         for (EdsMeteringMode type : values()) {
             if (type.getCode() == code) {
                 return type;
@@ -36,8 +37,17 @@ public enum EdsMeteringMode implements CameraProp {
         throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
     }
 
+    public static EdsMeteringMode fromValue(String value) {
+        for (EdsMeteringMode type : values()) {
+            if (type.toString().equals(value)) {
+                return type;
+            }
+        }
+        throw new NoSuchPropertyValueException("Invalid settings value");
+    }
+
     @Override
-    public String toString(){
-        return this.line;
+    public String toString() {
+        return this.value;
     }
 }

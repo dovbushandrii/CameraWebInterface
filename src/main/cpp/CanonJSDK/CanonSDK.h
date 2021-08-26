@@ -21,7 +21,7 @@ JNIEXPORT jint JNICALL Java_camera_1api_canon_CanonSDK_getCameraListSize
  * Signature: ()Lencodings/sdk/EdsError;
  */
 JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonSDK_initializeNativeSDK
-  (JNIEnv *, jclass);
+  (JNIEnv *, jobject);
 
 /*
  * Class:     CanonSDK
@@ -29,15 +29,15 @@ JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonSDK_initializeNativeSDK
  * Signature: ()Lencodings/sdk/EdsError;
  */
 JNIEXPORT jobject JNICALL Java_camera_1api_canon_CanonSDK_terminateNativeSDK
-  (JNIEnv *, jclass);
+  (JNIEnv *, jobject);
 
 /*
  * Class:     CanonSDK
  * Method:    getDevicePortInfo
  * Signature: (I)Ljava/lang/String;
  */
-JNIEXPORT jstring JNICALL Java_camera_1api_canon_CanonSDK_getDevicePortInfo
-  (JNIEnv *, jclass, jint);
+JNIEXPORT jstring JNICALL Java_camera_1api_canon_CanonSDK_getCameraPortInfo
+  (JNIEnv *, jobject, jint);
 
 #ifdef __cplusplus
 }

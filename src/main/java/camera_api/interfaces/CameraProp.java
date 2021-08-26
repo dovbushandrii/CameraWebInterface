@@ -1,6 +1,4 @@
 package camera_api.interfaces;
 
-public interface CameraProp {
-    String toString();
-    int getCode();
+public interface CameraProp extends EncodedValue {
 }

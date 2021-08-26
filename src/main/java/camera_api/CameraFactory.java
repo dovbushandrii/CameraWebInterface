@@ -1,62 +1,54 @@
 package camera_api;
 
-import camera_api.exceptions.SDKIsNotInitializedException;
 import camera_api.interfaces.Camera;
 import camera_api.interfaces.CameraSDK;
-import camera_api.interfaces.ErrorCode;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+@Component
 public class CameraFactory {
 
     private final CameraSDK sdk;
 
-    private static boolean isInit = false;
-
-    public CameraFactory(CameraSDK sdk){
+    @Autowired
+    public CameraFactory(CameraSDK sdk) {
         this.sdk = sdk;
     }
 
-    public ErrorCode initialize(){
-        isInit = true;
-        return this.sdk.initializeSDK();
+    @PostConstruct
+    public void initialize() {
+        this.sdk.initializeSDK();
     }
 
-    public ErrorCode terminate(){
-        isInit = false;
-        return this.sdk.terminateSDK();
+    @PreDestroy
+    public void terminate() {
+        this.sdk.terminateSDK();
     }
 
-    public int getDeviceCount() throws SDKIsNotInitializedException{
-        if(isInit){
-            return this.sdk.getDeviceCount();
-        }
-        throw new SDKIsNotInitializedException("Camera SDK is not initialized");
+    public void updateCameraList() {
+        this.sdk.updateCameraList();
     }
 
-    public Camera getCamera(int index) throws IndexOutOfBoundsException, SDKIsNotInitializedException {
-        if(isInit){
-            return this.sdk.getCamera(index);
-        }
-        throw new SDKIsNotInitializedException("Camera SDK is not initialized");
+    public int getDeviceCount() {
+        return this.sdk.getDeviceCount();
     }
 
-    public String getCameraName(int index) throws IndexOutOfBoundsException, SDKIsNotInitializedException{
-        if(isInit){
-            return this.sdk.getCameraName(index);
-        }
-        throw new SDKIsNotInitializedException("Camera SDK is not initialized");
+    public Camera getCamera(int index) {
+        return this.sdk.getCamera(index);
     }
 
-    public String[] getCameraNameList() throws SDKIsNotInitializedException{
-        if(isInit){
-            return this.sdk.getCameraNameList();
-        }
-        throw new SDKIsNotInitializedException("Camera SDK is not initialized");
+    public String getCameraName(int index) {
+        return this.sdk.getCameraName(index);
     }
 
-    public String getCameraPort(int index) throws SDKIsNotInitializedException{
-        if(isInit){
-            return this.sdk.getCameraPort(index);
-        }
-        throw new SDKIsNotInitializedException("Camera SDK is not initialized");
+    public String[] getCameraNameList() {
+        return this.sdk.getCameraNameList();
+    }
+
+    public String getCameraPort(int index) {
+        return this.sdk.getCameraPort(index);
     }
 }
