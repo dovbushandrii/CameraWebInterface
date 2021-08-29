@@ -19,7 +19,7 @@ public class PictureSetController {
     }
 
     @GetMapping()
-    public List<PictureSetDTO> index(Model model) {
+    public List<PictureSetDTO> index() {
         return picDAO.read();
     }
 
