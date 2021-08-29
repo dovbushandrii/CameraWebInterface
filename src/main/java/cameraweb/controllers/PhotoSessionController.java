@@ -1,10 +1,11 @@
 package cameraweb.controllers;
 
 
+import cameraweb.model.pictureset.dtos.PictureSetDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -18,11 +19,8 @@ public class PhotoSessionController {
         this.service = service;
     }
 
-    //TODO: JSON parsing
-
-    @GetMapping("/start")
-    public void startSession() {
-        //service.startSession();
+    @PostMapping("/start")
+    public void startSession(@RequestParam List<PictureSetDTO> sets) {
+        service.startSession(sets);
     }
-
 }

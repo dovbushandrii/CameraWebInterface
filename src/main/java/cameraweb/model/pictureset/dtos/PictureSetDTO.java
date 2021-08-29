@@ -1,4 +1,4 @@
-package cameraweb.model.pictureset.dbobjects;
+package cameraweb.model.pictureset.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class PictureSetForDB {
+public class PictureSetDTO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

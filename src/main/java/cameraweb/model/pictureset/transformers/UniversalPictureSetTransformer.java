@@ -1,7 +1,6 @@
 package cameraweb.model.pictureset.transformers;
 
-import cameraweb.model.pictureset.canonEncodings.CanonPictureSet;
-import cameraweb.model.pictureset.dbobjects.PictureSetForDB;
+import cameraweb.model.pictureset.dtos.PictureSetDTO;
 import cameraweb.model.pictureset.inter.PictureSet;
 import cameraweb.model.pictureset.inter.PictureSetTransformer;
 import org.springframework.stereotype.Component;
@@ -10,8 +9,8 @@ import org.springframework.stereotype.Component;
 public class UniversalPictureSetTransformer implements PictureSetTransformer {
 
     @Override
-    public PictureSetForDB transformToDBO(PictureSet set) {
-        PictureSetForDB dbo = new PictureSetForDB();
+    public PictureSetDTO transformToDBO(PictureSet set) {
+        PictureSetDTO dbo = new PictureSetDTO();
         dbo.setEncodingsType(set.getClass().getName());
         dbo.setCount(set.getCount());
         dbo.setExposureValue(set.getExposure().toString());
@@ -24,7 +23,7 @@ public class UniversalPictureSetTransformer implements PictureSetTransformer {
     }
 
     @Override
-    public PictureSet transformFromDBO(PictureSetForDB dbo) {
+    public PictureSet transformFromDBO(PictureSetDTO dbo) {
         try {
             Class picSetClass = Class.forName(dbo.getEncodingsType());
             PictureSet set = (PictureSet) picSetClass.newInstance();

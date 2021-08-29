@@ -3,10 +3,7 @@ package cameraweb.controllers;
 import cameraweb.model.CameraSettings;
 import cameraweb.modelDAO.CameraSettingsDAO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -24,9 +21,8 @@ public class CameraSettingsController {
         return camDAO.read();
     }
 
-    //TODO: JSON parsing
-    @PostMapping()
-    public void update() {
-        //this.camDAO.update(settings);
+    @PatchMapping()
+    public void update(@RequestParam CameraSettings settings) {
+        this.camDAO.update(settings);
     }
 }

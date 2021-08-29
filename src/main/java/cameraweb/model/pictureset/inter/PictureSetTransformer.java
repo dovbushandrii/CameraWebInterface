@@ -1,9 +1,9 @@
 package cameraweb.model.pictureset.inter;
 
-import cameraweb.model.pictureset.dbobjects.PictureSetForDB;
+import cameraweb.model.pictureset.dtos.PictureSetDTO;
 
 public interface PictureSetTransformer {
-    PictureSetForDB transformToDBO(PictureSet set);
+    PictureSetDTO transformToDBO(PictureSet set);
 
-    PictureSet transformFromDBO(PictureSetForDB dbo);
+    PictureSet transformFromDBO(PictureSetDTO dbo);
 }

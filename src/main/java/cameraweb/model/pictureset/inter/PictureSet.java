@@ -1,5 +1,6 @@
 package cameraweb.model.pictureset.inter;
 
+import camera_api.interfaces.Camera;
 import camera_api.interfaces.CameraProp;
 
 public interface PictureSet {
