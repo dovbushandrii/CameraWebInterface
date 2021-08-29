@@ -5,9 +5,11 @@ import camera_api.interfaces.companies.Company;
 import camera_api.interfaces.companies.PictureSetFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
+@PropertySource("classpath:companies.properties")
 public class CanonCompany implements Company {
 
     @Value("${canon.company.name}")
@@ -34,5 +36,10 @@ public class CanonCompany implements Company {
     @Override
     public PictureSetFactory getPictureSetFactory() {
         return pictureSetFactory;
+    }
+
+    @Override
+    public String[] getNamesOfAvailableCameras() {
+        return sdk.getCameraNameList();
     }
 }

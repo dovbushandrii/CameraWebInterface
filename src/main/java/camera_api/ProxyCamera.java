@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProxyCamera {
 
-    private final CameraFactory cameraFactory;
+    private final ProxyCompany company;
     private Camera camera = null;
 
 
     @Autowired
-    public ProxyCamera(CameraFactory cameraFactory) {
-        this.cameraFactory = cameraFactory;
+    public ProxyCamera(ProxyCompany company) {
+        this.company = company;
     }
 
     //TODO: Listener for Company Change
@@ -22,7 +22,10 @@ public class ProxyCamera {
         if (camera != null) {
             camera.closeSession();
         }
-        camera = cameraFactory.getCamera(id);
+        camera = company
+                .getCompany()
+                .getCameraSDK()
+                .getCamera(id);
         this.camera.openSession();
     }
 
@@ -32,9 +35,5 @@ public class ProxyCamera {
         } else {
             return camera;
         }
-    }
-
-    public String[] getCameraNameList() {
-        return this.cameraFactory.getCameraNameList();
     }
 }
