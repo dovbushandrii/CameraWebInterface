@@ -1,6 +1,6 @@
 package cameraweb.controllers;
 
-import cameraweb.model.pictureset.dbobjects.PictureSetForDB;
+import cameraweb.model.pictureset.dtos.PictureSetDTO;
 import cameraweb.modelDAO.PictureSetDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -19,18 +19,26 @@ public class PictureSetController {
     }
 
     @GetMapping()
-    public List<PictureSetForDB> index(Model model) {
+    public List<PictureSetDTO> index(Model model) {
         return picDAO.read();
     }
 
-    //TODO: create PictureSet
+    @PostMapping()
+    public void create(@RequestParam PictureSetDTO picSet) {
+        this.picDAO.create(picSet);
+    }
+
+    @PatchMapping()
+    public void update(@RequestParam PictureSetDTO picSet) {
+        this.picDAO.update(picSet);
+    }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable int id) {
         this.picDAO.delete(id);
     }
 
-    @DeleteMapping ()
+    @DeleteMapping()
     public void delete() {
         this.picDAO.delete();
     }

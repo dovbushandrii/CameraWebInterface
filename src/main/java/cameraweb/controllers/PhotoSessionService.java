@@ -1,6 +1,6 @@
 package cameraweb.controllers;
 
-import cameraweb.model.pictureset.dbobjects.PictureSetForDB;
+import cameraweb.model.pictureset.dtos.PictureSetDTO;
 import cameraweb.model.pictureset.inter.PictureSet;
 import cameraweb.model.pictureset.inter.PictureSetTransformer;
 import cameraweb.modelDAO.PhotoSessionCAO;
@@ -24,9 +24,9 @@ public class PhotoSessionService {
         this.transformer = transformer;
     }
 
-    public void startSession(List<PictureSetForDB> sets) {
+    public void startSession(List<PictureSetDTO> sets) {
         List<PictureSet> newSets = new ArrayList<>();
-        for (PictureSetForDB set : sets) {
+        for (PictureSetDTO set : sets) {
             newSets.add(transformer.transformFromDBO(set));
         }
         cao.startSession(newSets);

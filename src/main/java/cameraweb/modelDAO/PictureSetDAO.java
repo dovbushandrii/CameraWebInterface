@@ -1,6 +1,6 @@
 package cameraweb.modelDAO;
 
-import cameraweb.model.pictureset.dbobjects.PictureSetForDB;
+import cameraweb.model.pictureset.dtos.PictureSetDTO;
 import cameraweb.repos.PictureSetRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,35 +20,35 @@ public class PictureSetDAO {
         //this.transformer = transformer;
     }
 
-    public List<PictureSetForDB> read() {
-        List<PictureSetForDB> sets = new ArrayList<>();
-        Iterable<PictureSetForDB> list = repo.findAll();
-        for (PictureSetForDB pictureSetForDB : list) {
-            sets.add(pictureSetForDB);
+    public List<PictureSetDTO> read() {
+        List<PictureSetDTO> sets = new ArrayList<>();
+        Iterable<PictureSetDTO> list = repo.findAll();
+        for (PictureSetDTO pictureSetDTO : list) {
+            sets.add(pictureSetDTO);
         }
         return sets;
     }
 
-    public PictureSetForDB read(int id) {
-        PictureSetForDB set = repo.findById((long) id).orElse(null);
+    public PictureSetDTO read(int id) {
+        PictureSetDTO set = repo.findById((long) id).orElse(null);
         if (set != null) {
             return set;
         }
         throw new IndexOutOfBoundsException("No such picture set with id: " + id);
     }
 
-    public void update(List<PictureSetForDB> newList) {
+    public void update(List<PictureSetDTO> newList) {
         this.delete();
-        for (PictureSetForDB set : newList) {
+        for (PictureSetDTO set : newList) {
             this.create(set);
         }
     }
 
-    public void update(PictureSetForDB newSet, int id) {
+    public void update(PictureSetDTO newSet) {
         //TODO
     }
 
-    public void create(PictureSetForDB set) {
+    public void create(PictureSetDTO set) {
         repo.save(set);
     }
 
