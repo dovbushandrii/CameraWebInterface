@@ -27,35 +27,19 @@ public class PhotoSessionCAO {
 
     private void processPictureSet(PictureSet set) {
         Camera cam = this.camFac.getCamera();
-
-        //Saving previous settings
-        CameraProp iso = cam.getISO();
-        CameraProp aperture = cam.getAperture();
-
         //Setting new settings
-        cam.setISO(set.getIso());
-        cam.setAperture(set.getAperture());
+        set.applySettings(cam);
 
-        if(set.getExposureTime() == 0.0) {
-            //Saving previous settings
-            CameraProp exposure = cam.getExposure();
-            //Setting new settings
-            cam.setExposure(set.getExposure());
-            for (int i = 0; i < set.getCount(); i++) {
-                cam.takePicture();
-            }
-            //Restoring settings
-            cam.setExposure(exposure);
-        }
-        else{
+        if(set.exposureTimeGiven()) {
             for (int i = 0; i < set.getCount(); i++) {
                 cam.takePicture(set.getExposureTime());
             }
         }
-
-        //Restoring settings
-        cam.setISO(iso);
-        cam.setAperture(aperture);
+        else{
+            for (int i = 0; i < set.getCount(); i++) {
+                cam.takePicture();
+            }
+        }
 
         //Pause after shooting
         try {

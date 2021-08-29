@@ -3,7 +3,6 @@ package cameraweb.controllers;
 import cameraweb.model.pictureset.dtos.PictureSetDTO;
 import cameraweb.modelDAO.PictureSetDAO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

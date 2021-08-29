@@ -13,12 +13,12 @@ public class CameraLoadController {
     private final ProxyCameraFactory camFac;
 
     @Autowired
-    public CameraLoadController(ProxyCameraFactory camFac){
+    public CameraLoadController(ProxyCameraFactory camFac) {
         this.camFac = camFac;
     }
 
     @GetMapping("/load")
-    public void loadCamera(@RequestParam(value = "cameraID") int id){
+    public void loadCamera(@RequestParam(value = "cameraID") int id) {
         this.camFac.loadCamera(id);
     }
 }

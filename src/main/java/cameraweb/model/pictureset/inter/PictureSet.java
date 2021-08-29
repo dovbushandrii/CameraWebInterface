@@ -42,4 +42,8 @@ public interface PictureSet {
     double getPause();
 
     void setPause(double pause);
+
+    void applySettings(Camera cam);
+
+    boolean exposureTimeGiven();
 }
