@@ -1,4 +1,6 @@
-package camera_api.interfaces;
+package camera_api.interfaces.camerasdk;
+
+import camera_api.interfaces.encogings.ErrorCode;
 
 public interface CameraSDK {
     ErrorCode initializeSDK();

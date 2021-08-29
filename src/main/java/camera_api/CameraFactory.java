@@ -1,7 +1,7 @@
 package camera_api;
 
-import camera_api.interfaces.Camera;
-import camera_api.interfaces.CameraSDK;
+import camera_api.interfaces.camerasdk.Camera;
+import camera_api.interfaces.camerasdk.CameraSDK;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,44 +11,34 @@ import javax.annotation.PreDestroy;
 @Component
 public class CameraFactory {
 
-    private final CameraSDK sdk;
+    private final ProxyCompany company;
 
     @Autowired
-    public CameraFactory(CameraSDK sdk) {
-        this.sdk = sdk;
-    }
-
-    @PostConstruct
-    public void initialize() {
-        this.sdk.initializeSDK();
-    }
-
-    @PreDestroy
-    public void terminate() {
-        this.sdk.terminateSDK();
+    public CameraFactory(ProxyCompany company) {
+        this.company = company;
     }
 
     public void updateCameraList() {
-        this.sdk.updateCameraList();
+        company.getCompany().getCameraSDK().updateCameraList();
     }
 
     public int getDeviceCount() {
-        return this.sdk.getDeviceCount();
+        return company.getCompany().getCameraSDK().getDeviceCount();
     }
 
     public Camera getCamera(int index) {
-        return this.sdk.getCamera(index);
+        return company.getCompany().getCameraSDK().getCamera(index);
     }
 
     public String getCameraName(int index) {
-        return this.sdk.getCameraName(index);
+        return company.getCompany().getCameraSDK().getCameraName(index);
     }
 
     public String[] getCameraNameList() {
-        return this.sdk.getCameraNameList();
+        return company.getCompany().getCameraSDK().getCameraNameList();
     }
 
     public String getCameraPort(int index) {
-        return this.sdk.getCameraPort(index);
+        return company.getCompany().getCameraSDK().getCameraPort(index);
     }
 }

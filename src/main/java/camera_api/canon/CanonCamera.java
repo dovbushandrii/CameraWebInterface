@@ -1,8 +1,8 @@
 package camera_api.canon;
 
 
-import camera_api.interfaces.Camera;
-import camera_api.interfaces.CameraProp;
+import camera_api.interfaces.camerasdk.Camera;
+import camera_api.interfaces.encogings.CameraProp;
 import camera_api.canon.encodings.cameraprops.*;
 import camera_api.canon.encodings.sdk.*;
 

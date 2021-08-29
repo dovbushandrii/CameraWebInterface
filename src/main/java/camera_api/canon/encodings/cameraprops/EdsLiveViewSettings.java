@@ -1,7 +1,7 @@
 package camera_api.canon.encodings.cameraprops;
 
 import camera_api.exceptions.NoSuchPropertyValueException;
-import camera_api.interfaces.CameraProp;
+import camera_api.interfaces.encogings.CameraProp;
 
 //kEdsPropID_Evf_Mode
 public enum EdsLiveViewSettings implements CameraProp {

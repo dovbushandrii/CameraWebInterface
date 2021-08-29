@@ -1,6 +1,6 @@
 package cameraweb.model;
 
-import camera_api.interfaces.Camera;
+import camera_api.interfaces.camerasdk.Camera;
 import lombok.Getter;
 
 public class DeviceInfo {

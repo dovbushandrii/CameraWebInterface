@@ -1,8 +1,7 @@
 package cameraweb.modelDAO;
 
-import camera_api.ProxyCameraFactory;
-import camera_api.interfaces.Camera;
-import camera_api.interfaces.CameraProp;
+import camera_api.ProxyCamera;
+import camera_api.interfaces.camerasdk.Camera;
 import cameraweb.model.pictureset.inter.PictureSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,10 +11,10 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 public class PhotoSessionCAO {
-    private final ProxyCameraFactory camFac;
+    private final ProxyCamera camFac;
 
     @Autowired
-    public PhotoSessionCAO(ProxyCameraFactory camFac) {
+    public PhotoSessionCAO(ProxyCamera camFac) {
         this.camFac = camFac;
     }
 

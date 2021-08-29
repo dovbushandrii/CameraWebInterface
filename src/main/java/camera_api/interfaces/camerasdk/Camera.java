@@ -1,8 +1,9 @@
-package camera_api.interfaces;
+package camera_api.interfaces.camerasdk;
 
 // TODO: 8/5/2021 COMMENTING
 
-import camera_api.exceptions.NoSuchPropertyValueException;
+import camera_api.interfaces.encogings.CameraProp;
+import camera_api.interfaces.encogings.ErrorCode;
 
 
 public interface Camera {

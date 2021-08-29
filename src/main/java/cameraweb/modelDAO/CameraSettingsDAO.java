@@ -1,17 +1,17 @@
 package cameraweb.modelDAO;
 
-import camera_api.ProxyCameraFactory;
-import camera_api.interfaces.Camera;
+import camera_api.ProxyCamera;
+import camera_api.interfaces.camerasdk.Camera;
 import cameraweb.model.CameraSettings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CameraSettingsDAO {
-    private final ProxyCameraFactory camFac;
+    private final ProxyCamera camFac;
 
     @Autowired
-    public CameraSettingsDAO(ProxyCameraFactory camFac) {
+    public CameraSettingsDAO(ProxyCamera camFac) {
         this.camFac = camFac;
     }
 

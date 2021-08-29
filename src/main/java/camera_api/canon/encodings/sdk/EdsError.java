@@ -1,7 +1,7 @@
 package camera_api.canon.encodings.sdk;
 
 import camera_api.exceptions.NoSuchErrorCodeException;
-import camera_api.interfaces.ErrorCode;
+import camera_api.interfaces.encogings.ErrorCode;
 
 public enum EdsError implements ErrorCode {
 

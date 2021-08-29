@@ -1,7 +1,7 @@
 package cameraweb.model;
 
-import camera_api.interfaces.Camera;
-import camera_api.interfaces.CameraProp;
+import camera_api.interfaces.camerasdk.Camera;
+import camera_api.interfaces.encogings.CameraProp;
 import lombok.Getter;
 
 public class CameraSettings {

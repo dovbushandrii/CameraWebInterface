@@ -1,9 +1,9 @@
-package cameraweb.model.pictureset.canonEncodings;
+package camera_api.canon.encodings.picturesets;
 
 import camera_api.canon.encodings.cameraprops.EdsAperture;
 import camera_api.canon.encodings.cameraprops.EdsExposure;
 import camera_api.canon.encodings.cameraprops.EdsISO;
-import camera_api.interfaces.Camera;
+import camera_api.interfaces.camerasdk.Camera;
 import cameraweb.model.pictureset.inter.PictureSet;
 import lombok.Getter;
 import lombok.Setter;

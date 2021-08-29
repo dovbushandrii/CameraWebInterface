@@ -1,7 +1,7 @@
 package camera_api.canon.encodings.cameraprops;
 
 import camera_api.exceptions.NoSuchPropertyValueException;
-import camera_api.interfaces.CameraProp;
+import camera_api.interfaces.encogings.CameraProp;
 
 public enum EdsISO implements CameraProp {
     ISO_AUTO(0x00000000, "ISO Auto"),
