@@ -26,8 +26,8 @@ public class CanonCamera implements Camera {
     /*----------------------------------------------------------------------------*/
 
     @Override
-    public boolean equals(Object object){
-        if(object != null) {
+    public boolean equals(Object object) {
+        if (object != null) {
             if (object.getClass().getName().equals(this.getClass().getName())) {
                 CanonCamera cam = (CanonCamera) object;
                 if (cam.CamRef == this.CamRef) {
@@ -40,7 +40,7 @@ public class CanonCamera implements Camera {
 
     @Override
     public int hashCode() {
-        return (int)this.getCamRef();
+        return (int) this.getCamRef();
     }
 
     /*-----------------------CONSTRUCTORS AND FINALIZERS--------------------------*/

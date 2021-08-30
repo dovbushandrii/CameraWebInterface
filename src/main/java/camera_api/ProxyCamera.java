@@ -2,28 +2,28 @@ package camera_api;
 
 import camera_api.exceptions.CameraNotFoundException;
 import camera_api.interfaces.camerasdk.Camera;
+import camera_api.interfaces.patterns.Observer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProxyCamera {
+public class ProxyCamera implements Observer {
 
     private final ProxyCompany company;
     private Camera camera = null;
 
-
     @Autowired
     public ProxyCamera(ProxyCompany company) {
         this.company = company;
+        company.addObserver(this);
     }
 
-    //TODO: Listener for Company Change
     public void loadCamera(int id) {
         Camera newCamera = company
                 .getCompany()
                 .getCameraSDK()
                 .getCamera(id);
-        if(!newCamera.equals(camera)) {
+        if (!newCamera.equals(camera)) {
             if (camera != null) {
                 camera.closeSession();
             }
@@ -38,5 +38,10 @@ public class ProxyCamera {
         } else {
             return camera;
         }
+    }
+
+    @Override
+    public void handleEvent() {
+        this.camera = null;
     }
 }

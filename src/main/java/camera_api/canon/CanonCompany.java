@@ -18,14 +18,14 @@ public class CanonCompany implements Company {
     private final PictureSetFactory pictureSetFactory;
 
     @Autowired
-    public CanonCompany(CanonSDK sdk, CanonPictureSetFactory pictureSetFactory){
+    public CanonCompany(CanonSDK sdk, CanonPictureSetFactory pictureSetFactory) {
         this.sdk = sdk;
         this.pictureSetFactory = pictureSetFactory;
     }
 
     @Override
     public boolean equals(Object object) {
-        if(object != null) {
+        if (object != null) {
             if (object.getClass().getName().equals(this.getClass().getName())) {
                 CanonCompany company = (CanonCompany) object;
                 if (company.companyName.equals(this.companyName)) {
