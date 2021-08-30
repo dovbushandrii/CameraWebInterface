@@ -24,6 +24,24 @@ public class CanonCompany implements Company {
     }
 
     @Override
+    public boolean equals(Object object) {
+        if(object != null) {
+            if (object.getClass().getName().equals(this.getClass().getName())) {
+                CanonCompany company = (CanonCompany) object;
+                if (company.companyName.equals(this.companyName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return companyName.hashCode();
+    }
+
+    @Override
     public String getCompanyName() {
         return companyName;
     }

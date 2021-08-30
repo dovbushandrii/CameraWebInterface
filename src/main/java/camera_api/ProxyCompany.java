@@ -1,7 +1,6 @@
 package camera_api;
 
 import camera_api.exceptions.CompanyNotFoundException;
-import camera_api.exceptions.NoCompanySoftwareWasLoadedException;
 import camera_api.interfaces.companies.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,11 +24,13 @@ public class ProxyCompany {
                 .filter(comp -> comp.getCompanyName().equals(companyName))
                 .findFirst();
         if(foundCompany.isPresent()){
-            if(this.company != null){
-                this.company.getCameraSDK().terminateSDK();
+            if(!foundCompany.get().equals(company)) {
+                if (this.company != null) {
+                    this.company.getCameraSDK().terminateSDK();
+                }
+                this.company = foundCompany.get();
+                this.company.getCameraSDK().initializeSDK();
             }
-            this.company = foundCompany.get();
-            this.company.getCameraSDK().initializeSDK();
         }
         else{
             throw new CompanyNotFoundException("Cannot load company with name: " + companyName);
@@ -38,7 +39,7 @@ public class ProxyCompany {
 
     public Company getCompany() {
         if (company == null) {
-            throw new NoCompanySoftwareWasLoadedException("Company classes was not loaded");
+            throw new CompanyNotFoundException("Company classes was not loaded");
         } else {
             return company;
         }

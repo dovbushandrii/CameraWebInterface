@@ -24,6 +24,25 @@ public class CanonCamera implements Camera {
         return camera.CamRef == this.CamRef;
     }
     /*----------------------------------------------------------------------------*/
+
+    @Override
+    public boolean equals(Object object){
+        if(object != null) {
+            if (object.getClass().getName().equals(this.getClass().getName())) {
+                CanonCamera cam = (CanonCamera) object;
+                if (cam.CamRef == this.CamRef) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int)this.getCamRef();
+    }
+
     /*-----------------------CONSTRUCTORS AND FINALIZERS--------------------------*/
     /**
      * Indicates if the Camera session is open.

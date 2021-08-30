@@ -1,6 +1,6 @@
 package camera_api;
 
-import camera_api.exceptions.NoCameraInstanceWasLoadedException;
+import camera_api.exceptions.CameraNotFoundException;
 import camera_api.interfaces.camerasdk.Camera;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,19 +19,22 @@ public class ProxyCamera {
 
     //TODO: Listener for Company Change
     public void loadCamera(int id) {
-        if (camera != null) {
-            camera.closeSession();
-        }
-        camera = company
+        Camera newCamera = company
                 .getCompany()
                 .getCameraSDK()
                 .getCamera(id);
-        this.camera.openSession();
+        if(!newCamera.equals(camera)) {
+            if (camera != null) {
+                camera.closeSession();
+            }
+            camera = newCamera;
+            this.camera.openSession();
+        }
     }
 
     public Camera getCamera() {
         if (camera == null) {
-            throw new NoCameraInstanceWasLoadedException("No camera was loaded before");
+            throw new CameraNotFoundException("No camera was loaded before");
         } else {
             return camera;
         }

@@ -1,5 +1,6 @@
 package camera_api.canon;
 
+import camera_api.exceptions.CameraNotFoundException;
 import camera_api.interfaces.camerasdk.CameraSDK;
 import camera_api.canon.encodings.sdk.*;
 import org.springframework.stereotype.Component;
@@ -96,14 +97,14 @@ public class CanonSDK implements CameraSDK {
         if (deviceList.length > index && index >= 0) {
             return deviceList[index];
         }
-        throw new IndexOutOfBoundsException("Invalid device index");
+        throw new CameraNotFoundException("Invalid device index");
     }
 
     public String getCameraName(int index) {
         if (deviceList.length > index && index >= 0) {
             return deviceList[index].productName();
         }
-        throw new IndexOutOfBoundsException("Invalid device index");
+        throw new CameraNotFoundException("Invalid device index");
     }
 
     public String[] getCameraNameList() {
@@ -118,7 +119,7 @@ public class CanonSDK implements CameraSDK {
         if (deviceList.length > index && index >= 0) {
             return getCameraPortInfo(index);
         }
-        throw new IndexOutOfBoundsException("Invalid device index");
+        throw new CameraNotFoundException("Invalid device index");
     }
 
 }
