@@ -12,14 +12,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class ProxyCompany implements Observed {
+public class CompanyLoader implements Observed {
 
     private final List<Company> companies;
     private Company company = null;
     private final List<Observer> observers = new ArrayList<>();
 
     @Autowired
-    public ProxyCompany(List<Company> companies) {
+    public CompanyLoader(List<Company> companies) {
         this.companies = companies;
     }
 

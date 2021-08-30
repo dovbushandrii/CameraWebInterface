@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProxyCamera implements Observer {
+public class CameraLoader implements Observer {
 
-    private final ProxyCompany company;
+    private final CompanyLoader company;
     private Camera camera = null;
 
     @Autowired
-    public ProxyCamera(ProxyCompany company) {
+    public CameraLoader(CompanyLoader company) {
         this.company = company;
         company.addObserver(this);
     }

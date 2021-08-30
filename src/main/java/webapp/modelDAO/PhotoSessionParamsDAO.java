@@ -1,6 +1,6 @@
 package webapp.modelDAO;
 
-import camera_api.ProxyCompany;
+import camera_api.CompanyLoader;
 import webapp.model.photosessionparams.dtos.PhotoSessionParamsDTO;
 import webapp.repos.PhotoSessionParamsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +14,10 @@ import java.util.Optional;
 public class PhotoSessionParamsDAO {
 
     private final PhotoSessionParamsRepo repo;
-    private final ProxyCompany company;
+    private final CompanyLoader company;
 
     @Autowired
-    public PhotoSessionParamsDAO(PhotoSessionParamsRepo repo, ProxyCompany company) {
+    public PhotoSessionParamsDAO(PhotoSessionParamsRepo repo, CompanyLoader company) {
         this.repo = repo;
         this.company = company;
     }

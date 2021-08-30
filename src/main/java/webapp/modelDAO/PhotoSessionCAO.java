@@ -1,6 +1,6 @@
 package webapp.modelDAO;
 
-import camera_api.ProxyCamera;
+import camera_api.CameraLoader;
 import camera_api.interfaces.camerasdk.Camera;
 import webapp.model.photosessionparams.inter.PhotoSessionParams;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +11,10 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 public class PhotoSessionCAO {
-    private final ProxyCamera camera;
+    private final CameraLoader camera;
 
     @Autowired
-    public PhotoSessionCAO(ProxyCamera camera) {
+    public PhotoSessionCAO(CameraLoader camera) {
         this.camera = camera;
     }
 

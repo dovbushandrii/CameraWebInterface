@@ -1,6 +1,6 @@
 package webapp.modelDAO;
 
-import camera_api.ProxyCamera;
+import camera_api.CameraLoader;
 import webapp.model.DeviceInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class DeviceInfoDAO {
 
-    private final ProxyCamera camera;
+    private final CameraLoader camera;
 
     @Autowired
-    public DeviceInfoDAO(ProxyCamera camera) {
+    public DeviceInfoDAO(CameraLoader camera) {
         this.camera = camera;
     }
 

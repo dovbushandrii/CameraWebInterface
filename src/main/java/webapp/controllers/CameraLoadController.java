@@ -1,6 +1,6 @@
 package webapp.controllers;
 
-import camera_api.ProxyCamera;
+import camera_api.CameraLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/session")
 public class CameraLoadController {
-    private final ProxyCamera camera;
+    private final CameraLoader camera;
 
     @Autowired
-    public CameraLoadController(ProxyCamera camera) {
+    public CameraLoadController(CameraLoader camera) {
         this.camera = camera;
     }
 
