@@ -26,8 +26,7 @@ public class PictureSetDAO {
         List<PictureSetDTO> sets = new ArrayList<>();
         Iterable<PictureSetDTO> list = repo.findAll();
         String pictureSetClassName = company.getCompany()
-                .getPictureSetFactory()
-                .getPictureSetClassName();
+                .getPhotoSessionParamsClassName();
 
         for (PictureSetDTO pictureSetDTO : list) {
             if(pictureSetDTO.getEncodingsType().equals(pictureSetClassName)) {

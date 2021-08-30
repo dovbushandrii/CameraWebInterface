@@ -1,15 +1,15 @@
 package cameraweb.model.pictureset.transformers;
 
 import cameraweb.model.pictureset.dtos.PictureSetDTO;
-import cameraweb.model.pictureset.inter.PictureSet;
-import cameraweb.model.pictureset.inter.PictureSetTransformer;
+import cameraweb.model.pictureset.inter.PhotoSessionParams;
+import cameraweb.model.pictureset.inter.PhotoSessionParamsTransformer;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UniversalPictureSetTransformer implements PictureSetTransformer {
+public class UniversalPhotoSessionParamsTransformer implements PhotoSessionParamsTransformer {
 
     @Override
-    public PictureSetDTO transformToDBO(PictureSet set) {
+    public PictureSetDTO transformToDBO(PhotoSessionParams set) {
         PictureSetDTO dbo = new PictureSetDTO();
         dbo.setEncodingsType(set.getClass().getName());
         dbo.setCount(set.getCount());
@@ -23,10 +23,10 @@ public class UniversalPictureSetTransformer implements PictureSetTransformer {
     }
 
     @Override
-    public PictureSet transformFromDBO(PictureSetDTO dbo) {
+    public PhotoSessionParams transformFromDBO(PictureSetDTO dbo) {
         try {
             Class picSetClass = Class.forName(dbo.getEncodingsType());
-            PictureSet set = (PictureSet) picSetClass.newInstance();
+            PhotoSessionParams set = (PhotoSessionParams) picSetClass.newInstance();
             set.setId(dbo.getId());
             set.setCount(dbo.getCount());
             set.setExposure(dbo.getExposureValue());

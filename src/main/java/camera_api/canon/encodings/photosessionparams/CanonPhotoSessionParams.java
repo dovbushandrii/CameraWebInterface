@@ -4,11 +4,11 @@ import camera_api.canon.encodings.cameraprops.EdsAperture;
 import camera_api.canon.encodings.cameraprops.EdsExposure;
 import camera_api.canon.encodings.cameraprops.EdsISO;
 import camera_api.interfaces.camerasdk.Camera;
-import cameraweb.model.pictureset.inter.PictureSet;
+import cameraweb.model.pictureset.inter.PhotoSessionParams;
 import lombok.Getter;
 import lombok.Setter;
 
-public class CanonPictureSet implements PictureSet {
+public class CanonPhotoSessionParams implements PhotoSessionParams {
 
     @Getter
     @Setter
