@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class DeviceInfoDAO {
 
-    private final ProxyCamera camFac;
+    private final ProxyCamera camera;
 
     @Autowired
-    public DeviceInfoDAO(ProxyCamera camFac) {
-        this.camFac = camFac;
+    public DeviceInfoDAO(ProxyCamera camera) {
+        this.camera = camera;
     }
 
     public DeviceInfo read() {
-        return new DeviceInfo(this.camFac.getCamera());
+        return new DeviceInfo(this.camera.getCamera());
     }
 }

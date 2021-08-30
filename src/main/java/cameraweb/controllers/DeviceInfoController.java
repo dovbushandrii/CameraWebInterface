@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RestController
 @RequestMapping("/session/info")
 public class DeviceInfoController {
-    private final DeviceInfoDAO infoDAO;
+    private final DeviceInfoDAO deviceInfoDAO;
 
     @Autowired
-    public DeviceInfoController(DeviceInfoDAO infoDAO) {
-        this.infoDAO = infoDAO;
+    public DeviceInfoController(DeviceInfoDAO deviceInfoDAO) {
+        this.deviceInfoDAO = deviceInfoDAO;
     }
 
     @GetMapping()
     public DeviceInfo getData() {
-        return infoDAO.read();
+        return deviceInfoDAO.read();
     }
-    
+
 }

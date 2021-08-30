@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/session/settings")
 public class CameraSettingsController {
-    private final CameraSettingsDAO camDAO;
+    private final CameraSettingsDAO cameraSettingsDAO;
 
     @Autowired
-    public CameraSettingsController(CameraSettingsDAO camDAO) {
-        this.camDAO = camDAO;
+    public CameraSettingsController(CameraSettingsDAO cameraSettingsDAO) {
+        this.cameraSettingsDAO = cameraSettingsDAO;
     }
 
     @GetMapping()
     public CameraSettings getData() {
-        return camDAO.read();
+        return cameraSettingsDAO.read();
     }
 
     @PatchMapping()
     public void update(@RequestParam CameraSettings settings) {
-        this.camDAO.update(settings);
+        this.cameraSettingsDAO.update(settings);
     }
 }

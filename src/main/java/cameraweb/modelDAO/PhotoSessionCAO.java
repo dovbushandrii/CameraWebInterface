@@ -2,7 +2,7 @@ package cameraweb.modelDAO;
 
 import camera_api.ProxyCamera;
 import camera_api.interfaces.camerasdk.Camera;
-import cameraweb.model.pictureset.inter.PictureSet;
+import cameraweb.model.photosessionparams.inter.PhotoSessionParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,39 +11,56 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 public class PhotoSessionCAO {
-    private final ProxyCamera camFac;
+    private final ProxyCamera camera;
 
     @Autowired
-    public PhotoSessionCAO(ProxyCamera camFac) {
-        this.camFac = camFac;
+    public PhotoSessionCAO(ProxyCamera camera) {
+        this.camera = camera;
     }
 
-    public void startSession(List<PictureSet> sets) {
-        for (PictureSet set : sets) {
-            processPictureSet(set);
+    public void startSession(List<PhotoSessionParams> params) {
+        for (PhotoSessionParams param : params) {
+            processPhotoSession(param);
         }
     }
 
-    private void processPictureSet(PictureSet set) {
-        Camera cam = this.camFac.getCamera();
-        //Setting new settings
-        set.applySettings(cam);
+    private void processPhotoSession(PhotoSessionParams params) {
+        applySettingsToCamera(params);
 
-        if(set.exposureTimeGiven()) {
-            for (int i = 0; i < set.getCount(); i++) {
-                cam.takePicture(set.getExposureTime());
-            }
-        }
-        else{
-            for (int i = 0; i < set.getCount(); i++) {
-                cam.takePicture();
-            }
+        if (params.exposureTimeGiven()) {
+            takePictures(params.getCount(), params.getExposureTime());
+        } else {
+            takePictures(params.getCount());
         }
 
         //Pause after shooting
+        this.pause(params.getPause());
+    }
+
+    private void applySettingsToCamera(PhotoSessionParams params) {
+        Camera cam = camera.getCamera();
+        //Setting new settings
+        params.applySettings(cam);
+    }
+
+    private void takePictures(int count, double exposureTime) {
+        Camera cam = camera.getCamera();
+        for (int i = 0; i < count; i++) {
+            cam.takePicture(exposureTime);
+        }
+    }
+
+    private void takePictures(int count) {
+        Camera cam = camera.getCamera();
+        for (int i = 0; i < count; i++) {
+            cam.takePicture();
+        }
+    }
+
+    private void pause(double seconds) {
         try {
-            TimeUnit.MILLISECONDS.sleep((long) (set.getPause() * 1000));
-        } catch (InterruptedException e){
+            TimeUnit.MILLISECONDS.sleep((long) (seconds * 1000));
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }

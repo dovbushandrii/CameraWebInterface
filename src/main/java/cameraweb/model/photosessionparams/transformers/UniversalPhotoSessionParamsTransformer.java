@@ -1,16 +1,16 @@
-package cameraweb.model.pictureset.transformers;
+package cameraweb.model.photosessionparams.transformers;
 
-import cameraweb.model.pictureset.dtos.PictureSetDTO;
-import cameraweb.model.pictureset.inter.PhotoSessionParams;
-import cameraweb.model.pictureset.inter.PhotoSessionParamsTransformer;
+import cameraweb.model.photosessionparams.dtos.PhotoSessionParamsDTO;
+import cameraweb.model.photosessionparams.inter.PhotoSessionParams;
+import cameraweb.model.photosessionparams.inter.PhotoSessionParamsTransformer;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UniversalPhotoSessionParamsTransformer implements PhotoSessionParamsTransformer {
 
     @Override
-    public PictureSetDTO transformToDBO(PhotoSessionParams set) {
-        PictureSetDTO dbo = new PictureSetDTO();
+    public PhotoSessionParamsDTO transformToDBO(PhotoSessionParams set) {
+        PhotoSessionParamsDTO dbo = new PhotoSessionParamsDTO();
         dbo.setEncodingsType(set.getClass().getName());
         dbo.setCount(set.getCount());
         dbo.setExposureValue(set.getExposure().toString());
@@ -23,21 +23,21 @@ public class UniversalPhotoSessionParamsTransformer implements PhotoSessionParam
     }
 
     @Override
-    public PhotoSessionParams transformFromDBO(PictureSetDTO dbo) {
+    public PhotoSessionParams transformFromDBO(PhotoSessionParamsDTO dbo) {
         try {
-            Class picSetClass = Class.forName(dbo.getEncodingsType());
-            PhotoSessionParams set = (PhotoSessionParams) picSetClass.newInstance();
-            set.setId(dbo.getId());
-            set.setCount(dbo.getCount());
-            set.setExposure(dbo.getExposureValue());
-            set.setExposureTime(dbo.getExposureTime());
-            set.setIso(dbo.getIsoValue());
-            set.setAperture(dbo.getApertureValue());
-            set.setPictureName(dbo.getPictureName());
-            set.setPause(dbo.getPause());
-            return set;
+            Class photoSessionParamsClass = Class.forName(dbo.getEncodingsType());
+            PhotoSessionParams params = (PhotoSessionParams) photoSessionParamsClass.newInstance();
+            params.setId(dbo.getId());
+            params.setCount(dbo.getCount());
+            params.setExposure(dbo.getExposureValue());
+            params.setExposureTime(dbo.getExposureTime());
+            params.setIso(dbo.getIsoValue());
+            params.setAperture(dbo.getApertureValue());
+            params.setPictureName(dbo.getPictureName());
+            params.setPause(dbo.getPause());
+            return params;
         } catch (Exception e) {
-            throw new IllegalArgumentException("Picture set class is not existing:" + dbo.getEncodingsType());
+            throw new IllegalArgumentException("PhotoSessionParams class is not existing:" + dbo.getEncodingsType());
         }
     }
 }

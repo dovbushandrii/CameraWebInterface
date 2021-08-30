@@ -9,11 +9,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/session/sets")
-public class PictureSetController {
+public class PhotoSessionParamsController {
     private final PhotoSessionParamsDAO picDAO;
 
     @Autowired
-    public PictureSetController(PhotoSessionParamsDAO picDAO) {
+    public PhotoSessionParamsController(PhotoSessionParamsDAO picDAO) {
         this.picDAO = picDAO;
     }
 

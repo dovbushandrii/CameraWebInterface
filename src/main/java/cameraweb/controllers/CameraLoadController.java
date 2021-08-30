@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/session")
 public class CameraLoadController {
-    private final ProxyCamera camFac;
+    private final ProxyCamera camera;
 
     @Autowired
-    public CameraLoadController(ProxyCamera camFac) {
-        this.camFac = camFac;
+    public CameraLoadController(ProxyCamera camera) {
+        this.camera = camera;
     }
 
     @GetMapping("/load")
     public void loadCamera(@RequestParam(value = "cameraID") int id) {
-        this.camFac.loadCamera(id);
+        this.camera.loadCamera(id);
     }
 }

@@ -1,8 +1,8 @@
 package camera_api.canon;
 
+import camera_api.canon.encodings.photosessionparams.CanonPhotoSessionParams;
 import camera_api.interfaces.camerasdk.CameraSDK;
 import camera_api.interfaces.companies.Company;
-import camera_api.interfaces.companies.PictureSetFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -15,12 +15,10 @@ public class CanonCompany implements Company {
     @Value("${canon.company.name}")
     private String companyName;
     private final CameraSDK sdk;
-    private final PictureSetFactory pictureSetFactory;
 
     @Autowired
-    public CanonCompany(CanonSDK sdk, CanonPictureSetFactory pictureSetFactory) {
+    public CanonCompany(CanonSDK sdk) {
         this.sdk = sdk;
-        this.pictureSetFactory = pictureSetFactory;
     }
 
     @Override
@@ -28,9 +26,7 @@ public class CanonCompany implements Company {
         if (object != null) {
             if (object.getClass().getName().equals(this.getClass().getName())) {
                 CanonCompany company = (CanonCompany) object;
-                if (company.companyName.equals(this.companyName)) {
-                    return true;
-                }
+                return company.companyName.equals(this.companyName);
             }
         }
         return false;
@@ -52,8 +48,8 @@ public class CanonCompany implements Company {
     }
 
     @Override
-    public PictureSetFactory getPictureSetFactory() {
-        return pictureSetFactory;
+    public String getPhotoSessionParamsClassName() {
+        return CanonPhotoSessionParams.class.getName();
     }
 
     @Override

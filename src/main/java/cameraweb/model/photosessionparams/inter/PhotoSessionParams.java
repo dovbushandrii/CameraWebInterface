@@ -1,4 +1,4 @@
-package cameraweb.model.pictureset.inter;
+package cameraweb.model.photosessionparams.inter;
 
 import camera_api.interfaces.camerasdk.Camera;
 import camera_api.interfaces.encogings.CameraProp;

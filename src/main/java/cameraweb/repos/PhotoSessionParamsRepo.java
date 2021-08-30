@@ -1,7 +1,7 @@
 package cameraweb.repos;
 
-import cameraweb.model.pictureset.dtos.PictureSetDTO;
+import cameraweb.model.photosessionparams.dtos.PhotoSessionParamsDTO;
 import org.springframework.data.repository.CrudRepository;
 
-public interface PictureSetRepo extends CrudRepository<PictureSetDTO, Long> {
+public interface PhotoSessionParamsRepo extends CrudRepository<PhotoSessionParamsDTO, Long> {
 }

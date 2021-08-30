@@ -8,26 +8,26 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CameraSettingsDAO {
-    private final ProxyCamera camFac;
+    private final ProxyCamera camera;
 
     @Autowired
-    public CameraSettingsDAO(ProxyCamera camFac) {
-        this.camFac = camFac;
+    public CameraSettingsDAO(ProxyCamera camera) {
+        this.camera = camera;
     }
 
-    public void update(CameraSettings set) {
-        Camera cam = this.camFac.getCamera();
-        cam.setExposure(set.getExposure());
-        cam.setISO(set.getIso());
-        cam.setAperture(set.getAperture());
-        cam.setExposureComp(set.getExposureComp());
-        cam.setFocusSettings(set.getAfSetting());
-        cam.setWhiteBalance(set.getWbSetting());
-        cam.setDriveMode(set.getDriveMode());
-        cam.setColorSpace(set.getColorSpace());
+    public void update(CameraSettings settings) {
+        Camera cam = this.camera.getCamera();
+        cam.setExposure(settings.getExposure());
+        cam.setISO(settings.getIso());
+        cam.setAperture(settings.getAperture());
+        cam.setExposureComp(settings.getExposureComp());
+        cam.setFocusSettings(settings.getAfSetting());
+        cam.setWhiteBalance(settings.getWbSetting());
+        cam.setDriveMode(settings.getDriveMode());
+        cam.setColorSpace(settings.getColorSpace());
     }
 
     public CameraSettings read() {
-        return new CameraSettings(camFac.getCamera());
+        return new CameraSettings(camera.getCamera());
     }
 }

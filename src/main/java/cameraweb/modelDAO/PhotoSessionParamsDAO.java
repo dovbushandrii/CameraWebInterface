@@ -1,8 +1,8 @@
 package cameraweb.modelDAO;
 
 import camera_api.ProxyCompany;
-import cameraweb.model.pictureset.dtos.PictureSetDTO;
-import cameraweb.repos.PictureSetRepo;
+import cameraweb.model.photosessionparams.dtos.PhotoSessionParamsDTO;
+import cameraweb.repos.PhotoSessionParamsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,52 +11,52 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class PictureSetDAO {
+public class PhotoSessionParamsDAO {
 
-    private final PictureSetRepo repo;
+    private final PhotoSessionParamsRepo repo;
     private final ProxyCompany company;
 
     @Autowired
-    public PictureSetDAO(PictureSetRepo repo, ProxyCompany company) {
+    public PhotoSessionParamsDAO(PhotoSessionParamsRepo repo, ProxyCompany company) {
         this.repo = repo;
         this.company = company;
     }
 
-    public List<PictureSetDTO> read() {
-        List<PictureSetDTO> sets = new ArrayList<>();
-        Iterable<PictureSetDTO> list = repo.findAll();
-        String pictureSetClassName = company.getCompany()
+    public List<PhotoSessionParamsDTO> read() {
+        List<PhotoSessionParamsDTO> params = new ArrayList<>();
+        Iterable<PhotoSessionParamsDTO> list = repo.findAll();
+        String photoSessionParamsClassName = company.getCompany()
                 .getPhotoSessionParamsClassName();
 
-        for (PictureSetDTO pictureSetDTO : list) {
-            if(pictureSetDTO.getEncodingsType().equals(pictureSetClassName)) {
-                sets.add(pictureSetDTO);
+        for (PhotoSessionParamsDTO photoSessionParamsDTO : list) {
+            if (photoSessionParamsDTO.getEncodingsType().equals(photoSessionParamsClassName)) {
+                params.add(photoSessionParamsDTO);
             }
         }
-        return sets;
+        return params;
     }
 
-    public PictureSetDTO read(int id) {
-        Optional<PictureSetDTO> set = repo.findById((long) id);
-        if (set.isPresent()) {
-            return set.get();
+    public PhotoSessionParamsDTO read(int id) {
+        Optional<PhotoSessionParamsDTO> params = repo.findById((long) id);
+        if (params.isPresent()) {
+            return params.get();
         }
-        throw new IndexOutOfBoundsException("No such picture set with id: " + id);
+        throw new IndexOutOfBoundsException("No such photo session parameters with id: " + id);
     }
 
-    public void update(List<PictureSetDTO> newList) {
+    public void update(List<PhotoSessionParamsDTO> newList) {
         this.delete();
-        for (PictureSetDTO set : newList) {
-            this.create(set);
+        for (PhotoSessionParamsDTO params : newList) {
+            this.create(params);
         }
     }
 
-    public void update(PictureSetDTO newSet) {
+    public void update(PhotoSessionParamsDTO newParams) {
         //TODO
     }
 
-    public void create(PictureSetDTO set) {
-        repo.save(set);
+    public void create(PhotoSessionParamsDTO params) {
+        repo.save(params);
     }
 
     public void delete() {

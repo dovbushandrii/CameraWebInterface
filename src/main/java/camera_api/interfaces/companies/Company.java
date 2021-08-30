@@ -8,7 +8,7 @@ public interface Company {
 
     CameraSDK getCameraSDK();
 
-    PictureSetFactory getPictureSetFactory();
-
     String[] getNamesOfAvailableCameras();
+
+    String getPhotoSessionParamsClassName();
 }

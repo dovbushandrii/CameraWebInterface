@@ -1,8 +1,8 @@
 package cameraweb.controllers;
 
-import cameraweb.model.pictureset.dtos.PictureSetDTO;
-import cameraweb.model.pictureset.inter.PictureSet;
-import cameraweb.model.pictureset.inter.PictureSetTransformer;
+import cameraweb.model.photosessionparams.dtos.PhotoSessionParamsDTO;
+import cameraweb.model.photosessionparams.inter.PhotoSessionParams;
+import cameraweb.model.photosessionparams.inter.PhotoSessionParamsTransformer;
 import cameraweb.modelDAO.PhotoSessionCAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,22 +14,22 @@ import java.util.List;
 
 @Service
 public class PhotoSessionService {
-    PhotoSessionCAO cao;
-    PictureSetTransformer transformer;
+    PhotoSessionCAO photoSessionCAO;
+    PhotoSessionParamsTransformer transformer;
 
     @Autowired
-    public PhotoSessionService(PhotoSessionCAO cao,
-                               PictureSetTransformer transformer) {
-        this.cao = cao;
+    public PhotoSessionService(PhotoSessionCAO photoSessionCAO,
+                               PhotoSessionParamsTransformer transformer) {
+        this.photoSessionCAO = photoSessionCAO;
         this.transformer = transformer;
     }
 
-    public void startSession(List<PictureSetDTO> sets) {
-        List<PictureSet> newSets = new ArrayList<>();
-        for (PictureSetDTO set : sets) {
-            newSets.add(transformer.transformFromDBO(set));
+    public void startSession(List<PhotoSessionParamsDTO> params) {
+        List<PhotoSessionParams> newSets = new ArrayList<>();
+        for (PhotoSessionParamsDTO param : params) {
+            newSets.add(transformer.transformFromDBO(param));
         }
-        cao.startSession(newSets);
+        photoSessionCAO.startSession(newSets);
     }
 
 }
