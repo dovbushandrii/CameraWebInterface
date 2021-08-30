@@ -37,11 +37,11 @@ public abstract class AbstractPhotoSessionParams implements PhotoSessionParams {
     private double pause;
 
     @Override
-    public void applySettings(Camera cam) {
-        cam.setISO(this.iso);
-        cam.setAperture(this.aperture);
-        if(!exposureTimeGiven()){
-            cam.setExposure(this.exposure);
+    public void applySettings(Camera camera) {
+        camera.setISO(this.iso);
+        camera.setAperture(this.aperture);
+        if (!exposureTimeGiven()) {
+            camera.setExposure(this.exposure);
         }
     }
 

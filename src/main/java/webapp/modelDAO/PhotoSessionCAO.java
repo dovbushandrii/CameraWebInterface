@@ -11,17 +11,15 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 public class PhotoSessionCAO {
-    private final CameraLoader camera;
+    private final CameraLoader cameraLoader;
 
     @Autowired
-    public PhotoSessionCAO(CameraLoader camera) {
-        this.camera = camera;
+    public PhotoSessionCAO(CameraLoader cameraLoader) {
+        this.cameraLoader = cameraLoader;
     }
 
     public void startSession(List<PhotoSessionParams> params) {
-        for (PhotoSessionParams param : params) {
-            processPhotoSession(param);
-        }
+        params.forEach(this::processPhotoSession);
     }
 
     private void processPhotoSession(PhotoSessionParams params) {
@@ -38,20 +36,20 @@ public class PhotoSessionCAO {
     }
 
     private void applySettingsToCamera(PhotoSessionParams params) {
-        Camera cam = camera.getCamera();
+        Camera cam = cameraLoader.getCamera();
         //Setting new settings
         params.applySettings(cam);
     }
 
     private void takePictures(int count, double exposureTime) {
-        Camera cam = camera.getCamera();
+        Camera cam = cameraLoader.getCamera();
         for (int i = 0; i < count; i++) {
             cam.takePicture(exposureTime);
         }
     }
 
     private void takePictures(int count) {
-        Camera cam = camera.getCamera();
+        Camera cam = cameraLoader.getCamera();
         for (int i = 0; i < count; i++) {
             cam.takePicture();
         }

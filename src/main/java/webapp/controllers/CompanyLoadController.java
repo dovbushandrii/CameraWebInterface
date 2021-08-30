@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/start")
 public class CompanyLoadController {
-    private final CompanyLoader company;
+    private final CompanyLoader companyLoader;
 
     @Autowired
-    public CompanyLoadController(CompanyLoader company) {
-        this.company = company;
+    public CompanyLoadController(CompanyLoader companyLoader) {
+        this.companyLoader = companyLoader;
     }
 
     @GetMapping("/load")
     public void loadCompany(@RequestParam(value = "companyName") String companyName) {
-        this.company.loadCompanySoftware(companyName);
+        this.companyLoader.loadCompanySoftware(companyName);
     }
 
 }

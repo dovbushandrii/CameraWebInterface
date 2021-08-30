@@ -26,9 +26,7 @@ public class PhotoSessionService {
 
     public void startSession(List<PhotoSessionParamsDTO> params) {
         List<PhotoSessionParams> newSets = new ArrayList<>();
-        for (PhotoSessionParamsDTO param : params) {
-            newSets.add(transformer.transformFromDBO(param));
-        }
+        params.forEach(param -> newSets.add(transformer.transformFromDBO(param)));
         photoSessionCAO.startSession(newSets);
     }
 

@@ -54,23 +54,34 @@ public class CameraSettings {
     @Getter
     private final CameraProp[] colorSpaces;
 
-    public CameraSettings(Camera cam) {
-        this.iso = cam.getISO();
-        this.exposure = cam.getExposure();
-        this.exposureComp = cam.getExposureComp();
-        this.aperture = cam.getAperture();
-        this.afSetting = cam.getFocusSettings();
-        this.wbSetting = cam.getWhiteBalance();
-        this.driveMode = cam.getDriveMode();
-        this.colorSpace = cam.getColorSpace();
+    public CameraSettings(Camera camera) {
+        this.iso = camera.getISO();
+        this.exposure = camera.getExposure();
+        this.exposureComp = camera.getExposureComp();
+        this.aperture = camera.getAperture();
+        this.afSetting = camera.getFocusSettings();
+        this.wbSetting = camera.getWhiteBalance();
+        this.driveMode = camera.getDriveMode();
+        this.colorSpace = camera.getColorSpace();
 
-        this.isos = cam.getPossibleISO();
-        this.exposures = cam.getPossibleExposure();
-        this.exposureComps = cam.getPossibleExposureComp();
-        this.apertures = cam.getPossibleAperture();
-        this.afSettings = cam.getPossibleFocusSettings();
-        this.wbSettings = cam.getPossibleWhiteBalance();
-        this.driveModes = cam.getPossibleDriveMode();
-        this.colorSpaces = cam.getPossibleColorSpace();
+        this.isos = camera.getPossibleISO();
+        this.exposures = camera.getPossibleExposure();
+        this.exposureComps = camera.getPossibleExposureComp();
+        this.apertures = camera.getPossibleAperture();
+        this.afSettings = camera.getPossibleFocusSettings();
+        this.wbSettings = camera.getPossibleWhiteBalance();
+        this.driveModes = camera.getPossibleDriveMode();
+        this.colorSpaces = camera.getPossibleColorSpace();
+    }
+
+    public void applyCameraSettings(Camera camera) {
+        camera.setExposure(exposure);
+        camera.setISO(iso);
+        camera.setAperture(aperture);
+        camera.setExposureComp(exposureComp);
+        camera.setFocusSettings(afSetting);
+        camera.setWhiteBalance(wbSetting);
+        camera.setDriveMode(driveMode);
+        camera.setColorSpace(colorSpace);
     }
 }

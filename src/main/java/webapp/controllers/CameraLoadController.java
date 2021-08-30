@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/session")
 public class CameraLoadController {
-    private final CameraLoader camera;
+    private final CameraLoader cameraLoader;
 
     @Autowired
-    public CameraLoadController(CameraLoader camera) {
-        this.camera = camera;
+    public CameraLoadController(CameraLoader cameraLoader) {
+        this.cameraLoader = cameraLoader;
     }
 
     @GetMapping("/load")
     public void loadCamera(@RequestParam(value = "cameraID") int id) {
-        this.camera.loadCamera(id);
+        this.cameraLoader.loadCamera(id);
     }
 }

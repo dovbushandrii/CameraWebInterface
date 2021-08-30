@@ -8,24 +8,23 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class PhotoSessionParamsDAO {
 
     private final PhotoSessionParamsRepo repo;
-    private final CompanyLoader company;
+    private final CompanyLoader companyLoader;
 
     @Autowired
-    public PhotoSessionParamsDAO(PhotoSessionParamsRepo repo, CompanyLoader company) {
+    public PhotoSessionParamsDAO(PhotoSessionParamsRepo repo, CompanyLoader companyLoader) {
         this.repo = repo;
-        this.company = company;
+        this.companyLoader = companyLoader;
     }
 
     public List<PhotoSessionParamsDTO> read() {
         List<PhotoSessionParamsDTO> params = new ArrayList<>();
         Iterable<PhotoSessionParamsDTO> list = repo.findAll();
-        String photoSessionParamsClassName = company.getCompany()
+        String photoSessionParamsClassName = companyLoader.getCompany()
                 .getPhotoSessionParamsClassName();
 
         for (PhotoSessionParamsDTO photoSessionParamsDTO : list) {
@@ -37,22 +36,20 @@ public class PhotoSessionParamsDAO {
     }
 
     public PhotoSessionParamsDTO read(int id) {
-        Optional<PhotoSessionParamsDTO> params = repo.findById((long) id);
-        if (params.isPresent()) {
-            return params.get();
-        }
-        throw new IndexOutOfBoundsException("No such photo session parameters with id: " + id);
+        return repo.findById((long) id)
+                .orElseThrow(() -> new IndexOutOfBoundsException(
+                        "No such photo session parameters with id: " + id
+                ));
     }
 
     public void update(List<PhotoSessionParamsDTO> newList) {
-        this.delete();
-        for (PhotoSessionParamsDTO params : newList) {
-            this.create(params);
-        }
+        delete();
+        newList.forEach(this::create);
     }
 
     public void update(PhotoSessionParamsDTO newParams) {
-        //TODO
+        this.delete(newParams.getId());
+        this.create(newParams);
     }
 
     public void create(PhotoSessionParamsDTO params) {
@@ -63,7 +60,7 @@ public class PhotoSessionParamsDAO {
         repo.deleteAll();
     }
 
-    public void delete(int id) {
-        repo.deleteById((long) id);
+    public void delete(long id) {
+        repo.deleteById(id);
     }
 }

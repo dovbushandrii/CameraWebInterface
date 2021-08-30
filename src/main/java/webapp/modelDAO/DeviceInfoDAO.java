@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class DeviceInfoDAO {
 
-    private final CameraLoader camera;
+    private final CameraLoader cameraLoader;
 
     @Autowired
-    public DeviceInfoDAO(CameraLoader camera) {
-        this.camera = camera;
+    public DeviceInfoDAO(CameraLoader cameraLoader) {
+        this.cameraLoader = cameraLoader;
     }
 
     public DeviceInfo read() {
-        return new DeviceInfo(this.camera.getCamera());
+        return new DeviceInfo(this.cameraLoader.getCamera());
     }
 }
