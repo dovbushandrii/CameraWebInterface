@@ -3,6 +3,8 @@ package camera_api.canon.encodings.cameraprops;
 import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.encogings.CameraProp;
 
+import java.util.Arrays;
+
 public enum EdsDriveMode implements CameraProp {
 
     SINGLE_SHOOT(0x00000000, "Single shooting"),
@@ -38,22 +40,18 @@ public enum EdsDriveMode implements CameraProp {
         return this.code;
     }
 
-    public static EdsDriveMode fromCode(int code) {
-        for (EdsDriveMode type : values()) {
-            if (type.getCode() == code) {
-                return type;
-            }
-        }
-        throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
+    public static CameraProp fromCode(int code) {
+        return Arrays.stream(values())
+                .filter(type -> type.getCode() == code)
+                .findFirst()
+                .orElseThrow(NoSuchPropertyValueException::new);
     }
 
-    public static EdsDriveMode fromValue(String value) {
-        for (EdsDriveMode type : values()) {
-            if (type.toString().equals(value)) {
-                return type;
-            }
-        }
-        throw new NoSuchPropertyValueException("Invalid settings value");
+    public static CameraProp fromValue(String value) {
+        return Arrays.stream(values())
+                .filter(type -> type.toString().equals(value))
+                .findFirst()
+                .orElseThrow(NoSuchPropertyValueException::new);
     }
 
     @Override

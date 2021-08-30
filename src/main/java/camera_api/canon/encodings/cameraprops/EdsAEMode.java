@@ -3,6 +3,9 @@ package camera_api.canon.encodings.cameraprops;
 import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.encogings.CameraProp;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 
 public enum EdsAEMode implements CameraProp {
 
@@ -52,25 +55,21 @@ public enum EdsAEMode implements CameraProp {
     }
 
     public int getCode() {
-       return this.code;
+        return this.code;
     }
 
-    public static EdsAEMode fromCode(int code) {
-        for (EdsAEMode type : values()) {
-            if (type.getCode() == code) {
-                return type;
-            }
-        }
-        throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
+    public static CameraProp fromCode(int code) {
+        return Arrays.stream(values())
+                .filter(type -> type.getCode() == code)
+                .findFirst()
+                .orElseThrow(NoSuchPropertyValueException::new);
     }
 
-    public static EdsAEMode fromValue(String value) {
-        for (EdsAEMode type : values()) {
-            if (type.toString().equals(value)) {
-                return type;
-            }
-        }
-        throw new NoSuchPropertyValueException("Invalid settings value");
+    public static CameraProp fromValue(String value) {
+        return Arrays.stream(values())
+                .filter(type -> type.toString().equals(value))
+                .findFirst()
+                .orElseThrow(NoSuchPropertyValueException::new);
     }
 
     @Override

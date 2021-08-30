@@ -4,4 +4,7 @@ public class CameraNotFoundException extends RuntimeException {
     public CameraNotFoundException(String str) {
         super(str);
     }
+    public CameraNotFoundException() {
+        super();
+    }
 }

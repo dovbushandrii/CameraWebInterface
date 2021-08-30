@@ -4,4 +4,7 @@ public class NoSuchPropertyValueException extends RuntimeException {
     public NoSuchPropertyValueException(String str) {
         super(str);
     }
+    public NoSuchPropertyValueException() {
+        super();
+    }
 }

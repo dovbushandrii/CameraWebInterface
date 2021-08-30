@@ -4,4 +4,7 @@ public class SDKIsNotInitializedException extends RuntimeException {
     public SDKIsNotInitializedException(String str) {
         super(str);
     }
+    public SDKIsNotInitializedException() {
+        super();
+    }
 }

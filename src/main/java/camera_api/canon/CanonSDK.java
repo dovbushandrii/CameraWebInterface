@@ -1,9 +1,12 @@
 package camera_api.canon;
 
 import camera_api.exceptions.CameraNotFoundException;
+import camera_api.exceptions.CameraSessionCloseException;
 import camera_api.interfaces.camerasdk.CameraSDK;
 import camera_api.canon.encodings.sdk.*;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
 
 
 @Component
@@ -30,29 +33,18 @@ public class CanonSDK implements CameraSDK {
         }
     }
 
-    private static EdsError closeAllSessions() {
-        EdsError err = EdsError.EDS_ERR_OK;
-        for (CanonCamera canonCamera : deviceList) {
-            err = canonCamera.closeSession();
-            if (err != EdsError.EDS_ERR_OK) {
-                break;
+    private static void closeAllSessions() {
+        Arrays.stream(deviceList)
+                .forEach(camera -> {
+            if (camera.closeSession() != EdsError.EDS_ERR_OK) {
+                throw new CameraSessionCloseException();
             }
-        }
-        return err;
+        });
     }
 
     private static void releaseCameraList() {
-        for (CanonCamera canonCamera : deviceList) {
-            canonCamera.release(permission);
-        }
+        Arrays.stream(deviceList).forEach(camera -> camera.release(permission));
         deviceList = new CanonCamera[0];
-    }
-
-    private static CanonCamera findInDeviceList(CanonCamera cam) {
-        for (CanonCamera dev : deviceList) {
-            if (dev.equals(cam)) return dev;
-        }
-        return null;
     }
 
     private native String getCameraPortInfo(int index);
@@ -75,12 +67,9 @@ public class CanonSDK implements CameraSDK {
     }
 
     public EdsError terminateSDK() {
-        EdsError err = closeAllSessions();
-        if (err == EdsError.EDS_ERR_OK) {
-            releaseCameraList();
-            err = terminateNativeSDK();
-        }
-        return err;
+        closeAllSessions();
+        releaseCameraList();
+        return terminateNativeSDK();
     }
     /*----------------------------------------------------------------------------*/
 
@@ -108,13 +97,13 @@ public class CanonSDK implements CameraSDK {
     }
 
     public String[] getCameraNameList() {
-        String[] dnl = new String[deviceList.length];
-        for (int i = 0; i < dnl.length; i++) {
-            dnl[i] = getCameraName(i);
+        String[] cameraNameList = new String[deviceList.length];
+        for (int i = 0; i < cameraNameList.length; i++) {
+            cameraNameList[i] = getCameraName(i);
         }
-        return dnl;
+        return cameraNameList;
     }
-    
+
     public String getCameraPort(int index) {
         if (deviceList.length > index && index >= 0) {
             return getCameraPortInfo(index);

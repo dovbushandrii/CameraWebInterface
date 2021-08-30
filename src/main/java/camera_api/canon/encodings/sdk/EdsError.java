@@ -1,7 +1,11 @@
 package camera_api.canon.encodings.sdk;
 
 import camera_api.exceptions.NoSuchErrorCodeException;
+import camera_api.exceptions.NoSuchPropertyValueException;
+import camera_api.interfaces.encogings.CameraProp;
 import camera_api.interfaces.encogings.ErrorCode;
+
+import java.util.Arrays;
 
 public enum EdsError implements ErrorCode {
 
@@ -200,12 +204,10 @@ public enum EdsError implements ErrorCode {
         return this.code;
     }
 
-    public static EdsError fromCode(int code) {
-        for (EdsError type : values()) {
-            if (type.getCode() == code) {
-                return type;
-            }
-        }
-        throw new NoSuchErrorCodeException("Invalid code/sdk is not initialized");
+    public static ErrorCode fromCode(int code) {
+        return Arrays.stream(values())
+                .filter(type -> type.getCode() == code)
+                .findFirst()
+                .orElseThrow(NoSuchErrorCodeException::new);
     }
 }

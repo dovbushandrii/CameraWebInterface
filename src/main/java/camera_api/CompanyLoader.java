@@ -51,9 +51,8 @@ public class CompanyLoader implements Observed {
 
     @Override
     public void notifyAllObservers() {
-        for (Observer obs : observers) {
-            obs.handleEvent();
-        }
+        observers.stream()
+                .forEach(observer -> observer.handleEvent());
     }
 
     @Override

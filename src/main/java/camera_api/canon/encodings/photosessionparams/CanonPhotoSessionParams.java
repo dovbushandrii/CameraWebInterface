@@ -3,55 +3,10 @@ package camera_api.canon.encodings.photosessionparams;
 import camera_api.canon.encodings.cameraprops.EdsAperture;
 import camera_api.canon.encodings.cameraprops.EdsExposure;
 import camera_api.canon.encodings.cameraprops.EdsISO;
-import camera_api.interfaces.camerasdk.Camera;
-import webapp.model.photosessionparams.inter.PhotoSessionParams;
-import lombok.Getter;
-import lombok.Setter;
+import webapp.model.photosessionparams.abstracts.AbstractPhotoSessionParams;
 
-public class CanonPhotoSessionParams implements PhotoSessionParams {
 
-    @Getter
-    @Setter
-    private long id;
-
-    @Getter
-    @Setter
-    private int count;
-
-    @Getter
-    private EdsExposure exposure;
-
-    @Getter
-    @Setter
-    private double exposureTime;
-
-    @Getter
-    private EdsISO iso;
-
-    @Getter
-    private EdsAperture aperture;
-
-    @Getter
-    @Setter
-    private String pictureName;
-
-    @Getter
-    @Setter
-    private double pause;
-
-    @Override
-    public void applySettings(Camera cam) {
-        cam.setISO(this.iso);
-        cam.setAperture(this.aperture);
-        if(!exposureTimeGiven()){
-            cam.setExposure(this.exposure);
-        }
-    }
-
-    @Override
-    public boolean exposureTimeGiven() {
-        return this.exposure == null;
-    }
+public class CanonPhotoSessionParams extends AbstractPhotoSessionParams {
 
     @Override
     public void setExposure(int exposureCode) {

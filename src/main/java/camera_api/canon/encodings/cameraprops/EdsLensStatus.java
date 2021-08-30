@@ -3,6 +3,8 @@ package camera_api.canon.encodings.cameraprops;
 import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.encogings.CameraProp;
 
+import java.util.Arrays;
+
 public enum EdsLensStatus implements CameraProp {
 
     NOT_ATTACHED(0, "The lens is not attached"),
@@ -25,22 +27,18 @@ public enum EdsLensStatus implements CameraProp {
         return this.code;
     }
 
-    public static EdsLensStatus fromCode(int code) {
-        for (EdsLensStatus type : values()) {
-            if (type.getCode() == code) {
-                return type;
-            }
-        }
-        throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
+    public static CameraProp fromCode(int code) {
+        return Arrays.stream(values())
+                .filter(type -> type.getCode() == code)
+                .findFirst()
+                .orElseThrow(NoSuchPropertyValueException::new);
     }
 
-    public static EdsLensStatus fromValue(String value) {
-        for (EdsLensStatus type : values()) {
-            if (type.toString().equals(value)) {
-                return type;
-            }
-        }
-        throw new NoSuchPropertyValueException("Invalid settings value");
+    public static CameraProp fromValue(String value) {
+        return Arrays.stream(values())
+                .filter(type -> type.toString().equals(value))
+                .findFirst()
+                .orElseThrow(NoSuchPropertyValueException::new);
     }
 
     @Override

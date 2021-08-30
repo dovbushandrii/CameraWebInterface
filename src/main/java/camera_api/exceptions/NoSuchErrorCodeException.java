@@ -4,4 +4,7 @@ public class NoSuchErrorCodeException extends RuntimeException {
     public NoSuchErrorCodeException(String str) {
         super(str);
     }
+    public NoSuchErrorCodeException() {
+        super();
+    }
 }

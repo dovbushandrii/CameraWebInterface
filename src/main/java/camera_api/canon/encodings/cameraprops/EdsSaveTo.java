@@ -3,6 +3,8 @@ package camera_api.canon.encodings.cameraprops;
 import camera_api.exceptions.NoSuchPropertyValueException;
 import camera_api.interfaces.encogings.CameraProp;
 
+import java.util.Arrays;
+
 public enum EdsSaveTo implements CameraProp {
 
     MEM_CARD(1, "Save on a memory card"),
@@ -26,22 +28,18 @@ public enum EdsSaveTo implements CameraProp {
         return this.code;
     }
 
-    public static EdsSaveTo fromCode(int code) {
-        for (EdsSaveTo type : values()) {
-            if (type.getCode() == code) {
-                return type;
-            }
-        }
-        throw new NoSuchPropertyValueException("Invalid code/camera session is not opened");
+    public static CameraProp fromCode(int code) {
+        return Arrays.stream(values())
+                .filter(type -> type.getCode() == code)
+                .findFirst()
+                .orElseThrow(NoSuchPropertyValueException::new);
     }
 
-    public static EdsSaveTo fromValue(String value) {
-        for (EdsSaveTo type : values()) {
-            if (type.toString().equals(value)) {
-                return type;
-            }
-        }
-        throw new NoSuchPropertyValueException("Invalid settings value");
+    public static CameraProp fromValue(String value) {
+        return Arrays.stream(values())
+                .filter(type -> type.toString().equals(value))
+                .findFirst()
+                .orElseThrow(NoSuchPropertyValueException::new);
     }
 
     @Override
