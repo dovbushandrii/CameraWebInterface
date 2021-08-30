@@ -4,7 +4,7 @@ import camera_api.canon.encodings.cameraprops.EdsAperture;
 import camera_api.canon.encodings.cameraprops.EdsExposure;
 import camera_api.canon.encodings.cameraprops.EdsISO;
 import camera_api.interfaces.camerasdk.Camera;
-import cameraweb.model.photosessionparams.inter.PhotoSessionParams;
+import webapp.model.photosessionparams.inter.PhotoSessionParams;
 import lombok.Getter;
 import lombok.Setter;
 

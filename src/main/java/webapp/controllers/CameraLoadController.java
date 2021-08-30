@@ -1,4 +1,4 @@
-package cameraweb.controllers;
+package webapp.controllers;
 
 import camera_api.ProxyCamera;
 import org.springframework.beans.factory.annotation.Autowired;

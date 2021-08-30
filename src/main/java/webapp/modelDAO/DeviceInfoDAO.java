@@ -1,7 +1,7 @@
-package cameraweb.modelDAO;
+package webapp.modelDAO;
 
 import camera_api.ProxyCamera;
-import cameraweb.model.DeviceInfo;
+import webapp.model.DeviceInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

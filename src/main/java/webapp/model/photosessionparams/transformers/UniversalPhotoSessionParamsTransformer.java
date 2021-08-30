@@ -1,8 +1,8 @@
-package cameraweb.model.photosessionparams.transformers;
+package webapp.model.photosessionparams.transformers;
 
-import cameraweb.model.photosessionparams.dtos.PhotoSessionParamsDTO;
-import cameraweb.model.photosessionparams.inter.PhotoSessionParams;
-import cameraweb.model.photosessionparams.inter.PhotoSessionParamsTransformer;
+import webapp.model.photosessionparams.dtos.PhotoSessionParamsDTO;
+import webapp.model.photosessionparams.inter.PhotoSessionParams;
+import webapp.model.photosessionparams.inter.PhotoSessionParamsTransformer;
 import org.springframework.stereotype.Component;
 
 @Component

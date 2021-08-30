@@ -1,4 +1,4 @@
-package cameraweb.config;
+package webapp.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -14,7 +14,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 
 @Configuration
-@ComponentScan({"cameraweb", "camera_api"})
+@ComponentScan({"webapp", "camera_api"})
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
 

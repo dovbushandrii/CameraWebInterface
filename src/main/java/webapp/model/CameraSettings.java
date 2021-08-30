@@ -1,49 +1,58 @@
-package cameraweb.model;
+package webapp.model;
 
 import camera_api.interfaces.camerasdk.Camera;
 import camera_api.interfaces.encogings.CameraProp;
 import lombok.Getter;
+import lombok.Setter;
 
 public class CameraSettings {
     @Getter
+    @Setter
     private CameraProp iso;
     @Getter
-    private CameraProp[] isos;
+    private final CameraProp[] isos;
 
     @Getter
+    @Setter
     private CameraProp exposure;
     @Getter
-    private CameraProp[] exposures;
+    private final CameraProp[] exposures;
 
     @Getter
+    @Setter
     private CameraProp exposureComp;
     @Getter
-    private CameraProp[] exposureComps;
+    private final CameraProp[] exposureComps;
 
     @Getter
+    @Setter
     private CameraProp aperture;
     @Getter
-    private CameraProp[] apertures;
+    private final CameraProp[] apertures;
 
     @Getter
+    @Setter
     private CameraProp afSetting;
     @Getter
-    private CameraProp[] afSettings;
+    private final CameraProp[] afSettings;
 
     @Getter
+    @Setter
     private CameraProp wbSetting;
     @Getter
-    private CameraProp[] wbSettings;
+    private final CameraProp[] wbSettings;
 
     @Getter
+    @Setter
     private CameraProp driveMode;
     @Getter
-    private CameraProp[] driveModes;
+    private final CameraProp[] driveModes;
 
     @Getter
+    @Setter
     private CameraProp colorSpace;
     @Getter
-    private CameraProp[] colorSpaces;
+    private final CameraProp[] colorSpaces;
 
     public CameraSettings(Camera cam) {
         this.iso = cam.getISO();

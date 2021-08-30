@@ -1,8 +1,8 @@
-package cameraweb.modelDAO;
+package webapp.modelDAO;
 
 import camera_api.ProxyCompany;
-import cameraweb.model.photosessionparams.dtos.PhotoSessionParamsDTO;
-import cameraweb.repos.PhotoSessionParamsRepo;
+import webapp.model.photosessionparams.dtos.PhotoSessionParamsDTO;
+import webapp.repos.PhotoSessionParamsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

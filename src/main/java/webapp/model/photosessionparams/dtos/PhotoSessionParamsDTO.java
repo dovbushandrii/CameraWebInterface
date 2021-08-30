@@ -1,4 +1,4 @@
-package cameraweb.model.photosessionparams.dtos;
+package webapp.model.photosessionparams.dtos;
 
 import lombok.Getter;
 import lombok.Setter;

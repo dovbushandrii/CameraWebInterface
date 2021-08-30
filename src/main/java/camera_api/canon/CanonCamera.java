@@ -30,9 +30,7 @@ public class CanonCamera implements Camera {
         if (object != null) {
             if (object.getClass().getName().equals(this.getClass().getName())) {
                 CanonCamera cam = (CanonCamera) object;
-                if (cam.CamRef == this.CamRef) {
-                    return true;
-                }
+                return cam.CamRef == this.CamRef;
             }
         }
         return false;

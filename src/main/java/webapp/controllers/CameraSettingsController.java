@@ -1,7 +1,7 @@
-package cameraweb.controllers;
+package webapp.controllers;
 
-import cameraweb.model.CameraSettings;
-import cameraweb.modelDAO.CameraSettingsDAO;
+import webapp.model.CameraSettings;
+import webapp.modelDAO.CameraSettingsDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

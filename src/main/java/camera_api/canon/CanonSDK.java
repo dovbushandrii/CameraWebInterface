@@ -108,7 +108,7 @@ public class CanonSDK implements CameraSDK {
     }
 
     public String[] getCameraNameList() {
-        String dnl[] = new String[deviceList.length];
+        String[] dnl = new String[deviceList.length];
         for (int i = 0; i < dnl.length; i++) {
             dnl[i] = getCameraName(i);
         }

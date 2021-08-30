@@ -1,9 +1,9 @@
-package cameraweb.controllers;
+package webapp.controllers;
 
-import cameraweb.model.photosessionparams.dtos.PhotoSessionParamsDTO;
-import cameraweb.model.photosessionparams.inter.PhotoSessionParams;
-import cameraweb.model.photosessionparams.inter.PhotoSessionParamsTransformer;
-import cameraweb.modelDAO.PhotoSessionCAO;
+import webapp.model.photosessionparams.dtos.PhotoSessionParamsDTO;
+import webapp.model.photosessionparams.inter.PhotoSessionParams;
+import webapp.model.photosessionparams.inter.PhotoSessionParamsTransformer;
+import webapp.modelDAO.PhotoSessionCAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

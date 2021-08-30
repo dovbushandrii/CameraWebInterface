@@ -1,20 +1,20 @@
-package cameraweb.model;
+package webapp.model;
 
 import camera_api.interfaces.camerasdk.Camera;
 import lombok.Getter;
 
 public class DeviceInfo {
     @Getter
-    private String deviceName;
+    private final String deviceName;
 
     @Getter
-    private String ownersName;
+    private final String ownersName;
 
     @Getter
-    private String firmwareVersion;
+    private final String firmwareVersion;
 
     @Getter
-    private String lensName;
+    private final String lensName;
 
     public DeviceInfo(Camera cam) {
         this.deviceName = cam.productName();
