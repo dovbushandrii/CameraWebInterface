@@ -28,7 +28,7 @@ public class CameraLoader implements Observer {
                 camera.closeSession();
             }
             camera = newCamera;
-            this.camera.openSession();
+            camera.openSession();
         }
     }
 

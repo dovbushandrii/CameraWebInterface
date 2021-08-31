@@ -4,6 +4,7 @@ import camera_api.exceptions.CameraNotFoundException;
 import camera_api.exceptions.CameraSessionCloseException;
 import camera_api.interfaces.camerasdk.CameraSDK;
 import camera_api.canon.encodings.sdk.*;
+import camera_api.interfaces.encogings.ErrorCode;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;

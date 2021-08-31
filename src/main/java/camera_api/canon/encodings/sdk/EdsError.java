@@ -204,7 +204,7 @@ public enum EdsError implements ErrorCode {
         return this.code;
     }
 
-    public static ErrorCode fromCode(int code) {
+    public static EdsError fromCode(int code) {
         return Arrays.stream(values())
                 .filter(type -> type.getCode() == code)
                 .findFirst()

@@ -40,14 +40,14 @@ public enum EdsDriveMode implements CameraProp {
         return this.code;
     }
 
-    public static CameraProp fromCode(int code) {
+    public static EdsDriveMode fromCode(int code) {
         return Arrays.stream(values())
                 .filter(type -> type.getCode() == code)
                 .findFirst()
                 .orElseThrow(NoSuchPropertyValueException::new);
     }
 
-    public static CameraProp fromValue(String value) {
+    public static EdsDriveMode fromValue(String value) {
         return Arrays.stream(values())
                 .filter(type -> type.toString().equals(value))
                 .findFirst()

@@ -20,6 +20,7 @@ public class CompanyLoadController {
     @GetMapping("/load")
     public void loadCompany(@RequestParam(value = "companyName") String companyName) {
         this.companyLoader.loadCompanySoftware(companyName);
+        System.out.println(companyName + " was loaded");
     }
 
 }

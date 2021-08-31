@@ -27,14 +27,14 @@ public enum EdsLensStatus implements CameraProp {
         return this.code;
     }
 
-    public static CameraProp fromCode(int code) {
+    public static EdsLensStatus fromCode(int code) {
         return Arrays.stream(values())
                 .filter(type -> type.getCode() == code)
                 .findFirst()
                 .orElseThrow(NoSuchPropertyValueException::new);
     }
 
-    public static CameraProp fromValue(String value) {
+    public static EdsLensStatus fromValue(String value) {
         return Arrays.stream(values())
                 .filter(type -> type.toString().equals(value))
                 .findFirst()
