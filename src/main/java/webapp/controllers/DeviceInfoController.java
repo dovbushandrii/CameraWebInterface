@@ -1,6 +1,6 @@
 package webapp.controllers;
 
-import webapp.model.DeviceInfo;
+import webapp.model.deviceInfo.DeviceInfo;
 import webapp.modelDAO.DeviceInfoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

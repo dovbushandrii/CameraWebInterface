@@ -1,7 +1,7 @@
 package webapp.modelDAO;
 
 import camera_api.CameraLoader;
-import webapp.model.DeviceInfo;
+import webapp.model.deviceInfo.DeviceInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

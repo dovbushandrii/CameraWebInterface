@@ -1,4 +1,4 @@
-package webapp.model;
+package webapp.model.deviceInfo;
 
 import camera_api.interfaces.camerasdk.Camera;
 import lombok.Getter;

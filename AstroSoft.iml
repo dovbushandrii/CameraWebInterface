@@ -8,8 +8,10 @@
         </webroots>
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src/main/camera-libs" />
+          <root url="file://$MODULE_DIR$/src/main/cpp" />
           <root url="file://$MODULE_DIR$/src/main/java" />
           <root url="file://$MODULE_DIR$/src/main/resources" />
+          <root url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/views/session/javascript" />
         </sourceRoots>
       </configuration>
     </facet>

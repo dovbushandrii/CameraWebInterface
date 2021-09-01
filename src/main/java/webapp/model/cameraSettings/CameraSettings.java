@@ -1,4 +1,4 @@
-package webapp.model;
+package webapp.model.cameraSettings;
 
 import camera_api.interfaces.camerasdk.Camera;
 import camera_api.interfaces.encogings.CameraProp;
