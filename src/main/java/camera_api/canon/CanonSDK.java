@@ -4,14 +4,21 @@ import camera_api.exceptions.CameraNotFoundException;
 import camera_api.exceptions.CameraSessionCloseException;
 import camera_api.interfaces.camerasdk.CameraSDK;
 import camera_api.canon.encodings.sdk.*;
-import camera_api.interfaces.encogings.ErrorCode;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
 
 @Component
+@PropertySource("classpath:cameralibs.properties")
 public class CanonSDK implements CameraSDK {
+
+    @Value("${canon.sdk.path}")
+    private String sdkPath;
+    @Value("${canon.jnilib.path}")
+    private String jniLibPath;
 
     public static class EDSDKPermit {
         private EDSDKPermit() {
@@ -58,8 +65,8 @@ public class CanonSDK implements CameraSDK {
     private native EdsError terminateNativeSDK();
 
     public EdsError initializeSDK() {
-        System.load("C:/Users/DovbushAndriy/Desktop/demo/AstroSoft/CDLL/EDSDK.dll");
-        System.load("C:/Users/DovbushAndriy/Desktop/demo/AstroSoft/CDLL/CameraForJava.dll");
+        System.load(sdkPath);
+        System.load(jniLibPath);
         EdsError err = initializeNativeSDK();
         if (err == EdsError.EDS_ERR_OK) {
             setCameraList();

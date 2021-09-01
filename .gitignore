@@ -38,3 +38,4 @@ target/
 CDLL/
 src/test/
 out/
+/src/main/resources/cameralibs.properties
